@@ -92,7 +92,7 @@ public class Document2004Test extends Assert {
 		myDoc.getHeader().addEle(new Paragraph("Header par11111"));
 		myDoc.getFooter().addEle(new Paragraph("Footer par11111"));
 		
-		System.out.println(myDoc.getContent());
+		//System.out.println(myDoc.getContent());
 
 	}
 	 

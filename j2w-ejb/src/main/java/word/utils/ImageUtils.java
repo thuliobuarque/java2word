@@ -12,9 +12,13 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.jboss.seam.util.Base64;
+
+//import org.apache.commons.codec.binary.Base64;
+
 import word.w2000.Document2000;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+//import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 public class ImageUtils {
 
@@ -31,7 +35,9 @@ public class ImageUtils {
 			int readBytes1 = bis.read(buffer1);//this line is required...
 			bis.close();
 
-			String encodedString = Base64.encode(buffer1);
+			String encodedString = Base64.encodeBytes(buffer1);
+			//ori String encodedString = Base64.encode(buffer1);
+			//String encodedString = Base64.encode(buffer1);
 			
 			return encodedString;
 		} catch (IOException e) {

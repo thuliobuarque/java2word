@@ -28,8 +28,8 @@ public class Utils_Test extends Assert {
 	@Test
 	public void getAppRootTest() {
 		Utils utils = new Utils();
-		assertNotNull(utils);
-		assertTrue(Utils.getAppRoot().contains("/j2w/j2w-ejb"));
+		assertNotNull(utils);		
+		assertTrue(Utils.getAppRoot().contains("/j2w-ejb"));
 	}
 	
 	@Test

@@ -34,13 +34,13 @@ public class WordCreatorTest extends AbstractFacesContext {
 
 		MyHttpServletResponseWrapper wrapper = new MyHttpServletResponseWrapper(servletResponse);
 		
-		System.out.println("### LEO: " + servletResponse);
-		System.out.println("### LEO: " + servletResponse.getBufferSize());
+		//System.out.println("### LEO: " + servletResponse);
+		//System.out.println("### LEO: " + servletResponse.getBufferSize());
 
-		System.out.println("### LEO: " + wrapper);
+		//System.out.println("### LEO: " + wrapper);
 		
-		PrintWriter pp = servletResponse.getWriter();
-		System.out.println("### LEO: " + pp);
+		//PrintWriter pp = servletResponse.getWriter();
+		//System.out.println("### LEO: " + pp);
 
 		assertEquals("application/msword", servletResponse.getContentType());
 	}
