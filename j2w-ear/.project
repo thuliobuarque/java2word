@@ -1,0 +1,10 @@
+<projectDescription>
+  <name>j2w-ear</name>
+  <comment/>
+  <projects>
+    <project>j2w-ejb</project>
+    <project>j2w-war</project>
+  </projects>
+  <buildSpec/>
+  <natures/>
+</projectDescription>
