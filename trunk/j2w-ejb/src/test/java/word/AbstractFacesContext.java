@@ -170,7 +170,7 @@ public class AbstractFacesContext extends Assert{
 	
 	private static HttpServletResponse getMockedHttpServletResponse() throws FileNotFoundException{
 		
-		final PrintWriter pw  = new PrintWriter(new File("xxx.txt")); //inner classes can only access final stuffs for the outer.
+		final PrintWriter pw  = new PrintWriter(new File("target/xxx.txt")); //inner classes can only access final stuffs for the outer.
 		
 		HttpServletResponse resp = new HttpServletResponse() {
 
