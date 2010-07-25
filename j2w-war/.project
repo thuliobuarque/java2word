@@ -1,0 +1,18 @@
+<projectDescription>
+  <name>j2w-war</name>
+  <comment/>
+  <projects>
+    <project>j2w-ejb</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>de.loskutov.FileSync.FSBuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
