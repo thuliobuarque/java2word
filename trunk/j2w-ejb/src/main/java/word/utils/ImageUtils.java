@@ -1,24 +1,20 @@
 package word.utils;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
 import org.jboss.seam.util.Base64;
 
-//import org.apache.commons.codec.binary.Base64;
 
-import word.w2000.Document2000;
+//import java.awt.image.BufferedImage;
+//import java.io.BufferedOutputStream;
+//import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
+//import java.net.URL;
+//import javax.imageio.ImageIO;
+//import word.w2000.Document2000;
 
-//import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 public class ImageUtils {
 
@@ -32,6 +28,8 @@ public class ImageUtils {
 
 			int bytes = (int) file.length();
 			byte[] buffer1 = new byte[bytes];
+			
+			@SuppressWarnings("unused")
 			int readBytes1 = bis.read(buffer1);//this line is required...
 			bis.close();
 

@@ -45,9 +45,9 @@ public class Header2004 implements IHeader{
 		this.hideHeaderAndFooterFirstPage = value;
 	}
 
-	private static String HEADER_TOP = "\n\n	<w:hdr w:type=\"odd\">";
-	private static String HEADER_BOTTON = "\n	</w:hdr>";
-	public static String HIDE_HEADER__FOOTER_FIRST_PAGE =
+	private static final String HEADER_TOP = "\n\n	<w:hdr w:type=\"odd\">";
+	private static final String HEADER_BOTTON = "\n	</w:hdr>";
+	public static final String HIDE_HEADER__FOOTER_FIRST_PAGE =
 		"\n            <w:hdr w:type=\"first\"> "
 		+"\n                <w:p wsp:rsidR=\"00005E72\" wsp:rsidRDefault=\"00005E72\"> "
 		+"\n                    <w:pPr> "
