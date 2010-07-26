@@ -3,8 +3,6 @@ package word.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jboss.seam.log.Log;
-
 public class TestUtils {
 
 	public static int regexCount(String text, String regex){

@@ -56,6 +56,12 @@ public class Utils {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
+		}finally{
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}			
 		}
 	}
 
@@ -121,7 +127,7 @@ public class Utils {
 	}
 	
 	
-	public static String HEAD2004 = 
+	public static final String HEAD2004 = 
 		  "    <o:DocumentProperties> "
 		+ "        <o:Author>Leonardo Correa</o:Author> "
 		+ "        <o:LastAuthor>Leonardo Correa</o:LastAuthor> "

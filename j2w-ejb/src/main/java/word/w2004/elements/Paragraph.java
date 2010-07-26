@@ -25,13 +25,4 @@ public class Paragraph implements IElement{
 		return txt.replace("{value}", this.value);
 	}
 
-	
-	// #### Getters and setters ####  
-//	public String getValue() {
-//		return value;
-//	}
-//	public void setValue(String value) {
-//		this.value = value;
-//	}
-	
 }

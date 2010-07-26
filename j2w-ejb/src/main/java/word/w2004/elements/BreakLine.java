@@ -14,19 +14,18 @@ public class BreakLine implements IElement{
 		return res.toString();
 	}
 	
-	//constructor
+	
 	/**
 	 * @param times
-	 * Number of break lines you want to add
+	 * constructor: Number of break lines you want to add
 	 */
 	public BreakLine(int times){
 		this.times  = times;
 	}
 	
-	//constructor
 	/**
 	 * @param times
-	 * By default, 1 Number of break line when no number is provided
+	 * constructor: By default, 1 Number of break line when no number is provided
 	 */
 	public BreakLine(){
 	}
