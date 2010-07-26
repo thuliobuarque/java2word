@@ -1,5 +1,8 @@
 Useful Links:
 
+### PROJECT HOMEPAGE ###
+http://code.google.com/p/java2word/
+
 ### About formats
 http://en.wikipedia.org/wiki/Microsoft_Office_XML_formats
 
@@ -24,41 +27,22 @@ XML is the new and current standard for word, open XML documents and so on. So w
 However there are a lot of users using <= 2004 and we should at least consider this and write a very basic version of this one as well.
 
 - Unit Test for everything, preferable TDD 
-- No cucumber test now 
+- Cucumber test maybe in the future 
 - Cobertura at least 80% (Test coverage metric)
 - PMD, CPD, NCSS and Findbugs
 
 - Small and testable methods (Low cyclomatic complexity) 
 
 
-### How to test??? 
-
+### How to write code and test it??? 
 1 - write your code and test class 
 2 - In your test class, print out the Document.getDocumentSource
 3 - Copy this result to your clip board
-4 - Access the test web page "http://localhost/app02"
-5 - paste this result in the text area field and click in "Word"
+4 - Access the test web page "http://localhost/j2w"
+5 - paste this result in the text area field and click in "just fucking do it"
 6 - Save the word document file, open and see if it is what you expected.
-   
-   
-
-### Table of Supported tags: 
-
-Tag		           | 2000 | 2004 |				
----------------------------------
-h1.. h6            |   y  |  y   |  
-PageBreak          |   y  |  y   |
-BreakLine          |   y  |  y   |
-header and footer  |      |  y   | *
-Image              |      |  y   |
-paragraph          |   y  |  y   |
-Table              |   y  |  y   |
-                   |      |      |
-                   |      |      |
-----------------------------------
-* 2004 has only h1 to h3
-
-   
+      
+      
 ### Code Quality Tools
    
 JavaNCSS Ð Cyclomatic Complexity (CC) of methods. Basically it shows  the number of paths. 
@@ -76,14 +60,12 @@ pmd:pmd
 findbugs:findbugs 
 
 
-
-
 ### to-do list
 
 - Comments on the API
 - Comments on the classes
 - Create Web Test Application for JBoss Seam
-- Create Web Test Application for Java Servlet
+
 
 - Create Abstract Factory to instantiate the correct Implementation
 - Log debug
