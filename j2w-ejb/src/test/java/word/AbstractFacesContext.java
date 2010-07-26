@@ -169,7 +169,12 @@ public class AbstractFacesContext extends Assert{
 	
 	
 	private static HttpServletResponse getMockedHttpServletResponse() throws FileNotFoundException{
-		
+		File target = new File("target");
+		if(!target.exists()){
+			if (!target.mkdir()){
+				System.out.println("ERROR: Can't create the dir 'target'");
+			}
+		}
 		final PrintWriter pw  = new PrintWriter(new File("target/xxx.txt")); //inner classes can only access final stuffs for the outer.
 		
 		HttpServletResponse resp = new HttpServletResponse() {
