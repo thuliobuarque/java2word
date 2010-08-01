@@ -8,9 +8,10 @@
 
     <!-- Project settings -->
     <property name="project.distname" value="ExampleStruts"/>
-	
-	<!-- ################# DON'T FORGET TO CHANGE THIS LINE TO POINT TO YOUR JBOSS. Tested in JBoss 5.1.0.GA -->
-    <property name="deploy.dir" value="/Users/leonardo_correa/aajava/jboss-5.1.0.GA/server/default/deploy"/>
+
+	<!-- ################# DON'T FORGET TO RENAME THE build.properties.SAMPLE to build.properties AND CHANGE THE JBOSS DEPLOY FOLDER.
+	 Tested in JBoss 5.1.0.GA -->
+	<property name="jboss.dir" location="${jboss.dir}" />
 
     <!-- classpath for Struts 1.1 -->
     <path id="compile.classpath">
