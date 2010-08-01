@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import word.api.interfaces.IDocument;
 import word.utils.Utils;
+import word.w2004.Document2004;
 import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
@@ -29,7 +30,7 @@ public class Document2004Test extends Assert {
 		assertEquals(myDoc.getContent(), myDoc.getContent());
 		assertEquals(myDoc.getContent(), myDoc.getContent());
 	}
-	
+
 	@Test
 	public void uriTest() {
 		IDocument myDoc = new Document2004();
@@ -47,11 +48,11 @@ public class Document2004Test extends Assert {
 		+ "	w:macrosPresent=\"no\" w:embeddedObjPresent=\"no\" w:ocxPresent=\"no\" "
 		+ "	xml:space=\"preserve\"> "
 		+ "	<w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
-		
+
 		assertEquals("Uri is not as expected: ", expected, myDoc.getUri());
 	}
 
-		
+
 	 @Test
 	 public void headTest() {
 		 IDocument myDoc = new Document2004();
@@ -60,7 +61,7 @@ public class Document2004Test extends Assert {
 		 assertTrue(myDoc.getHead().getContent().contains("<w:zoom w:percent=\"100\"/>"));
 		 assertTrue(myDoc.getHead().getContent().contains("</w:docPr>"));
 	 }
-	 
+
 	 @Test
 	 public void bodyTest() {
 		 IDocument myDoc = new Document2004();
@@ -68,34 +69,34 @@ public class Document2004Test extends Assert {
 		 assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
 	 }
 
-	 
-	// This is a basic test which contains a little bit of everything and is a good reference to start writing your own Word Document Builder 
+
+	// This is a basic test which contains a little bit of everything and is a good reference to start writing your own Word Document Builder
 	@Test
 	public void basicDocTest() {
 		IDocument myDoc = new Document2004();
 		myDoc.getBody().addEle(new Heading1("h1h1h1h1h1h1h"));
 		myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph"));
-		
+
 		myDoc.getBody().addEle(new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png"));
-		
+
 		myDoc.getBody().addEle(new BreakLine(2));
-		
+
 		myDoc.getBody().addEle(new Heading2("h2h2h2h2h2h2h2h"));
 		myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph: " + new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif").getContent()));
-		
+
 		myDoc.getBody().addEle(new PageBreak());
-		
+
 		myDoc.getBody().addEle(new Heading3("h3h3h3h3h3h3h3h3h3h3h3h3h3h"));
 		myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph"));
-		
+
 		myDoc.getHeader().setHideHeaderAndFooterFirstPage(true); //conf for header...
 		myDoc.getHeader().addEle(new Paragraph("Header par11111"));
 		myDoc.getFooter().addEle(new Paragraph("Footer par11111"));
-		
+
 		//System.out.println(myDoc.getContent());
 
 	}
-	 
+
 	@Test
 	public void prettyfize() {
 		String txt = Utils.readFile("/Users/leonardo_correa/Desktop/Table2004.xml");
