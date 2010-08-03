@@ -99,7 +99,7 @@ public class Document2004Test extends Assert {
 
 	@Test
 	public void prettyfize() {
-		String txt = Utils.readFile("/Users/leonardo_correa/Desktop/Table2004.xml");
+		//String txt = Utils.readFile("/Users/leonardo_correa/Desktop/Table2004.xml");
 		//System.out.println( Utils.pretty(txt) );
 	}
 
