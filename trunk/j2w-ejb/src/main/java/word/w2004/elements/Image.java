@@ -22,7 +22,14 @@ public class Image implements IImage {
 
 	/**
 	 * @param fullPath
-	 *            Full path absolute including file name and extension.
+	 * Full path absolute (from the root of your server.) including file name and extension.
+	 * In the future, I will implement relative path and external url.
+	 * 
+	 * If you deploy unpacked, you can presume the full path
+	 * If you deploy packed EAR/WAR, you probably will have to put the image out of your application in somewhere in your server.
+	 * 
+	 * Sorry for the inconvenient, I will fix this in the next releases... 
+	 *   
 	 */
 	public Image(String fullPath) {
 		this.fullPath = fullPath;
