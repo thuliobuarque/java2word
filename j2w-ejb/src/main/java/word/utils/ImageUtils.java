@@ -22,7 +22,7 @@ public class ImageUtils {
 	public static String getImageHexaBase64(String fullPath) {
 		try {
 			File file = new File(fullPath);
-//			File file = new File("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");			
+//			File file = new File("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif");			
 			BufferedInputStream bis;
 			bis = new BufferedInputStream(new FileInputStream(file));
 
