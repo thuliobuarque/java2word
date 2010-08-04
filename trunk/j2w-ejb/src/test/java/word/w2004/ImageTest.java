@@ -3,6 +3,7 @@ package word.w2004;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -92,17 +93,20 @@ public class ImageTest extends Assert {
 	@Ignore
 	@Test
 	public void xxxxx() throws IOException{
-
-
-		URL url = new URL("http://localhost:8080/j2w/img/dtpick2.gif");
+		
+		URL url = new URL("http://localhost:8080/ExampleStruts/img/dtpick.gif");
+		//URL url = new URL("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png");
+		//URL url = new URL("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
+		
 		BufferedImage img = ImageIO.read(url);// throws IIOException
 		System.out.println("H: " + img.getHeight());
 		System.out.println("W: " + img.getWidth());
 
-
 		ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
-		//RenderedImage aBufferedImage = null;
-		ImageIO.write(img, "gif" /* "png" "jpeg" ... format desired */,
+		
+		String imgFormat = url.getPath().substring(url.getPath().lastIndexOf('.') + 1);
+		
+		ImageIO.write(img, imgFormat /*"gif"  "png" "jpeg" ... format desired */,
 		           baos );
 		baos.flush();
 		byte[] resultImageAsRawBytes = baos.toByteArray();
