@@ -10,7 +10,8 @@ STEPS:
 Click in "Add Library", server runtime and select your JBoss Server.
 
 
-I tested this in JBoss 5.1.0.GA
+I tested this in JBoss 5.1.0.GA - xstream-1.3.1.jar is needed if you use Image component in your code
 
+Tomcat 6 - You need xstream-1.3.1.jar and log4j 
 
 
