@@ -66,9 +66,12 @@ findbugs:findbugs
 - Comments on the classes
 - Create Web Test Application for JBoss Seam
 
-
 - Create Abstract Factory to instantiate the correct Implementation
 - Log debug
+
+Example Struts: 
+if deployed in JBoss, you need xstream-1.3.1.jar (needed if you use Image in your doc)
+if deployed in Tomcat, you need xstream-1.3.1.jar and Log4J
 
 
    

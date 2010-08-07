@@ -1,47 +1,61 @@
 package word.utils;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import org.jboss.seam.util.Base64;
 
+import javax.imageio.ImageIO;
 
-//import java.awt.image.BufferedImage;
-//import java.io.BufferedOutputStream;
-//import java.io.FileNotFoundException;
-//import java.io.FileOutputStream;
-//import java.net.URL;
-//import javax.imageio.ImageIO;
-//import word.w2000.Document2000;
-
+import com.thoughtworks.xstream.core.util.Base64Encoder;
 
 public class ImageUtils {
-
 	
-	public static String getImageHexaBase64(String fullPath) {
+//	@Deprecated
+//	public static String getImageHexaBase64(String fullPath) {
+//		try {
+//			File file = new File(fullPath);
+////			File file = new File("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif");			
+//			BufferedInputStream bis;
+//			bis = new BufferedInputStream(new FileInputStream(file));
+//
+//			int bytes = (int) file.length();
+//			byte[] buffer1 = new byte[bytes];
+//			
+//			@SuppressWarnings("unused")
+//			int readBytes1 = bis.read(buffer1);//this line is required...
+//			bis.close();
+//
+//			String encodedString="";
+//			//String encodedString = Base64.encodeBytes(buffer1);
+//			
+//			//String encodedString = Base64.encode(buffer1);
+//			
+//			return encodedString;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return "IOException";
+//		}
+//	}
+
+	public static String getImageHexaBase64(BufferedImage bufferedImage, String imageformat) {
+		//System.out.println("@@@@@@@ IMAGE - getImageHexaBase64 NEW Way @@@@@@");
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
+		//"gif"  "png" "jpeg"
 		try {
-			File file = new File(fullPath);
-//			File file = new File("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif");			
-			BufferedInputStream bis;
-			bis = new BufferedInputStream(new FileInputStream(file));
-
-			int bytes = (int) file.length();
-			byte[] buffer1 = new byte[bytes];
-			
-			@SuppressWarnings("unused")
-			int readBytes1 = bis.read(buffer1);//this line is required...
-			bis.close();
-
-			String encodedString = Base64.encodeBytes(buffer1);
-			//ori String encodedString = Base64.encode(buffer1);
-			//String encodedString = Base64.encode(buffer1);
-			
-			return encodedString;
+			ImageIO.write(bufferedImage, imageformat.toString() , baos);
+			baos.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "IOException";
+			throw new RuntimeException("Erro generating Base64 for the image", e);			
 		}
+		byte[] resultImageAsRawBytes = baos.toByteArray();
+		
+		String encodedString = new Base64Encoder().encode(resultImageAsRawBytes);
+		//String encodedString = Base64.encodeBytes(resultImageAsRawBytes);
+		return encodedString;
 	}
 
 
