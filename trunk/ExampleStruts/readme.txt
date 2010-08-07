@@ -1,5 +1,8 @@
 Java2Word Generator - Struts Application Example
 
+NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED
+NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED NON-MAVENIZED
+
 Open the ant/build.xml and change the server address according to your needs.
 
 STEPS:
