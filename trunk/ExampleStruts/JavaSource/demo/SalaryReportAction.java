@@ -10,36 +10,29 @@
  ******************************************************************************/
 package demo;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-//import org.jboss.seam.util.Base64;
-
-import demo.business.EmployeeManager;
-import demo.domain.Employee;
 
 import word.api.interfaces.IDocument;
 import word.w2004.Document2004;
 import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Image;
+import word.w2004.elements.ImageType; 
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.Table;
 import word.w2004.elements.tableElements.TableEle;
+import demo.business.EmployeeManager;
+import demo.domain.Employee;
 
 public class SalaryReportAction extends org.apache.struts.action.Action {
 
@@ -81,10 +74,11 @@ public class SalaryReportAction extends org.apache.struts.action.Action {
 		mydoc.getBody().addEle(new BreakLine());
 
 		mydoc.getBody().addEle(new Paragraph("This bellow image uses full path from root (Local Server): /Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif"));
-		mydoc.getBody().addEle(new Image("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif"));
+		mydoc.getBody().addEle(new Image("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif", ImageType.FULL_LOCAL_PATH));
+		mydoc.getBody().addEle(new BreakLine());
 		
-		//mydoc.getBody().addEle(new Paragraph("This one, comes from the internet (Out of the server): http://www.google.com.au/intl/en_com/images/srpr/logo1w.png"));
-		//mydoc.getBody().addEle(new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png"));
+		mydoc.getBody().addEle(new Paragraph("This one, comes from the internet (Out of the server): http://www.google.com.au/intl/en_com/images/srpr/logo1w.png"));
+		mydoc.getBody().addEle(new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageType.WEB_URL));
 		
 		mydoc.getBody().addEle(new BreakLine(2));
 				
