@@ -90,7 +90,7 @@
 						<ejbVersion>3.0</ejbVersion>
 						<archive>
 							<manifest>
-								<addClasspath>true</addClasspath>
+								<addClasspath>true</addClasspath>								
 							</manifest>
 						</archive>
 					</configuration>
