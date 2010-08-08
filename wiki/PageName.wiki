@@ -1,4 +1,5 @@
 #summary One-sentence summary of this page.
+#labels Featured
 =How to implement one component=
 
 = Introduction =
@@ -30,10 +31,85 @@ Lets define steps how to implement this "Bold"(or any other) component.
   * You should see one green web page with a big text area in the middle. In this textarea.
 
 
-Code development
+== Code development ==
+
+Now you will see that there is no mystery behind this. 
+
+  * Create your class called *Bold2004.java* implementing the interface *IElement.java* (Assume we will use Microsoft Word 2004).
+  * Also create a test class called *Bold2004Test.java*
+  * Preferable, first write your test in the class 
+  * Write the code of the method is *getContent()*
+  
+I assume you don't know what to write in your *getContent()* right? Now it is time to do the *reverse engineering* and figure out how to implement the code to generate *bold* block.
+ 
+  * Open your Microsoft Word 2004 (or greater then)
+  * Type some text, select part of the text and make it *bold*. I typed: <br>
+Leonardo Correa and made Correa bold. Eg.: Leonardo *Correa*
+  * Save it as "Word 2003 XML Document"
+  * Open using any text editor
+
+At this point you can see something like:
+
+{{{
+... more stuff...
+
+	<w:p wsp:rsidR="00D711DA" wsp:rsidRDefault="00FE5527">
+		<w:r>
+			<w:t>Leonardo </w:t>
+		</w:r>
+			<w:r wsp:rsidRPr="00FE5527">
+			<w:rPr>
+				<w:b/>
+			</w:rPr>
+				<w:t>Correa</w:t>
+			</w:r>
+	</w:p>
+
+... more stuff...
+}}}
+
+Now we know how to implement *bold* component!!!
+
+  * I would create a constructor to receive the text to be made bold.
+{{{
+   Class Bold2004(String text){
+     this.newBoldText = text;
+   } 
+}}}
+
+  * After, I would the variable with the place holder. 
+{{{
+String BOLD_TEMPLATE = 
+	"<w:r wsp:rsidRPr=\"00FE5527\">"
+	+"	<w:rPr> "                
+	+"		<w:b/> "
+	+"	</w:rPr> "
+	+"	<w:t>{I_am_a_place_holder}</w:t> "
+	"</w:r>";
+}}}
+
+  * Time to replace the place holder and return the *getContent()*; 
+{{{
+
+  public String getContent() {
+     return BOLD_TEMPLATE.replace("{I_am_a_place_holder}", this.newBoldText);   
+  }
+
+}}}
+
+* And I would utilize like that:
+
+{{{
+   IDocument myDoc = new Document2004();
+   myDoc.getBody().addEle( new Paragraph2004("Leonardo" + new Bold2004("Correa")) );
+
+}}}
 
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+This was just a demonstration how to create a new element in this API. I haven't implemented this yet.  
+
+I hope this helps.
+
+
+Leonardo Correa
+ 
