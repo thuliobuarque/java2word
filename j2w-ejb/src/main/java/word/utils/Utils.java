@@ -32,7 +32,7 @@ public class Utils {
 			return file.getCanonicalPath();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return "error";
+			throw new RuntimeException("Can't get app root directory", e);
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class Utils {
 			reader = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return "FileNotFoundException";
+			throw new RuntimeException("Can't find the file", e);
 		}
 		String line = null;
 		StringBuilder stringBuilder = new StringBuilder();
@@ -56,12 +56,6 @@ public class Utils {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
-		}finally{
-			try {
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}			
 		}
 	}
 
@@ -77,17 +71,12 @@ public class Utils {
 			String res = formatXml(document, false);
 			return res;
 		} catch (DocumentException e) {
-			System.out.println("@@@@@ " + e);
-			return xml;
+			e.printStackTrace();
+			throw new RuntimeException("Can't parse xml", e);
 		}
 	}
 
 	public static String formatXml(Node node, boolean oneLine) {
-		//log.info("prettyfizing...");
-//		if (node == null) {
-//			log.info("prettyfizing ERROR - Null node");
-//			return "<null/>";
-//		}
 
 		try {
 			TransformerFactory tf = TransformerFactory.newInstance();

@@ -29,12 +29,8 @@ public class ImageUtilsTest extends Assert{
 	
 	@Test(expected = IOException.class)
 	public void exceptionTest() throws IOException{
-		//System.out.println("@@@ Expected: IOException");
 		URL url = new URL("http://localhost:8080/ExampleStruts/img/bullshit.gif");
 		BufferedImage bufferedImage = ImageIO.read(url);
-		String hexa = ImageUtils.getImageHexaBase64(bufferedImage,  "bullshit");
-		
-		assertEquals(1, TestUtils.regexCount(hexa, "IOException"));
 	}
 	
 }

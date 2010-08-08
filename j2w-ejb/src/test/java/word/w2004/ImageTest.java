@@ -108,31 +108,16 @@ public class ImageTest extends Assert {
 				+ "/src/test/resources/whatever", ImageType.FULL_LOCAL_PATH);
 	}
 
-	@Ignore
+	@SuppressWarnings("deprecation")
 	@Test
-	public void xxxxx() throws IOException{
-		
-		URL url = new URL("http://localhost:8080/ExampleStruts/img/dtpick.gif");
-		//URL url = new URL("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png");
-		//URL url = new URL("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
-		
-		BufferedImage img = ImageIO.read(url);// throws IIOException
-		System.out.println("H: " + img.getHeight());
-		System.out.println("W: " + img.getWidth());
-
-		ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
-		
-		String imgFormat = url.getPath().substring(url.getPath().lastIndexOf('.') + 1);
-		
-		ImageIO.write(img, imgFormat /*"gif"  "png" "jpeg" ... format desired */,
-		           baos );
-		baos.flush();
-		byte[] resultImageAsRawBytes = baos.toByteArray();
-
-
-		String encodedString = Base64.encodeBytes(resultImageAsRawBytes);
-
-		System.out.println(encodedString);
+	public void deprecatedConstructorTest() throws IOException{
+		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif");
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
+		//for dtPicker.gif
+		assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
 	}
-
+	
 }
