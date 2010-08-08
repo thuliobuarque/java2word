@@ -1,2 +1,134 @@
+#summary One-sentence summary of this page.
 #labels Featured
-x
+=How to Implement a New Element/Component=
+
+= Introduction =
+
+This document gives you the guidelines how to implement a new component for the Java2Word project.
+
+
+= Details =
+
+Imagine you want to use one component and this component does not exist yet. O good example could be the "Bold" element which hasn't been done yet (08-Aug-2010).
+
+Lets define steps how to implement this "Bold"(or any other) component.
+
+==You should be added as a "committer" in this project==
+
+  * just contact me
+
+==Set up your Development Environment==
+
+  * Check out those projects: j2w-app, j2w-ear, j2w-ejb, j2w-war
+  * In the j2w-app directory, run: mvn eclipse:eclipse 
+  * Optionally, at this moment you can run "mvn clean install" and you should have an successful build. Take a look at your .m2 folder and you should be able to see the generated jar in : ~/.m2/repository/java2word/j2w-ejb/1.0/j2w-ejb-1.0.jar 
+  * Import those projects to your Eclipse (or whatever other IDE) 
+  * In the project *j2w-app*, copy and paste the file *build.properties.example*; rename to *build.properties*
+  * Open your new *build.properties* and change your ant variable *jboss.dir*.
+  * Add this new file to the *ignore list* in your SVN (I use subclipse). 
+  * Now your can run the *deploy* task on this file
+  * Start your JBoss and access the url: http://localhost:8080/j2w
+  * You should see one green web page with a big text area in the middle. In this textarea.
+
+
+== Code development ==
+
+Now you will see that there is no mystery behind this. 
+
+  * Create your class called *Bold2004.java* implementing the interface *IElement.java* (Assume we will use Microsoft Word 2004).
+  * Also create a test class called *Bold2004Test.java*
+  * Preferable, first write your test in the class 
+  * Write the code of the method is *getContent()*
+  
+I assume you don't know what to write in your *getContent()* right? Now it is time to do the *reverse engineering* and figure out how to implement the code to generate *bold* block.
+ 
+  * Open your Microsoft Word 2004 (or greater then)
+  * Type some text, select part of the text and make it *bold*. I typed: <br>
+Leonardo Correa and made Correa bold. Eg.: Leonardo *Correa*
+  * Save it as "Word 2003 XML Document"
+  * Open using any text editor
+
+At this point you can see something like:
+
+{{{
+... more stuff...
+
+	<w:p wsp:rsidR="00D711DA" wsp:rsidRDefault="00FE5527">
+		<w:r>
+			<w:t>Leonardo </w:t>
+		</w:r>
+			<w:r wsp:rsidRPr="00FE5527">
+			<w:rPr>
+				<w:b/>
+			</w:rPr>
+				<w:t>Correa</w:t>
+			</w:r>
+	</w:p>
+
+... more stuff...
+}}}
+
+Now we know how to implement *bold* component!!!
+
+  * I would create a constructor to receive the text to be made bold.
+{{{
+   Class Bold2004(String text){
+     this.newBoldText = text;
+   } 
+}}}
+
+  * After, I would the variable with the place holder. 
+{{{
+String BOLD_TEMPLATE = 
+	"<w:r wsp:rsidRPr=\"00FE5527\">"
+	+"	<w:rPr> "                
+	+"		<w:b/> "
+	+"	</w:rPr> "
+	+"	<w:t>{I_am_a_place_holder}</w:t> "
+	"</w:r>";
+}}}
+
+  * Time to replace the place holder and return the *getContent()*; 
+{{{
+
+  public String getContent() {
+     return BOLD_TEMPLATE.replace("{I_am_a_place_holder}", this.newBoldText);   
+  }
+
+}}}
+
+  * And I would utilize like that:
+
+{{{
+   IDocument myDoc = new Document2004();
+   myDoc.getBody().addEle( new Paragraph2004("Leonardo" + new Bold2004("Correa")) );
+}}}
+
+  Not finished yet, you need to know if your new element really works in a real Microsoft Word document.
+
+  * In your unit test, create a Document2004
+  * Add one paragraph with some bold text. Eg.: 
+
+{{{
+   IDocument myDoc = new Document2004();
+   myDoc.getBody().addEle( new Paragraph2004("Leonardo" + new Bold2004("Correa")) );
+}}}
+
+  * Print out (just for a while) the *myDoc.getContent()*, copy the result to your clip board.
+
+
+  * Go to: http://localhost:8080/j2w (which is part of your development environment) and paste in the textarea.
+ 
+  * Click in the button to download, save the *whatever.doc* anywhere in your local machine.
+
+  * Open the document with Microsoft Word 2003+ and see your bold text!
+
+
+
+This was just a demonstration how to create a new element in this API. I haven't implemented this yet.  
+
+I hope this helps.
+
+
+Leonardo Correa
+ 
