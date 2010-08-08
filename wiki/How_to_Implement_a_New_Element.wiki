@@ -1,10 +1,11 @@
-#summary One-sentence summary of this page.
 #labels Featured
+#This document gives you the guidelines how to implement a new element/component for the Java2Word project.
+
 =How to Implement a New Element/Component=
 
 = Introduction =
 
-This document gives you the guidelines how to implement a new component for the Java2Word project.
+This document gives you the guidelines how to implement a new element/component for the Java2Word project.
 
 
 = Details =
