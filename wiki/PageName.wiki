@@ -102,8 +102,27 @@ String BOLD_TEMPLATE =
 {{{
    IDocument myDoc = new Document2004();
    myDoc.getBody().addEle( new Paragraph2004("Leonardo" + new Bold2004("Correa")) );
-
 }}}
+
+  Not finished yet, you need to know if your new element really works in a real Microsoft Word document.
+
+  * In your unit test, create a Document2004
+  * Add one paragraph with some bold text. Eg.: 
+
+{{{
+   IDocument myDoc = new Document2004();
+   myDoc.getBody().addEle( new Paragraph2004("Leonardo" + new Bold2004("Correa")) );
+}}}
+
+  * Print out (just for a while) the *myDoc.getContent()*, copy the result to your clip board.
+
+
+  * Go to: http://localhost:8080/j2w (which is part of your development environment) and paste in the textarea.
+ 
+  * Click in the button to download, save the *whatever.doc* anywhere in your local machine.
+
+  * Open the document with Microsoft Word 2003+ and see your bold text!
+
 
 
 This was just a demonstration how to create a new element in this API. I haven't implemented this yet.  
