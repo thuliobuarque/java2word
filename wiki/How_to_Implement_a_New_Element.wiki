@@ -124,10 +124,13 @@ String BOLD_TEMPLATE =
   * Open the document with Microsoft Word 2003+ and see your bold text!
 
 
+_Remember to run the *"Code Metrics"* task in Ant and see the *Cobertura* report. Your code should have at least 90% test coverage. Please refer to *"Code quality*, guidelines" Section in the main page of this project_
 
 This was just a demonstration how to create a new element in this API. I haven't implemented this yet.  
 
-I hope this helps.
+
+
+<br><br>
 
 
 Leonardo Correa
