@@ -1,6 +1,6 @@
 #summary One-sentence summary of this page.
 #labels Featured
-=How to implement one component=
+=How to Implement a New Element/Component=
 
 = Introduction =
 
