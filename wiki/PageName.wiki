@@ -35,18 +35,18 @@ Lets define steps how to implement this "Bold"(or any other) component.
 
 Now you will see that there is no mystery behind this. 
 
-  * Create your class called *Bold2004.java* implementing the interface *IElement.java* (Assume we will use Microsoft Word 2004).
-  * Also create a test class called *Bold2004Test.java*
-  * Preferable, first write your test in the class 
-  * Write the code of the method is *getContent()*
+  # Create your class called *Bold2004.java* implementing the interface *IElement.java* (Assume we will use Microsoft Word 2004).
+  # Also create a test class called *Bold2004Test.java*
+  # Preferable, first write your test in the class 
+  # Write the code of the method is *getContent()*
   
 I assume you don't know what to write in your *getContent()* right? Now it is time to do the *reverse engineering* and figure out how to implement the code to generate *bold* block.
  
-  * Open your Microsoft Word 2004 (or greater then)
-  * Type some text, select part of the text and make it *bold*. I typed: <br>
+  # Open your Microsoft Word 2004 (or greater then)
+  # Type some text, select part of the text and make it *bold*. I typed: <br>
 Leonardo Correa and made Correa bold. Eg.: Leonardo *Correa*
-  * Save it as "Word 2003 XML Document"
-  * Open using any text editor
+  # Save it as "Word 2003 XML Document"
+  # Open using any text editor
 
 At this point you can see something like:
 
@@ -70,14 +70,14 @@ At this point you can see something like:
 
 Now we know how to implement *bold* component!!!
 
-  * I would create a constructor to receive the text to be made bold.
+  # I would create a constructor to receive the text to be made bold.
 {{{
    Class Bold2004(String text){
      this.newBoldText = text;
    } 
 }}}
 
-  * After, I would the variable with the place holder. 
+  # After, I would the variable with the place holder. 
 {{{
 String BOLD_TEMPLATE = 
 	"<w:r wsp:rsidRPr=\"00FE5527\">"
@@ -88,7 +88,7 @@ String BOLD_TEMPLATE =
 	"</w:r>";
 }}}
 
-  * Time to replace the place holder and return the *getContent()*; 
+  # Time to replace the place holder and return the *getContent()*; 
 {{{
 
   public String getContent() {
@@ -97,7 +97,7 @@ String BOLD_TEMPLATE =
 
 }}}
 
-* And I would utilize like that:
+  # And I would utilize like that:
 
 {{{
    IDocument myDoc = new Document2004();
