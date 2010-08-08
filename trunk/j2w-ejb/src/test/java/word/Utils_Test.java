@@ -23,6 +23,7 @@ public class Utils_Test extends Assert {
 			e.printStackTrace();
 		}
 		*/
+		
 	}
 
 	@Test
@@ -38,9 +39,8 @@ public class Utils_Test extends Assert {
 		assertEquals(1, TestUtils.regexCount(res, "reports.servlet.datasource.lookup"));
 	}
 	
-	@Test
+	@Test(expected = RuntimeException.class)
 	public void readFileTestException() {
-		System.out.println("@@@ Expected...: java.io.FileNotFoundException"); 
 		String res = Utils.readFile(Utils.getAppRoot() + "/src/test/resources/not_a_file");		
 		assertEquals(1, TestUtils.regexCount(res, "FileNotFoundException"));
 	}
@@ -53,15 +53,11 @@ public class Utils_Test extends Assert {
 		assertEquals(1, TestUtils.regexCount(str, "<nada/>"));
 	}
 	
-	@Test 
+	@Test(expected = RuntimeException.class) 
 	public void prettyTestException() {
 		String crap = "<leo><nada></leo>";
 		String str = Utils.pretty(crap);
 		assertEquals(crap, crap); // the same crap...
-	}
-	
-	public void prettyXmlTestException() {
-		
 	}
 	
 }

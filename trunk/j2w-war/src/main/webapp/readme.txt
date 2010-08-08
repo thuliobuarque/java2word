@@ -70,8 +70,8 @@ findbugs:findbugs
 - Log debug
 
 Example Struts: 
-if deployed in JBoss, you need xstream-1.3.1.jar (needed if you use Image in your doc)
-if deployed in Tomcat, you need xstream-1.3.1.jar and Log4J
+if deployed in JBoss, you need j2w-ejb-X.X.jar (obviously), xstream-1.3.1.jar (needed if you use Image in your doc)
+if deployed in Tomcat, you need j2w-ejb-X.X.jar (obviously), xstream-1.3.1.jar and Log4J
 
 
    
