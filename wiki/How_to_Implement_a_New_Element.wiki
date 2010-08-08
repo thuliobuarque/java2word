@@ -1,4 +1,4 @@
-#labels Featured
+#labels Featured,Phase-Implementation
 This document gives you the guidelines how to implement a new element/component.
 =How to Implement a New Element/Component=
 
