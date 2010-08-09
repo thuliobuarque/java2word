@@ -23,31 +23,31 @@ public class Image implements IImage {
 	private String height = ""; // to be able to set this to override default
 								// size
 	BufferedImage bufferedImage;
-	
+
 	/**
 	 * Use the other constructor and specify the image type: FULL_LOCAL_PATH or WEB_URL.
-	 * 
-	 * FULL_LOCAL_PATH: It has to start from the root of your system 
+	 *
+	 * FULL_LOCAL_PATH: It has to start from the root of your system
 	 * WEB_URL: it can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
-	 * 
-	 * This constructor will be removed in the next version. 
+	 *
+	 * This constructor will be removed in the next version.
 	 */
-	@Deprecated 
+	@Deprecated
 	public Image(String path) {
 		this(path, ImageType.FULL_LOCAL_PATH);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param path
-	 * 
+	 *
 	 * This is the location on your image. If you specify  "imageType" as WEB_URL, your path should start with "http://..."
-	 * But if you choose "imageType" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/... 
-	 * 
+	 * But if you choose "imageType" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
+	 *
 	 * @param imageType
-	 * FULL_LOCAL_PATH:  Full path absolute (from the root of your server.) including file name and extension. 
-	 * It has to start from the root of your system. 
-	 * 
+	 * FULL_LOCAL_PATH:  Full path absolute (from the root of your server.) including file name and extension.
+	 * It has to start from the root of your system.
+	 *
 	 * WEB_URL: It can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
 	 */
 	public Image(String path, ImageType imageType) {
@@ -63,7 +63,7 @@ public class Image implements IImage {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new RuntimeException("Can't create ImageIO.", e);
+			throw new RuntimeException("Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageType: " + imageType.toString() , e);
 		}
 	}
 
@@ -173,7 +173,7 @@ public class Image implements IImage {
 	 * + "tMrDIwqf0pwi09OhOdna29wpIQA7" + "</w:binData>" +
 	 * "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:31pt;height:26pt\"><v:imagedata src=\"wordml://01000002.gif\" o:title=\"quote.gif\"/>"
 	 * + "\n	</v:shape>" + "\n</w:pict>";
-	 * 
+	 *
 	 * private String img02 = "\n<w:pict> " +
 	 * "\n	<v:shapetype id=\"_x0000_t75\" coordsize=\"21600,21600\" o:spt=\"75\" o:preferrelative=\"t\" path=\"m@4@5l@4@11@9@11@9@5xe\" filled=\"f\" stroked=\"f\"> "
 	 * +
