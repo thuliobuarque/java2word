@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import com.thoughtworks.xstream.core.util.Base64Encoder;
 
 public class ImageUtils {
-	
+
 	public static String getImageHexaBase64(BufferedImage bufferedImage, String imageformat) {
 		//System.out.println("@@@@@@@ IMAGE - getImageHexaBase64 NEW Way @@@@@@");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream(1000);
@@ -18,19 +18,18 @@ public class ImageUtils {
 			ImageIO.write(bufferedImage, imageformat.toString() , baos);
 			baos.flush();
 		} catch (IOException e) {
-			System.out.println("@@@@@@@ porra!!! @@@ ");
 			e.printStackTrace();
-			throw new RuntimeException("Erro generating Base64 for the image", e);			
+			throw new RuntimeException("Erro generating Base64 for the image", e);
 		}
 		byte[] resultImageAsRawBytes = baos.toByteArray();
-		
+
 		String encodedString = new Base64Encoder().encode(resultImageAsRawBytes);
 		//String encodedString = Base64.encodeBytes(resultImageAsRawBytes);
 		return encodedString;
 	}
 
 
-/*	
+/*
 	private final static String XML_DOC_HEADER = "<?xml version=\"1.0\" ?>\n";
 	public static final String[] hexLookupTable = { "00", "01", "02", "03",
 			"04", "05", "06", "07", "08", "09", "0a", "0b", "0c", "0d", "0e",
@@ -177,7 +176,7 @@ public class ImageUtils {
 				+ filename);
 		return;
 	}
-	
-*/	
+
+*/
 
 }
