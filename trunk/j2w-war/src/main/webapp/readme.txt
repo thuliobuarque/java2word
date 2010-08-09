@@ -28,7 +28,7 @@ However there are a lot of users using <= 2004 and we should at least consider t
 
 - Unit Test for everything, preferable TDD 
 - Cucumber test maybe in the future 
-- Cobertura at least 80% (Test coverage metric)
+- Cobertura at least 90% (Test coverage metric)
 - PMD, CPD, NCSS and Findbugs
 
 - Small and testable methods (Low cyclomatic complexity) 
@@ -62,14 +62,7 @@ findbugs:findbugs
 
 ### to-do list
 
-- Comments on the API
-- Comments on the classes
-- Create Web Test Application for JBoss Seam
-
-- Create Abstract Factory to instantiate the correct Implementation
-- Log debug
-
-Example Struts: 
+Dependencies: 
 if deployed in JBoss, you need j2w-ejb-X.X.jar (obviously), xstream-1.3.1.jar (needed if you use Image in your doc)
 if deployed in Tomcat, you need j2w-ejb-X.X.jar (obviously), xstream-1.3.1.jar and Log4J
 
