@@ -35,7 +35,7 @@ public class ImageTest extends Assert {
 		assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
 
 	}
-	
+
 	@Test
 	public void localImageTest(){
 		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageType.FULL_LOCAL_PATH);
@@ -43,9 +43,9 @@ public class ImageTest extends Assert {
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
-		assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNS"));//just the beginning of...		
+		assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNS"));//just the beginning of...
 	}
-	
+
 	@Test
 	public void webImageTest(){
 		Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageType.WEB_URL);
@@ -54,7 +54,7 @@ public class ImageTest extends Assert {
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
 		assertEquals(1, TestUtils.regexCount(img.getContent(), "width:275pt;height:95pt"));
-		assertEquals(1, TestUtils.regexCount(img.getContent(), "BiGQFiipCSS8DCm1Cya1FiyNKzexKTjDDSrLDSvUDi3MEyzHFSvUFC3TGi7bGi/aEi7dGzLcFzPN"));		
+		assertEquals(1, TestUtils.regexCount(img.getContent(), "BiGQFiipCSS8DCm1Cya1FiyNKzexKTjDDSrLDSvUDi3MEyzHFSvUFC3TGi7bGi/aEi7dGzLcFzPN"));
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class ImageTest extends Assert {
 		assertEquals(1, TestUtils.regexCount(img.getContent(),
 				"style=\"width:121pt;height:111pt\""));
 	}
-	
-	
+
+
 
 	@Test(expected = java.lang.RuntimeException.class)
 	public void invalidImageTest(){
@@ -119,5 +119,5 @@ public class ImageTest extends Assert {
 		//for dtPicker.gif
 		assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
 	}
-	
+
 }

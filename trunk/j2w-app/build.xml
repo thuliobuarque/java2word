@@ -32,11 +32,21 @@
 			<arg value="pmd:pmd" />
 			<arg value="pmd:cpd" />
 			<arg value="findbugs:findbugs" />
+			<arg value="javadoc:javadoc" />
 			<arg value="-DskipTests=false" />
 			<arg value="-Dbuild.env=dev" />
 		</exec>
 	</target>
-	
+
+	<target name="JavaDoc">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="mvn">
+		<!--	<arg value="-DoutputDirectory=docsleo" /> -->
+			<arg value="javadoc:javadoc" />
+			<arg value="javadoc:jar" />
+		</exec>
+	</target>
+
 	<target name="build">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="mvn">
@@ -66,5 +76,5 @@
 		<copy file="${ds.dir}/${ds}" todir="${jboss.dir}" />
 	</target>
 	-->
-	
+
 </project>
