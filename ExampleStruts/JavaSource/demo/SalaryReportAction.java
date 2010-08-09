@@ -27,7 +27,7 @@ import word.w2004.Document2004;
 import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Image;
-import word.w2004.elements.ImageType; 
+import word.w2004.elements.ImageType;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.Table;
 import word.w2004.elements.tableElements.TableEle;
@@ -46,12 +46,12 @@ public class SalaryReportAction extends org.apache.struts.action.Action {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		log.info("@@@ Generating report...");
-		
+
 		String filter = this.getFilter((SalaryReportForm) form);
 		request.setAttribute("filter", filter);
-				
+
 		buildReport(response, filter);
-		
+
 		response.flushBuffer();
 
 		log.info("Document has been written to the servlet response...");
@@ -60,7 +60,7 @@ public class SalaryReportAction extends org.apache.struts.action.Action {
 
 	private void buildReport(HttpServletResponse response, String filter) throws IOException{
 		log.info("Filter is: " + filter);
-		
+
 		response.setContentType("application/msword");
 		response.setHeader("Content-disposition", "inline; filename="
 				+ fileName);
@@ -73,28 +73,29 @@ public class SalaryReportAction extends org.apache.struts.action.Action {
 				new Paragraph("Brings up all employee and the respectively salary."));
 		mydoc.getBody().addEle(new BreakLine());
 
-		mydoc.getBody().addEle(new Paragraph("This bellow image uses full path from root (Local Server): /Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif"));
-		mydoc.getBody().addEle(new Image("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif", ImageType.FULL_LOCAL_PATH));
-		mydoc.getBody().addEle(new BreakLine());
-		
+		//This is an example of local file. I comment it out because I don't know where you will be running this.
+		//mydoc.getBody().addEle(new Paragraph("This bellow image uses full path from root (Local Server): /Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif"));
+		//mydoc.getBody().addEle(new Image("/Users/leonardo_correa/aajava/myworkspaces/leo/ExampleStruts/WebContent/img/dtpick.gif", ImageType.FULL_LOCAL_PATH));
+		//mydoc.getBody().addEle(new BreakLine());
+
 		mydoc.getBody().addEle(new Paragraph("This one, comes from the internet (Out of the server): http://www.google.com.au/intl/en_com/images/srpr/logo1w.png"));
 		mydoc.getBody().addEle(new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageType.WEB_URL));
-		
+
 		mydoc.getBody().addEle(new BreakLine(2));
-				
+
 		Table tbl = new Table();
 		tbl.addTableEle(TableEle.TH, "Name", "Salary");
-		List<Employee> lst = EmployeeManager.getResultList(); //Filter could be applied here... 
+		List<Employee> lst = EmployeeManager.getResultList(); //Filter could be applied here...
 		for (Employee person : lst) {
 			tbl.addTableEle(TableEle.TD, person.getName(), person.getSalary());
 		}
 		tbl.addTableEle(TableEle.TF, "Total", "1,100,000.00");
-		
+
 		mydoc.getBody().addEle(tbl);//add my table to the document
-		
+
 		writer.println(mydoc.getContent());
 	}
-	
+
 	private String getFilter(SalaryReportForm form) {
 		String filter = "";
 		if (!"".equals(form.getName())) {
