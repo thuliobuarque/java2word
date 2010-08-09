@@ -61,8 +61,6 @@ public class Image implements IImage {
 				bufferedImage = ImageIO.read(url);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			throw new RuntimeException("Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageType: " + imageType.toString() , e);
 		}
 	}
