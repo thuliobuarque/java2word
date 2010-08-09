@@ -2,6 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
+	<properties>
+		<app.version>1.0</app.version>
+	</properties>
+
 	<parent>
 		<artifactId>j2w</artifactId>
 		<groupId>java2word</groupId>
@@ -11,7 +15,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>j2w-ejb</artifactId>
-	<version>1.0</version>
+	<version>${app.version}</version>
 	<packaging>ejb</packaging>
 	<name>j2w - EJB</name>
 
@@ -102,10 +106,8 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.7</version>
 				<configuration>
-<!--					<outputDirectory>${basedir}/docs/api/v1.0</outputDirectory>-->
-					<reportOutputDirectory>docs/api/v1.0/</reportOutputDirectory>
-<!--					<destDir>myapidocs</destDir>-->
-
+					<reportOutputDirectory>${project.reporting.outputDirectory}/myoutput</reportOutputDirectory>
+					<destDir>docs/${app.version}</destDir>
 				</configuration>
 			</plugin>
 
@@ -158,19 +160,20 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1-jboss</version>
 		</dependency>
-		<dependency>
-			<groupId>apache-log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-		</dependency>
+		<!-- <dependency> <groupId>apache-log4j</groupId> <artifactId>log4j</artifactId>
+			<version>1.2.15</version> </dependency> -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.4</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId>
-			<version>1.2.14</version> </dependency> -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
 
 	</dependencies>
 </project>
