@@ -20,7 +20,7 @@
 
 	<component name="org.jboss.seam.core.init">
 		<property name="debug">${seam.debug}</property>
-		<property name="jndi-pattern">ExampleSeam-ear-${version}/#{ejbName}/local
+		<property name="jndi-pattern">ExampleSeam-ear/#{ejbName}/local
 		</property>
 	</component>
 
