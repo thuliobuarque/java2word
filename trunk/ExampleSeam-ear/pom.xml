@@ -68,7 +68,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- JBoss Rules 
+		<!-- JBoss Rules
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
@@ -105,8 +105,8 @@
 			<version>${version.drools}</version>
 		</dependency>
 		-->
-		
-		<!-- JBoss jBPM 
+
+		<!-- JBoss jBPM
 		<dependency>
 			<groupId>org.jbpm</groupId>
 			<artifactId>jbpm-jpdl</artifactId>
@@ -123,17 +123,6 @@
 			<groupId>java2word</groupId>
 			<artifactId>ExampleSeam-war</artifactId>
 			<type>war</type>
-		</dependency>
-
-		<dependency>
-			<groupId>java2word</groupId>
-			<artifactId>ExampleSeam-datamodel</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>java2word</groupId>
-			<artifactId>ExampleSeam-bootstrap</artifactId>
-			<type>ejb</type>
 		</dependency>
 
 		<dependency>
@@ -182,7 +171,7 @@
 							<bundleDir>lib</bundleDir>
 						</jarModule>
 
-						<!-- JBoss Rules 
+						<!-- JBoss Rules
 						<jarModule>
 							<groupId>org.drools</groupId>
 							<artifactId>drools-core</artifactId>
@@ -237,8 +226,8 @@
 							<bundleDir>lib</bundleDir>
 						</jarModule>
 						-->
-						<!-- JBoss jBPM 
-						
+						<!-- JBoss jBPM
+
 						<jarModule>
 							<groupId>org.jbpm</groupId>
 							<artifactId>jbpm-jpdl</artifactId>
@@ -253,7 +242,7 @@
 					</jboss>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>
@@ -261,7 +250,7 @@
 				</configuration>
 			</plugin>
         </plugins>
-        
+
         <resources>
         	<resource>
         		<filtering>true</filtering>

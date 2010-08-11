@@ -14,12 +14,12 @@
 
 
 	<property name="pom.file" value="pom.xml" />
-	<property name="ear.dist" location="../ExampleSeam/target" />
+	<property name="ear.dist" location="../ExampleSeam-ear/target" />
 	<property name="ear.file" value="ExampleSeam.ear" />
 	<property name="ds.dir" location="../phages-db/src/main/resources" />
 	<property name="ds" value="j2w-ds.xml" />
 	<property name="ear.exploded.dir" value="ExampleSeam" />
-	<property name="war.filer" value="j2w-web.war" />
+	<property name="war.filer" value="ExampleSeam-web.war" />
 	<property name="src.webapp.dir" location="../j2w-web/src/main/webapp" />
 
 	<target name="Code Metrics">
@@ -36,7 +36,7 @@
 			<arg value="-Dbuild.env=dev" />
 		</exec>
 	</target>
-	
+
 	<target name="build">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="mvn">
@@ -66,5 +66,5 @@
 		<copy file="${ds.dir}/${ds}" todir="${jboss.dir}" />
 	</target>
 	-->
-	
+
 </project>
