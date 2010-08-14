@@ -57,12 +57,10 @@ public class Image implements IImage {
 		try {
 			if (imageLocation.equals(ImageLocation.FULL_LOCAL_PATH)) {
 				bufferedImage = ImageIO.read(new File(path));
-			}
-			if (imageLocation.equals(ImageLocation.WEB_URL)) {
+			}else if (imageLocation.equals(ImageLocation.WEB_URL)) {
 				URL url = new URL(path);
 				bufferedImage = ImageIO.read(url);
-			}
-			if (imageLocation.equals(ImageLocation.CLASSPATH)) {
+			}else if (imageLocation.equals(ImageLocation.CLASSPATH)) {
 				InputStream is = getClass().getResourceAsStream(path);
 				bufferedImage = ImageIO.read(is);
 			}
