@@ -3,6 +3,7 @@ package word.w2004.elements;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -29,39 +30,45 @@ public class Image implements IImage {
 	 *
 	 * FULL_LOCAL_PATH: It has to start from the root of your system
 	 * WEB_URL: it can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
+	 * CLASSPATH: This is for non-web apps. I don't have any example of web usage of this yet.
 	 *
 	 * This constructor will be removed in the next version.
 	 */
 	@Deprecated
 	public Image(String path) {
-		this(path, ImageType.FULL_LOCAL_PATH);
+		this(path, ImageLocation.FULL_LOCAL_PATH);
 	}
 
 	/**
 	 *
 	 * @param path
 	 *
-	 * This is the location on your image. If you specify  "imageType" as WEB_URL, your path should start with "http://..."
-	 * But if you choose "imageType" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
+	 * This is the location on your image. If you specify  "imageLocation" as WEB_URL, your path should start with "http://..."
+	 * But if you choose "imageLocation" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
 	 *
-	 * @param imageType
+	 * @param imageLocation
 	 * FULL_LOCAL_PATH:  Full path absolute (from the root of your server.) including file name and extension.
 	 * It has to start from the root of your system.
 	 *
 	 * WEB_URL: It can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
 	 */
-	public Image(String path, ImageType imageType) {
+	public Image(String path, ImageLocation imageLocation) {
 		this.path = path;
 		try {
-			if (imageType.equals(ImageType.FULL_LOCAL_PATH)) {
+			if (imageLocation.equals(ImageLocation.FULL_LOCAL_PATH)) {
 				bufferedImage = ImageIO.read(new File(path));
 			}
-			if (imageType.equals(ImageType.WEB_URL)) {
+			if (imageLocation.equals(ImageLocation.WEB_URL)) {
 				URL url = new URL(path);
 				bufferedImage = ImageIO.read(url);
 			}
+			if (imageLocation.equals(ImageLocation.CLASSPATH)) {
+				InputStream is = getClass().getResourceAsStream(path);
+				bufferedImage = ImageIO.read(is);
+			}
+
 		} catch (IOException e) {
-			throw new RuntimeException("Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageType: " + imageType.toString() , e);
+			throw new RuntimeException("Can't create ImageIO. Maybe the path is not valid. Path: \n" + path + "\nImageLocation: " + imageLocation.toString() , e);
 		}
 	}
 
