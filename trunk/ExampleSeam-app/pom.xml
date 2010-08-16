@@ -119,18 +119,6 @@
 		<dependencies>
 			<dependency>
 				<groupId>java2word</groupId>
-				<artifactId>ExampleSeam-datamodel</artifactId>
-				<version>1.0</version>
-				<type>jar</type>
-			</dependency>
-			<dependency>
-				<groupId>java2word</groupId>
-				<artifactId>ExampleSeam-bootstrap</artifactId>
-				<version>1.0</version>
-				<type>ejb</type>
-			</dependency>
-			<dependency>
-				<groupId>java2word</groupId>
 				<artifactId>ExampleSeam-ejb</artifactId>
 				<version>1.0</version>
 				<type>ejb</type>
@@ -178,118 +166,7 @@
 	</reporting>
 
 
-	<profiles>
-		<profile>
-			<id>development</id>
-
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-
-			<properties>
-				<!-- development mode (disable in production) -->
-				<seam.debug>true</seam.debug>
-
-				<!-- datasource configuration -->
-				<jdbc.connection.url>jdbc:...</jdbc.connection.url>
-				<jdbc.driver.class>...</jdbc.driver.class>
-				<jdbc.user>user</jdbc.user>
-				<jdbc.password>pass</jdbc.password>
-				<min.pool.size>1</min.pool.size>
-				<max.pool.size>10</max.pool.size>
-
-				<!-- package exploded war file -->
-				<exploded.war.file>true</exploded.war.file>
-
-				<!-- development mode (exclude in production) -->
-				<exclude.bootstrap>false</exclude.bootstrap>
-
-				<!-- persistence.xml configuration -->
-				<hibernate.dialect>
-					org.hibernate.dialect.HSQLDialect
-				</hibernate.dialect>
-				<hibernate.hbm2ddl.auto>
-					create-drop
-				</hibernate.hbm2ddl.auto>
-				<hibernate.show_sql>
-					true
-				</hibernate.show_sql>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>test</id>
-
-			<properties>
-				<!-- development mode (disable in production) -->
-				<seam.debug>false</seam.debug>
-
-				<!-- datasource configuration   -->
-				<jdbc.connection.url>jdbc:...</jdbc.connection.url>
-				<jdbc.driver.class>...</jdbc.driver.class>
-				<jdbc.user>user</jdbc.user>
-				<jdbc.password>pass</jdbc.password>
-				<min.pool.size>1</min.pool.size>
-				<max.pool.size>10</max.pool.size>
-
-				<!-- package exploded war file -->
-				<exploded.war.file>false</exploded.war.file>
-
-				<!-- development mode (exclude in production) -->
-				<exclude.bootstrap>true</exclude.bootstrap>
-
-				<!-- persistence.xml configuration -->
-				<hibernate.dialect>
-					org.hibernate.dialect.HSQLDialect
-				</hibernate.dialect>
-				<hibernate.hbm2ddl.auto>
-					validate
-				</hibernate.hbm2ddl.auto>
-				<hibernate.show_sql>
-					false
-				</hibernate.show_sql>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>production</id>
-
-			<properties>
-				<!-- development mode (disable in production) -->
-				<seam.debug>false</seam.debug>
-
-				<!-- datasource configuration   -->
-				<jdbc.connection.url>jdbc:...</jdbc.connection.url>
-				<jdbc.driver.class>...</jdbc.driver.class>
-				<jdbc.user>user</jdbc.user>
-				<jdbc.password>pass</jdbc.password>
-				<min.pool.size>10</min.pool.size>
-				<max.pool.size>50</max.pool.size>
-
-				<!-- development mode (exclude in production) -->
-				<exclude.bootstrap>true</exclude.bootstrap>
-
-				<!-- package exploded war file -->
-				<exploded.war.file>false</exploded.war.file>
-
-				<!-- persistence.xml configuration -->
-				<hibernate.dialect>
-					org.hibernate.dialect.HSQLDialect
-				</hibernate.dialect>
-				<hibernate.hbm2ddl.auto>
-					validate
-				</hibernate.hbm2ddl.auto>
-				<hibernate.show_sql>
-					false
-				</hibernate.show_sql>
-			</properties>
-		</profile>
-	</profiles>
   <modules>
-	<!--
-    <module>ExampleSeam-datamodel</module>
-    <module>ExampleSeam-bootstrap</module>
--->
     <module>../ExampleSeam-ejb</module>
     <module>../ExampleSeam-war</module>
     <module>../ExampleSeam-ear</module>

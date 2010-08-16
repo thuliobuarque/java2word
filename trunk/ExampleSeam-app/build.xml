@@ -15,10 +15,10 @@
 
 	<property name="pom.file" value="pom.xml" />
 	<property name="ear.dist" location="../ExampleSeam-ear/target" />
-	<property name="ear.file" value="ExampleSeam.ear" />
+	<property name="ear.file" value="ExampleSeam-ear.ear" />
 	<property name="ds.dir" location="../phages-db/src/main/resources" />
 	<property name="ds" value="j2w-ds.xml" />
-	<property name="ear.exploded.dir" value="ExampleSeam" />
+	<property name="ear.exploded.dir" value="ExampleSeam-ear" />
 	<property name="war.filer" value="ExampleSeam-web.war" />
 	<property name="src.webapp.dir" location="../j2w-web/src/main/webapp" />
 

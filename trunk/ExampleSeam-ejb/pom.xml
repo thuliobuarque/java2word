@@ -42,5 +42,27 @@
 			<artifactId>persistence-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<!-- ######### -->
+		<dependency>
+			<groupId>java2word</groupId>
+			<artifactId>j2w-ejb</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- ######### -->
+
 	</dependencies>
 </project>
