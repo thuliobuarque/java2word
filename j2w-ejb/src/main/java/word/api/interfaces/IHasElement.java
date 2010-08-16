@@ -11,7 +11,7 @@ package word.api.interfaces;
  * <blockquote>
  * <pre>
  * 	IDocument myDoc = new Document2004();
- * 	myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph: " + new Image("/server_root/dtpick.gif", ImageType.FULL_LOCAL_PATH).getContent()));
+ * 	myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph: " + new Image("/server_root/dtpick.gif", ImageLocation.FULL_LOCAL_PATH).getContent()));
  * </blockquote>
  * </pre>
  *

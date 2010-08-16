@@ -16,13 +16,13 @@ import org.junit.Test;
 import word.utils.TestUtils;
 import word.utils.Utils;
 import word.w2004.elements.Image;
-import word.w2004.elements.ImageType;
+import word.w2004.elements.ImageLocation;
 
 public class ImageTest extends Assert {
 
 	@Test
 	public void sanityTest() throws IOException{
-		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageType.FULL_LOCAL_PATH);
+		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
 		//Image img = new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png");
 		// Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
 
@@ -38,7 +38,7 @@ public class ImageTest extends Assert {
 
 	@Test
 	public void localImageTest(){
-		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageType.FULL_LOCAL_PATH);
+		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
@@ -48,7 +48,7 @@ public class ImageTest extends Assert {
 
 	@Test
 	public void webImageTest(){
-		Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageType.WEB_URL);
+		Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageLocation.WEB_URL);
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
 		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
@@ -58,9 +58,21 @@ public class ImageTest extends Assert {
 	}
 
 	@Test
+	public void classpathImageTest(){
+		Image img = new Image("/dtpick.gif", ImageLocation.CLASSPATH);
+		System.out.println(img.getContent());
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
+		assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
+		assertEquals(1, TestUtils.regexCount(img.getContent(), "width:16pt;height:16pt"));
+		assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNS"));
+	}
+
+	@Test
 	public void defaultSizeTest() throws IOException {
 		Image img = new Image(Utils.getAppRoot()
-				+ "/src/test/resources/base2logo.png", ImageType.FULL_LOCAL_PATH);
+				+ "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
 		assertEquals(1, TestUtils.regexCount(img.getContent(),
 				"style=\"width:116pt;height:104pt\""));
 	}
@@ -68,7 +80,7 @@ public class ImageTest extends Assert {
 	@Test
 	public void widthTest() throws IOException {
 		Image img = new Image(Utils.getAppRoot()
-				+ "/src/test/resources/base2logo.png", ImageType.FULL_LOCAL_PATH);
+				+ "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
 		img.setWidth("120");
 		assertEquals(0, TestUtils.regexCount(img.getContent(),
 				"style=\"width:116pt;height:104pt\""));
@@ -79,7 +91,7 @@ public class ImageTest extends Assert {
 	@Test
 	public void heightTest() throws IOException {
 		Image img = new Image(Utils.getAppRoot()
-				+ "/src/test/resources/base2logo.png", ImageType.FULL_LOCAL_PATH);
+				+ "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
 		img.setHeight("110");
 		assertEquals(0, TestUtils.regexCount(img.getContent(),
 				"style=\"width:116pt;height:104pt\""));
@@ -90,7 +102,7 @@ public class ImageTest extends Assert {
 	@Test
 	public void widthAndHeightTest() throws IOException {
 		Image img = new Image(Utils.getAppRoot()
-				+ "/src/test/resources/base2logo.png", ImageType.FULL_LOCAL_PATH);
+				+ "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
 		img.setWidth("121");
 		img.setHeight("111");
 		assertEquals(0, TestUtils.regexCount(img.getContent(),
@@ -105,7 +117,7 @@ public class ImageTest extends Assert {
 	public void invalidImageTest(){
 		@SuppressWarnings("unused")
 		Image img = new Image(Utils.getAppRoot()
-				+ "/src/test/resources/whatever", ImageType.FULL_LOCAL_PATH);
+				+ "/src/test/resources/whatever", ImageLocation.FULL_LOCAL_PATH);
 	}
 
 	@SuppressWarnings("deprecation")

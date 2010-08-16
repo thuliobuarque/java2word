@@ -13,7 +13,7 @@ import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
 import word.w2004.elements.Heading3;
 import word.w2004.elements.Image;
-import word.w2004.elements.ImageType;
+import word.w2004.elements.ImageLocation;
 import word.w2004.elements.PageBreak;
 import word.w2004.elements.Paragraph;
 
@@ -78,12 +78,12 @@ public class Document2004Test extends Assert {
 		myDoc.getBody().addEle(new Heading1("h1h1h1h1h1h1h"));
 		myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph"));
 
-		myDoc.getBody().addEle(new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png", ImageType.FULL_LOCAL_PATH));
+		myDoc.getBody().addEle(new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH));
 
 		myDoc.getBody().addEle(new BreakLine(2));
 
 		myDoc.getBody().addEle(new Heading2("h2h2h2h2h2h2h2h"));
-		myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph: " + new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageType.FULL_LOCAL_PATH).getContent()));
+		myDoc.getBody().addEle(new Paragraph("This document is an example of paragraph: " + new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH).getContent()));
 
 		myDoc.getBody().addEle(new PageBreak());
 
