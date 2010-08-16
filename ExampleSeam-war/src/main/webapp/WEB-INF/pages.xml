@@ -11,16 +11,18 @@
 			<redirect view-id="/home.xhtml"></redirect>
 		</navigation>
 		
+		<!-- 
 		<navigation from-action="personList">
 			<end-conversation before-redirect="true"/>
 			<redirect view-id="/page/person/personList.xhtml"></redirect>
 		</navigation>	
+		 -->
 	</page>
 	
 	<!--
 		Hopefully this fixes the RF CSS Problem with Seam, see
 		http://jira.jboss.com/jira/browse/JBSEAM-1009
-	-->
+
 
 	<page view-id="/home.*" login-required="true" />
 	<page view-id="/index.*" login-required="true" />
@@ -29,7 +31,7 @@
 	<page view-id="/layout/*" login-required="false" />
 	<page view-id="/img/*" login-required="false" />
 	<page view-id="/stylesheet/*" login-required="false" />
-	
+	-->
 
 	<exception
 		class="org.jboss.seam.framework.EntityNotFoundException">

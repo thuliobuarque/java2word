@@ -68,56 +68,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- JBoss Rules
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-core</artifactId>
-			<version>${version.drools}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>joda-time</groupId>
-					<artifactId>joda-time</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-api</artifactId>
-			<version>${version.drools}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-compiler</artifactId>
-			<version>${version.drools}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-decisiontables</artifactId>
-			<version>${version.drools}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-templates</artifactId>
-			<version>${version.drools}</version>
-		</dependency>
-		-->
-
-		<!-- JBoss jBPM
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-jpdl</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		-->
 		<!--  Application modules -->
 		<dependency>
 			<groupId>java2word</groupId>
@@ -134,7 +84,7 @@
 	</dependencies>
 
 	<build>
-	<finalName>ExampleSeam</finalName>
+	<finalName>ExampleSeam-ear</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-ear-plugin</artifactId>
@@ -145,7 +95,7 @@
 							<groupId>java2word</groupId>
 							<artifactId>ExampleSeam-war</artifactId>
 							<contextRoot>ExampleSeam</contextRoot>
-							<unpack>${exploded.war.file}</unpack>
+							<unpack>true</unpack>
 						</webModule>
 
 						<ejbModule>
@@ -170,70 +120,6 @@
 							<artifactId>commons-beanutils</artifactId>
 							<bundleDir>lib</bundleDir>
 						</jarModule>
-
-						<!-- JBoss Rules
-						<jarModule>
-							<groupId>org.drools</groupId>
-							<artifactId>drools-core</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.drools</groupId>
-							<artifactId>drools-api</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.drools</groupId>
-							<artifactId>drools-compiler</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.drools</groupId>
-							<artifactId>drools-decisiontables</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.drools</groupId>
-							<artifactId>drools-templates</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.antlr</groupId>
-							<artifactId>antlr-runtime</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>janino</groupId>
-							<artifactId>janino</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.eclipse.jdt</groupId>
-							<artifactId>core</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-
-						<jarModule>
-							<groupId>org.mvel</groupId>
-							<artifactId>mvel2</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-						-->
-						<!-- JBoss jBPM
-
-						<jarModule>
-							<groupId>org.jbpm</groupId>
-							<artifactId>jbpm-jpdl</artifactId>
-							<bundleDir>lib</bundleDir>
-						</jarModule>
-						-->
 					</modules>
 
 					<jboss>
