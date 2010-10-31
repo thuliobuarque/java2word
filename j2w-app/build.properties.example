@@ -1,7 +1,8 @@
 # Copy this file into build.properties and customize it
+# Don't forget to ignore your new build.properties when you commit any code 
 
-#jboss.dir=/Applications/jboss-4.2.3.GA/server/phages/deploy
-#jboss.dir=/Users/leonardo/aajava/jboss-5.1.0.GA/server/default/deploy
-jboss.dir=/Users/leonardo_correa/aajava/jboss-5.1.0.GA/server/default/deploy
+#### jboss.dir: it is the deploy folder
+#### root.dir: name of the main project. App is the main and compiles the other ones
+
+jboss.dir=/Applications/jboss-4.2.3.GA/server/default/deploy
 root.dir=../j2w-app
-
