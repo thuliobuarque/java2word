@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://jboss.com/products/seam/taglib"
+		xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html" xmlns:rich="http://richfaces.org/rich"
+		xmlns:a="http://richfaces.org/a4j" template="/layout/template.xhtml">
+
+	<ui:define name="center">
+		<rich:panel id="panel">
+			<f:facet name="header">Java2Word</f:facet>
+    		<p>This web app is part of the J2W development environment.</p>
+    		
+			<!-- 			
+		    <ul>
+		        <li>Maven2 build configuration</li>
+		        <li>EJB 3.0 components</li>
+		        <li>JPA Entities</li>
+		        <li>Generated Testdata</li>
+		        <li>Templated Facelets views</li>
+		        <li>CSS stylesheet</li>
+		        <li>Internationalization support</li>
+		    </ul>
+		     -->
+		</rich:panel>
+		
+
+						
+
+		<rich:panel>
+			<f:facet name="header">Word Generator Test</f:facet>
+			<h:form id="loginHistorySearch" styleClass="edit">
+			<table border="0">
+				<tr>
+					<td align="right">			
+						<h:commandLink id="btnPrintWord01" class="edit" action="#{wordCreator.doIt('leoleo')}"
+								value="Just Do It!!!"  target="blank" style="margin-left:50px; font-size:12px; font-weight:bold;">
+						</h:commandLink>					
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td width="300px">		
+							<h:inputTextarea id="textArea" rows="30" cols="120"	value="#{wordCreator.xml}" />					
+					</td>
+					<td align="top">
+					
+						<hr/>
+						<h2>How to use this App?</h2>
+						<p></p>
+							<ol>
+						        <li>In your application, write your unit test for the Word Doc.</li>
+						        <li>In your unit test, print in the console your IDocument.getContent().</li>
+						        <li>Copy and paste here your XML(W2004) or HTML(W2000).</li>
+						        <li>Click in "jst do it!"</li>
+						        <li>Save the generated word doc and see if it is what you expected.</li>
+						        
+		    				</ol>
+		    			<hr/>
+		    			<p>If you don't know how and where to start, fair enough. Take a look at the Example Web Application(TODO)</p>	
+		    			<br/>
+		    			<br/>
+		    			<br/>
+		    					
+					</td>
+				</tr>
+				<tr>
+					<td align="right">			
+						<h:commandLink id="btnPrintWord02" class="edit" action="#{wordCreator.doIt('leoleo')}"
+								value="Just Do It!!!"  target="blank" style="margin-left:50px; font-size:12px; font-weight:bold;">
+						</h:commandLink>					
+					</td>
+					<td></td>
+				</tr>				
+			</table>			
+			</h:form>	
+		</rich:panel>
+		 
+			
+	</ui:define>
+</ui:composition>
