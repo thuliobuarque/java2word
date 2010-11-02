@@ -81,9 +81,15 @@ h1.setStyle(headingStyle);
 
   * Bold (boolean)
 
+{{{
+headingStyle.setItalic(true);
+}}}
+
   * Italic (boolean)
 
-
+{{{
+headingStyle.setBold(true);
+}}}
 
 ----
 = Paragraph = 
