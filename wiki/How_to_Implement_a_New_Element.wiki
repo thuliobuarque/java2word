@@ -6,6 +6,9 @@ This document gives you the guidelines how to implement a new element/component.
 
 This document gives you the guidelines how to implement a new element/component for the Java2Word project.
 
+_For this java2word library, "Bold" is not an Element - it is Style. Consider this only a simple demonstration how to implement something in this framework.
+Take a look at issue 8 or read the [http://code.google.com/p/java2word/wiki/Elements_Reference Elements_Reference Page].
+_
 
 = Details =
 
