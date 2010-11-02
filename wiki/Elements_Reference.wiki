@@ -13,8 +13,9 @@ We will start from the most popular/simple to the most complex.
 _ Remember that W2000 has been removed from the API. We will use only W2004 elements._
 
 
+---- 
 = Document =
-  * Description
+== Description ==
 This is the main class of the API. Use this class to add other elements to the document.
 When you create an instance of Document. 
 
@@ -28,17 +29,19 @@ The example above shows how to add one Paragraph to the body.
 Body contains another two classes: Header, Footer.
  
 
-  * Style - Superstylin
+---- 
+== Style - Superstylin ==
 
 Not implemented yet. 
 
 
+---- 
 = Heading = 
 
-  * Description
+== Description ==
 
 
-  * Style - Superstylin
+== Style - Superstylin ==
 
 
 
