@@ -1,3 +1,4 @@
+#labels Featured
 #This page shows how to use the elements of the API.
 
 = Introduction =
