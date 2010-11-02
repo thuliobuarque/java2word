@@ -42,6 +42,8 @@ Not implemented yet.
 
 
 
+
+
 ----
 = Heading = 
 
@@ -91,6 +93,9 @@ headingStyle.setItalic(true);
 {{{
 headingStyle.setBold(true);
 }}}
+
+
+
 
 ----
 = Paragraph = 
