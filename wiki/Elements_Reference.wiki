@@ -43,7 +43,7 @@ Not implemented yet.
 
 
 
-
+<br><br>
 ----
 = Heading = 
 
@@ -96,7 +96,7 @@ headingStyle.setBold(true);
 
 
 
-
+<br><br>
 ----
 = Paragraph = 
 
@@ -104,4 +104,46 @@ headingStyle.setBold(true);
 :TODO
 
 == Superstylin ==
+:TODO
+
+
+
+<br><br>
+----
+= BreakLine = 
+:TODO
+
+
+
+<br><br>
+----
+= BreakPage = 
+:TODO
+
+
+
+<br><br>
+----
+= Header = 
+:TODO
+
+
+
+<br><br>
+----
+= Footer = 
+:TODO
+
+
+
+<br><br>
+----
+= Image = 
+:TODO
+
+
+
+<br><br>
+----
+= Table = 
 :TODO
