@@ -10,10 +10,16 @@ The other section "Style - Superstylin" presents all possible styles applied to 
 
 We will start from the most popular/simple to the most complex.
 
+The term "*SuperStylin*" means simply "Style". *SuperStylin* is the name I gave to the new Styling Framework. It is inspired on *Groove Armada - Superstylin'*
+
+here is the link: http://www.youtube.com/watch?v=_z04eDMWOTw&feature=related
+
+SuperStylin framework is still in development...
+
 _ Remember that W2000 has been removed from the API. We will use only W2004 elements._
 
 
----- 
+----
 = Document =
 == Description ==
 This is the main class of the API. Use this class to add other elements to the document.
@@ -29,22 +35,61 @@ The example above shows how to add one Paragraph to the body.
 Body contains another two classes: Header, Footer.
  
 
----- 
-== Style - Superstylin ==
+== Superstylin ==
 
 Not implemented yet. 
 
 
----- 
+
+----
 = Heading = 
 
 == Description ==
+Heading is the element utilized for creating hierarchy sections of the document. It is used to generate the document index. There are three levels of Headings: Heading1, Heading2 and Heading3.
+
+See how to create a Heading1:
+{{{
+Heading1 h1 = new Heading1("Heading 111");
+}}}  
+
+How to add it to the body of the Document:
+{{{
+myDoc.getBody().addEle(h1);
+}}}
+
+== Superstylin ==
+
+-*for instance, ONLY Heading1 allows SuperStylin._
+
+  * Align (options: CENTER, LEFT(default), RIGHT, JUSTIFIED.
+
+Element that will receive the style:
+{{{
+Heading1 h1 = new Heading1("Heading 111");
+}}}
+
+Create the new heading style object and configure it.
+{{{
+HeadingStyle headingStyle = new HeadingStyle(); 
+headingStyle.setAlign(HeadingStyle.Align.CENTER);
+}}}
+
+Apply the style to the element:
+{{{
+h1.setStyle(headingStyle); 
+}}}
+
+  * Bold (boolean)
+
+  * Italic (boolean)
 
 
-== Style - Superstylin ==
 
+----
+= Paragraph = 
 
+== Description ==
+:TODO
 
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Superstylin ==
+:TODO
