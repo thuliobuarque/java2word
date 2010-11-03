@@ -2,12 +2,13 @@ package word.w2004.elements;
 
 import word.api.interfaces.IElement;
 
-public class Heading2 implements IElement{
+public class Heading2 extends AbstractHeading implements IElement{
 
 	private String value;
 	
 	//Constructor
 	public Heading2(String value){
+		super("Heading2");
 		this.value = value;
 	}
 	
@@ -16,15 +17,7 @@ public class Heading2 implements IElement{
 			return "";
 		}
 		
-		String txt = 
-			"\n<w:p wsp:rsidR=\"004429ED\" wsp:rsidRDefault=\"00000000\" wsp:rsidP=\"004429ED\">"		
-			+"\n	<w:pPr>"
-			+"\n		<w:pStyle w:val=\"Heading2\" />"
-			+"\n	</w:pPr>"
-			+"\n	<w:r>"
-			+"\n		<w:t>{value}</w:t>"
-			+"\n	</w:r>"
-			+"\n</w:p>";
+		String txt = applyStyle(getTemplate()); //For convention, it should be the last thing before returning the xml content. 
 		
 		return txt.replace("{value}", this.value);
 	}
