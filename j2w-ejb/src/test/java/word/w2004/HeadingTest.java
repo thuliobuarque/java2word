@@ -17,6 +17,7 @@ public class HeadingTest extends Assert{
 		assertEquals(1, TestUtils.regexCount(h1.getContent(), "<w:p wsp:rsidR*"));
 		assertEquals(1, TestUtils.regexCount(h1.getContent(), "<w:t>h1</w:t>"));
 		assertEquals(1, TestUtils.regexCount(h1.getContent(), "</w:p>"));
+		assertEquals(1, TestUtils.regexCount(h1.getContent(), "<w:pStyle w:val=\"Heading1\" />"));
 	}
 	
 	@Test
@@ -25,6 +26,7 @@ public class HeadingTest extends Assert{
 		assertEquals(1, TestUtils.regexCount(h2.getContent(), "<w:p wsp:rsidR*"));
 		assertEquals(1, TestUtils.regexCount(h2.getContent(), "<w:t>h2</w:t>"));
 		assertEquals(1, TestUtils.regexCount(h2.getContent(), "</w:p>"));
+		assertEquals(1, TestUtils.regexCount(h2.getContent(), "<w:pStyle w:val=\"Heading2\" />"));
 	}
 	
 	@Test
@@ -33,6 +35,7 @@ public class HeadingTest extends Assert{
 		assertEquals(1, TestUtils.regexCount(h3.getContent(), "<w:p wsp:rsidR*"));
 		assertEquals(1, TestUtils.regexCount(h3.getContent(), "<w:t>h3</w:t>"));
 		assertEquals(1, TestUtils.regexCount(h3.getContent(), "</w:p>"));
+		assertEquals(1, TestUtils.regexCount(h3.getContent(), "<w:pStyle w:val=\"Heading3\" />"));
 	}
 
 	@Test
