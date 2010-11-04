@@ -102,12 +102,46 @@ headingStyle.setBold(true);
 = Paragraph = 
 
 == Description ==
-:TODO
+The simplest way to create a paragraph is passing the content on the constructor:
+{{{
+Paragraph p01 = new Paragraph("I am a paragraph");
+}}}
 
 == Superstylin ==
-:TODO
+
+If you want to superStylin your paragraph (or part of the paragraph), you have to use the new element called *ParagraphPiece*.
+Eg.:
+{{{
+ParagraphStyle style = new ParagraphStyle(); //create style object
+style.setBold(true); //set it up
+style.setBold(true);
+
+//create your Piece of Paragraph 
+ParagraphPiece piece01 = new ParagraphPiece("I love Java and Ruby");
+
+//apply the style to the Piece
+piece01.setStyle(style);
+
+Paragraph p01 = new Paragraph(piece02);
+}}}
 
 
+Lets imagine the situation where you want to have part of the text in bold like this: I love Java and *Ruby*
+You want to make the word "ruby" in bold. 
+
+Class Paragraph has another constructor that accepts an array or varargs of Piece objects. 
+
+{{{
+ParagraphStyle style = new ParagraphStyle(); 
+style.setBold(true);
+
+ParagraphPiece piece01 = new ParagraphPiece("I love Java and ");
+ParagraphPiece piece02 = new ParagraphPiece("Ruby");
+
+piece02.setStyle(style);
+
+Paragraph p01 = new Paragraph(piece01, piece02);
+}}}
 
 <br><br>
 ----
