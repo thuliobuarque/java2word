@@ -1,7 +1,6 @@
 package word.utils;
 
 import java.io.BufferedReader;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,12 +18,12 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Node;
 
-import word.w2000.Document2000;
+import word.w2004.Document2004;
 
 
 public class Utils {
 
-	static Logger log = Logger.getLogger(Document2000.class);
+	static Logger log = Logger.getLogger(Document2004.class);
 	
 	public static String getAppRoot(){
 		File file = new File(".");
