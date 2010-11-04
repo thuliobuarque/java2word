@@ -63,8 +63,6 @@ myDoc.getBody().addEle(h1);
 
 == Superstylin ==
 
--*for instance, ONLY Heading1 allows SuperStylin._
-
   * Align (options: CENTER, LEFT(default), RIGHT, JUSTIFIED.
 
 Element that will receive the style:
@@ -110,7 +108,21 @@ Paragraph p01 = new Paragraph("I am a paragraph");
 == Superstylin ==
 
 If you want to superStylin your paragraph (or part of the paragraph), you have to use the new element called *ParagraphPiece*.
-Eg.:
+
+  * bold (boolean)
+{{{
+piece01.setStyle(style);
+}}}
+
+  * italic (boolean)
+{{{
+piece01.setStyle(style);
+}}}
+
+
+_ParagraphPiece should be utilized only inside a Paragraph._ 
+
+Example of ParagraphPiece use:
 {{{
 ParagraphStyle style = new ParagraphStyle(); //create style object
 style.setBold(true); //set it up
@@ -142,6 +154,12 @@ piece02.setStyle(style);
 
 Paragraph p01 = new Paragraph(piece01, piece02);
 }}}
+
+
+Notice that paragraph has become just a wrapper to put together all little pieces of text. When you use the default constructor, the code creates one ParagraphPiece behind the scenes.  
+
+Apply style to to object Paragraph hasn't been implemented yet but it will happen. We could eventually apply "align" the whole paragraph, but obliviously NOT to a Piece of Paragraph.  
+
 
 <br><br>
 ----
