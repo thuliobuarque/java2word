@@ -17,7 +17,7 @@ public class Heading2 extends AbstractHeading implements IElement{
 			return "";
 		}
 		
-		String txt = applyStyle(getTemplate()); //For convention, it should be the last thing before returning the xml content. 
+		String txt = getStyle().getNewContentWithStyle(getTemplate()); //For convention, it should be the last thing before returning the xml content. 
 		
 		return txt.replace("{value}", this.value);
 	}

@@ -1,12 +1,12 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
-import word.w2004.style.ParagraphStyle;
+import word.w2004.style.ParagraphPieceStyle;
 
 public class ParagraphPiece implements IElement{
 	
 	private String value = "";
-	private ParagraphStyle style;
+	private ParagraphPieceStyle style = new ParagraphPieceStyle();
 	
 	String txt =
 	 "\n		<w:r>"
@@ -22,34 +22,21 @@ public class ParagraphPiece implements IElement{
 	
 	@Override
 	public String getContent() {
-		if("".equals(this.value)){
+		if("".equals(this.value) || this.value == null){ // null is very unusual. That the reason null comparison is after empty verification. I am not sure if we use ApacheUtils we can achieve the same  
 			return "";
 		}
 		
-		txt = applyStyle(txt); //For convention, it should be the last thing before returning the xml content.
+		//For convention, it should be the last thing before returning the xml content.
+		txt = style.getNewContentWithStyle(txt);
 		
 		return txt.replace("{value}", this.value);
 	}
 	
-	
-	//This is gonna be refactored soon...
-	protected String applyStyle(String txt) {
-		if(style != null){
-			txt = this.style.getNewContentWithStyle(txt);
-		}else{ 
-			//clean up {styleXXXXX} place holders...
-			txt = txt.replaceAll("[{]style(.*)[}]", "");
-		}
-			
-		return txt;
-	}
-	
-	
 	//### Gettets and Setters
-	public ParagraphStyle getStyle() {
+	public ParagraphPieceStyle getStyle() {
 		return style;
 	}
-	public void setStyle(ParagraphStyle style) {
+	public void setStyle(ParagraphPieceStyle style) {
 		this.style = style;
 	}
 	

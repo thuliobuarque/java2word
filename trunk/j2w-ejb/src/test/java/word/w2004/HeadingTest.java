@@ -8,8 +8,23 @@ import word.utils.TestUtils;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
 import word.w2004.elements.Heading3;
+import word.w2004.elements.ParagraphPiece;
 
 public class HeadingTest extends Assert{
+	
+	@Test
+	public void testH1Style(){
+		Heading1 h1 = new Heading1("222222");
+		h1.getStyle().setBold(true);
+		h1.getStyle().setItalic(true);
+		
+		assertEquals(2, TestUtils.regexCount(h1.getContent(), "<*w:rPr>"));
+		assertEquals(1, TestUtils.regexCount(h1.getContent(), "<w:jc w:val=\"left\" />")); //default is left
+		assertEquals(1, TestUtils.regexCount(h1.getContent(), "<w:b/>")); 
+		assertEquals(1, TestUtils.regexCount(h1.getContent(), "<w:i/>")); 
+		
+		System.out.println(h1.getContent());
+	}
 
 	@Test
 	public void testH1(){

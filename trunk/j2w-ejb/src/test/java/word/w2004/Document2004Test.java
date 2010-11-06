@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import word.api.interfaces.IDocument;
 import word.utils.Utils;
-import word.w2004.Document2004;
 import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
@@ -16,6 +15,9 @@ import word.w2004.elements.Image;
 import word.w2004.elements.ImageLocation;
 import word.w2004.elements.PageBreak;
 import word.w2004.elements.Paragraph;
+import word.w2004.elements.ParagraphPiece;
+import word.w2004.style.HeadingStyle;
+import word.w2004.style.ParagraphPieceStyle;
 
 /**
  * @author leonardo_correa
@@ -97,9 +99,48 @@ public class Document2004Test extends Assert {
 		//System.out.println(myDoc.getContent());
 
 	}
+	
+	@Test
+	public void basicHeadingStyleTest() {
+		IDocument myDoc = new Document2004();
+		Heading1 h1 = new Heading1("Heading 111");
+		HeadingStyle headingStyle = new HeadingStyle();
+		headingStyle.setAlign(HeadingStyle.Align.CENTER);
+		headingStyle.setItalic(true);
+		
+		h1.setStyle(headingStyle);
+		myDoc.getBody().addEle(h1);
+		
+		myDoc.getBody().addEle(new Heading2("Heading 222"));
+		myDoc.getBody().addEle(new Heading3("Heading 333"));
+	}
 
 	@Test
+	public void basicParagraphStyleTest() {
+		IDocument myDoc = new Document2004();
+		//Paragraph p01 = new Paragraph("I am a paragraph");
+
+		ParagraphPieceStyle style = new ParagraphPieceStyle();
+		style.setBold(true);
+		style.setItalic(true);
+		
+		ParagraphPiece piece01 = new ParagraphPiece("222222");
+		ParagraphPiece piece02 = new ParagraphPiece("333333");
+		
+		piece01.setStyle(style);
+		
+		Paragraph p02 = new Paragraph(piece01, piece02);
+		
+//		myDoc.getBody().addEle(p01);
+		myDoc.getBody().addEle(p02);
+		
+		System.out.println(myDoc.getContent());
+	}
+	
+	@Test
 	public void prettyfize() {
+		//Usu this when you want to print out the XML formatted. You could also use the website: http://www.shell-tools.net/index.php 
+
 		//String txt = Utils.readFile("/Users/leonardo_correa/Desktop/Table2004.xml");
 		//System.out.println( Utils.pretty(txt) );
 	}
