@@ -124,7 +124,7 @@ _ParagraphPiece should be utilized only inside a Paragraph._
 
 Example of ParagraphPiece use:
 {{{
-ParagraphStyle style = new ParagraphStyle(); //create style object
+ParagraphPieceStyle style = new ParagraphPieceStyle(); //create style object
 style.setBold(true); //set it up
 style.setBold(true);
 
@@ -144,7 +144,7 @@ You want to make the word "ruby" in bold.
 Class Paragraph has another constructor that accepts an array or varargs of Piece objects. 
 
 {{{
-ParagraphStyle style = new ParagraphStyle(); 
+ParagrapPiecehStyle style = new ParagraphPieceStyle(); 
 style.setBold(true);
 
 ParagraphPiece piece01 = new ParagraphPiece("I love Java and ");
