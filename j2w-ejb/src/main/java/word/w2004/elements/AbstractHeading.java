@@ -22,20 +22,20 @@ public abstract class AbstractHeading {
 		+"\n	</w:r>"
 		+"\n</w:p>";
 
-	private HeadingStyle style;
+	private HeadingStyle style = new HeadingStyle();
 	
 	// this method could maybe be in an abstract class for any class that needs to apply style...
 	
-	protected String applyStyle(String txt) {
-		if(style != null){
-			txt = this.style.getNewContentWithStyle(txt);
-		}else{ 
-			//clean up {styleXXXXX} place holders...
-			txt = txt.replaceAll("[{]style(.*)[}]", "");
-		}
-			
-		return txt;
-	}
+//	protected String applyStyle(String txt) {
+//		if(style != null){
+//			txt = this.style.getNewContentWithStyle(txt);
+//		}else{ 
+//			//clean up {styleXXXXX} place holders...
+//			txt = txt.replaceAll("[{]style(.*)[}]", "");
+//		}
+//			
+//		return txt;
+//	}
 
 	
 	// #### Getters and setters #### 

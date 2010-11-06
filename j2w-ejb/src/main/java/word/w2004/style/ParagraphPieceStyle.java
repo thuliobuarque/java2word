@@ -7,7 +7,7 @@ import word.api.interfaces.ISuperStylin;
  * @author anyone
  * 
  */
-public class ParagraphStyle implements ISuperStylin{
+public class ParagraphPieceStyle implements ISuperStylin{
 
 	private boolean bold = false;
 	private boolean italic = false;
@@ -25,8 +25,11 @@ public class ParagraphStyle implements ISuperStylin{
             if(italic) sbText.append("\n            	<w:i/>");
             sbText.append("\n	 </w:rPr>");
         }
-		
-		return txt.replace("{styleText}", sbText.toString());
+        
+        txt = txt.replace("{styleText}", sbText.toString());//Convention: apply styles
+        txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after... 
+        
+		return txt;
 	}
 	
 	//### Getters and setters... ###

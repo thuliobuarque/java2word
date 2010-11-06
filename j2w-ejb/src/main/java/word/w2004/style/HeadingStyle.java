@@ -47,7 +47,8 @@ public class HeadingStyle implements ISuperStylin{
             if(italic) sbText.append("\n            	<w:i/>");
             sbText.append("\n	 </w:rPr>");
         }
-        newStr = newStr.replace("{styleText}", sbText.toString());
+        newStr = newStr.replace("{styleText}", sbText.toString());//Convention: apply styles
+        newStr = newStr.replaceAll("[{]style(.*)[}]", ""); //Convention: remove unused styles after...
         
 		return newStr;
 	}
