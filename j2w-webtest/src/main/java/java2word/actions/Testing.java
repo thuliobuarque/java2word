@@ -10,9 +10,9 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Testing extends ActionSupport implements ServletResponseAware {
 
 	public String execute() throws Exception {
-		System.out.println("### action init...");
+//		System.out.println("### action init...");
 
-		System.out.println("XML is: \n" + this.xml + "\n");
+//		System.out.println("XML is: \n" + this.xml + "\n");
 
 		if (!StringUtils.isEmpty(xml)) {
 			servletResponse.setContentType("application/msword");
@@ -25,7 +25,7 @@ public class Testing extends ActionSupport implements ServletResponseAware {
 			System.out.println("Error: Empty XML field!");
 		}
 
-		System.out.println("### action END...");
+//		System.out.println("### action END...");
 		return SUCCESS;
 	}
 
