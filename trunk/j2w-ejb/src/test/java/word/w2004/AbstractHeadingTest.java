@@ -24,7 +24,7 @@ public class AbstractHeadingTest extends Assert{
 		assertEquals(1, TestUtils.regexCount(heading1.getTemplate(), "</w:p>"));
 		assertEquals(1, TestUtils.regexCount(heading1.getTemplate(), "<w:pStyle w:val=\"Heading1\" />")); // it has to replace the Type of Heading
 		
-		assertNull(heading1.getStyle());
+		assertNotNull(heading1.getStyle());
 		HeadingStyle style = new HeadingStyle();
 		heading1.setStyle(style);
 		assertNotNull(heading1.getStyle());

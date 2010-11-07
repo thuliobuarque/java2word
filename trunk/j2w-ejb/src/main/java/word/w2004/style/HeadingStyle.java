@@ -1,6 +1,9 @@
 package word.w2004.style;
 
 import word.api.interfaces.ISuperStylin;
+import word.w2004.elements.AbstractHeading;
+import word.w2004.elements.Heading1;
+import word.w2004.elements.Heading2;
 
 /**
  * @author everybody - there is no ownership! 
@@ -58,21 +61,37 @@ public class HeadingStyle implements ISuperStylin{
 	public Align getAlign() {
 		return align;
 	}
-	public void setAlign(Align align) {
+	public HeadingStyle setAlign(Align align) {
 		this.align = align;
+		return this;
 	}
 	public boolean isBold() {
 		return bold;
 	}
-	public void setBold(boolean bold) {
+	public HeadingStyle setBold(boolean bold) {
 		this.bold = bold;
+		return this;
 	}
 	public boolean isItalic() {
 		return italic;
 	}
-	public void setItalic(boolean italic) {
+	public HeadingStyle setItalic(boolean italic) {
 		this.italic = italic;
+		return this;
 	}
+
+
 	
+//	//### TEST Fluent
+//	private Heading1 ele;
+//	
+//	public void setElement(Heading1 ele){
+//		this.ele = ele;
+//	}
+//	
+//	public Heading1 create() {
+//		//I ll have to use AbstractHeading, do instanceof and do a type cast...
+//		return this.ele;
+//	}
 
 }
