@@ -10,7 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Testing extends ActionSupport implements ServletResponseAware {
 
 	public String execute() throws Exception {
-//		System.out.println("### action init...");
+//		System.out.println("### About to generate Word doc...");
 
 //		System.out.println("XML is: \n" + this.xml + "\n");
 
@@ -21,11 +21,13 @@ public class Testing extends ActionSupport implements ServletResponseAware {
 
 			PrintWriter writer = servletResponse.getWriter();
 			writer.println(xml);
+			writer.flush(); 
+//		System.out.println("### Doc generated...");
+			return null; 
 		}else{
 			System.out.println("Error: Empty XML field!");
 		}
 
-//		System.out.println("### action END...");
 		return SUCCESS;
 	}
 
