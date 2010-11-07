@@ -134,7 +134,7 @@ public class Document2004Test extends Assert {
 //		myDoc.getBody().addEle(p01);
 		myDoc.getBody().addEle(p02);
 		
-		System.out.println(myDoc.getContent());
+//		System.out.println(myDoc.getContent());
 	}
 	
 	@Test

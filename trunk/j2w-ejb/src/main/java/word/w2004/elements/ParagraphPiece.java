@@ -19,7 +19,6 @@ public class ParagraphPiece implements IElement{
 		this.value = value;
 	}
 	
-	
 	@Override
 	public String getContent() {
 		if("".equals(this.value) || this.value == null){ // null is very unusual. That the reason null comparison is after empty verification. I am not sure if we use ApacheUtils we can achieve the same  

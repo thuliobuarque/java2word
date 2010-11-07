@@ -11,6 +11,7 @@ public class ParagraphPieceStyle implements ISuperStylin{
 
 	private boolean bold = false;
 	private boolean italic = false;
+	private boolean underline = false;
 
 	/**
 	 * This implementation will ONLY apply superStylin to the WHOLE element. 
@@ -19,10 +20,11 @@ public class ParagraphPieceStyle implements ISuperStylin{
 	public String getNewContentWithStyle(String txt) {
 		
 		StringBuilder sbText = new StringBuilder("");
-        if (bold || italic) {
+        if (bold || italic || underline) {
             sbText.append("\n	 <w:rPr>");
             if(bold) sbText.append("\n            	<w:b/>");
             if(italic) sbText.append("\n            	<w:i/>");
+            if(underline) sbText.append("\n			<w:u w:val=\"single\"/>");
             sbText.append("\n	 </w:rPr>");
         }
         
@@ -45,6 +47,11 @@ public class ParagraphPieceStyle implements ISuperStylin{
 	public void setItalic(boolean italic) {
 		this.italic = italic;
 	}
-
+	public boolean isUnderline() {
+		return underline;
+	}
+	public void setUnderline(boolean underline) {
+		this.underline = underline;
+	}
 	
 }
