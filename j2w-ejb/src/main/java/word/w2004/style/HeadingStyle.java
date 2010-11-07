@@ -58,27 +58,27 @@ public class HeadingStyle implements ISuperStylin{
 	
 
 	//### Getters and setters... ###
-	public Align getAlign() {
-		return align;
-	}
 	public HeadingStyle setAlign(Align align) {
 		this.align = align;
 		return this;
 	}
-	public boolean isBold() {
-		return bold;
-	}
+//	public boolean isBold() {
+//		return bold;
+//	}
 	public HeadingStyle setBold(boolean bold) {
 		this.bold = bold;
 		return this;
 	}
-	public boolean isItalic() {
-		return italic;
-	}
+//	public boolean isItalic() {
+//		return italic;
+//	}
 	public HeadingStyle setItalic(boolean italic) {
 		this.italic = italic;
 		return this;
 	}
+//	public Align getAlign() {
+//		return align;
+//	}
 
 
 	
