@@ -10,6 +10,7 @@ import word.utils.TestUtils;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
 import word.w2004.style.ParagraphPieceStyle;
+import word.w2004.style.ParagraphStyle;
 
 public class ParagraphTest extends Assert {
 
@@ -41,12 +42,27 @@ public class ParagraphTest extends Assert {
 	}
 	
 	@Test
+	public void testParagraphOneWithStyle() {
+		Paragraph p01 = new Paragraph("111");
+		p01.getStyle().setAlign(ParagraphStyle.Align.CENTER);
+
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:p wsp:rsidR="));
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:t>111</w:t>"));
+		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:r>"));
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "</w:p>"));
+		
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:jc w:val=\"center\"/>"));
+		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:pPr>"));
+	}
+	
+	@Test
 	public void testPiecesOneWithStyle() {
 		ParagraphPiece piece01 = new ParagraphPiece("Piece01");
 		Paragraph p01 = new Paragraph(piece01);
 		ParagraphPieceStyle style = new ParagraphPieceStyle();
 		style.setBold(true);
 		style.setItalic(true);
+		style.setUnderline(true);
 		piece01.setStyle(style);
 		
 		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:t>Piece01</w:t>"));
@@ -56,6 +72,7 @@ public class ParagraphTest extends Assert {
 		
 		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:b/>"));
 		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:i/>"));
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:u w:val=\"single\"/>"));
 	}
 	
 	@Test
@@ -69,8 +86,6 @@ public class ParagraphTest extends Assert {
 		style.setItalic(true);
 		
 		piece02.setStyle(style);
-		
-		System.out.println(p01.getContent());
 		
 		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:t>Piece11111</w:t>"));
 		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:t>Piece22222</w:t>"));
