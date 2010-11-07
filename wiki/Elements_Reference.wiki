@@ -163,8 +163,8 @@ Paragraph p01 = new Paragraph(piece01, piece02);
 
 Notice that paragraph has become just a wrapper to put together all little pieces of text. When you use the default constructor, the code creates one ParagraphPiece behind the scenes.  
 
-Apply style to to object Paragraph hasn't been implemented yet but it will happen. We could eventually apply "align" the whole paragraph, but obliviously NOT to a Piece of Paragraph.  
-If you want to apply superStylin to the WHOLE paragraph, at the moment, you can only apply ALIGN. You have to use the class *ParagraphStyle*.
+  
+*IMPORTANT:* If you want to apply superStylin to the WHOLE paragraph, at the moment, you can only apply ALIGN. You have to use the class *ParagraphStyle*.
 
 {{{
 myPar.getStyle().setAlign(ParagraphStyle.Align.CENTER);
