@@ -1,6 +1,7 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
+import word.w2004.style.HeadingStyle;
 
 public class Heading1 extends AbstractHeading implements IElement{
 
@@ -24,5 +25,15 @@ public class Heading1 extends AbstractHeading implements IElement{
 		
 		return txt.replace("{value}", this.value);
 	}
+
+	
+//	//### TEST Fluent
+//	public static Heading1 with(String string) {
+//		return new Heading1(string);
+//	}
+//	public HeadingStyle withStyle() {
+//		this.getStyle().setElement(this);
+//		return this.getStyle();
+//	}
 
 }

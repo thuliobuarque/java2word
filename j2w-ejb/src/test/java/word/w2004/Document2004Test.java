@@ -3,6 +3,7 @@ package word.w2004;
 import junit.framework.Assert;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import word.api.interfaces.IDocument;
@@ -138,11 +139,41 @@ public class Document2004Test extends Assert {
 	}
 	
 	@Test
+	public void basicParagraphStyleColorTest() {
+		IDocument myDoc = new Document2004();
+		
+		ParagraphPiece piece01 = new ParagraphPiece("11111");
+		piece01.getStyle().setTextColor("FF0000");
+		
+		ParagraphPiece piece02 = new ParagraphPiece("22222");
+		piece02.getStyle().setTextColor(ParagraphPieceStyle.Color.RED);
+		
+		Paragraph p01 = new Paragraph(piece01, piece02);
+		
+		myDoc.getBody().addEle(p01);
+//		System.out.println(myDoc.getContent());
+	}
+	
+	@Test
+	public void basicFluentTest() {
+		IDocument doc = new Document2004();
+//		Heading1 h1 = new Heading1("h111");
+//		h1.getStyle().setBold(true).setItalic(true);
+		
+//		Heading1 h2 = Heading1.with("h111").withStyle().setBold(true).setItalic(true).create();
+//		
+//		doc.getBody().addEle(h2);
+//		System.out.println(doc.getContent());
+	}
+	
+	@Ignore
+	@Test
 	public void prettyfize() {
-		//Usu this when you want to print out the XML formatted. You could also use the website: http://www.shell-tools.net/index.php 
+		//Use this when you want to print out the XML formatted. You could also use the website: http://www.shell-tools.net/index.php 
 
-		//String txt = Utils.readFile("/Users/leonardo_correa/Desktop/Table2004.xml");
-		//System.out.println( Utils.pretty(txt) );
+//		String txt = Utils.readFile("/Users/leonardo/Desktop/wordDoc.doc2.xml");
+//		String txt = Utils.readFile("/Users/leonardo/Desktop/111111yellow.xml");
+//		System.out.println( Utils.pretty(txt) );
 	}
 
 }
