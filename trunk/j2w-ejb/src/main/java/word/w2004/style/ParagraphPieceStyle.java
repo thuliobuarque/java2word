@@ -2,7 +2,6 @@ package word.w2004.style;
 
 import word.api.interfaces.ISuperStylin;
 import word.w2004.elements.ParagraphPiece;
-import word.w2004.style.ParagraphPieceStyle.Color;
 
 
 /**
@@ -43,46 +42,37 @@ public class ParagraphPieceStyle implements ISuperStylin{
 	}
 	
 	//### Getters and setters... ###
-	public boolean isBold() {
-		return bold;
-	}
-	public void setBold(boolean bold) {
+//	public boolean isBold() {
+//		return bold;
+//	}
+	public ParagraphPieceStyle setBold(boolean bold) {
 		this.bold = bold;
+		return this;
 	}
-	public boolean isItalic() {
-		return italic;
-	}
-	public void setItalic(boolean italic) {
+//	public boolean isItalic() {
+//		return italic;
+//	}
+	public ParagraphPieceStyle setItalic(boolean italic) {
 		this.italic = italic;
+		return this;
 	}
-	public boolean isUnderline() {
-		return underline;
-	}
-	public void setUnderline(boolean underline) {
+//	public boolean isUnderline() {
+//		return underline;
+//	}
+	public ParagraphPieceStyle setUnderline(boolean underline) {
 		this.underline = underline;
+		return this;
 	}
-	public String getTextColor() {
-		return textColor;
-	}
-	public void setTextColor(String textColor) {
+//	public String getTextColor() {
+//		return textColor;
+//	}
+	public ParagraphPieceStyle setTextColor(String textColor) {
 		this.textColor = textColor;
+		return this;
 	}
-	public void setTextColor(Color color) {
+	public ParagraphPieceStyle setTextColor(Color color) {
 		this.color = color;
-	}
-	
-
-	//## COLORS ###
-	//Yellow: 
-	public enum Color { 
-		YELLOW("FFFF00"), BLACK("000000"), RED("FF0000"), BLUE("0000FF"), GREEN("008000");
-		private String value;
-		Color(String value) {
-			this.value = value;
-		}
-		public String getValue() {
-			return value;
-		}
+		return this;
 	}
 
 }

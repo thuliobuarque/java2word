@@ -41,11 +41,12 @@ public class ParagraphStyle implements ISuperStylin{
 	}
 	
 	//### Getters and setters... ###
-	public Align getAlign() {
-		return align;
-	}
-	public void setAlign(Align align) {
+//	public Align getAlign() {
+//		return align;
+//	}
+	public ParagraphStyle setAlign(Align align) {
 		this.align = align;
+		return this;
 	}
 	
 }
