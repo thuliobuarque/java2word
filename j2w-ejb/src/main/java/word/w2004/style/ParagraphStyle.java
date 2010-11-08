@@ -10,7 +10,7 @@ import word.api.interfaces.ISuperStylin;
  * If you want to apply bold, italic or underline, use a ParagraphPiece to do that.
  * 
  */
-public class ParagraphStyle implements ISuperStylin{
+public class ParagraphStyle extends AbrstractStyle implements ISuperStylin{
 
 	private Align align = Align.LEFT;
 

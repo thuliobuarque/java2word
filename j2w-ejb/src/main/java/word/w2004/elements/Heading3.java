@@ -1,26 +1,18 @@
 package word.w2004.elements;
 
-import word.api.interfaces.IElement;
+import word.w2004.style.HeadingStyle;
 
-public class Heading3 extends AbstractHeading  implements IElement{
 
-	private String value;
-	
+public class Heading3 extends AbstractHeading <HeadingStyle> {
+
 	//Constructor
 	public Heading3(String value){
-		super("Heading3");
-		this.value = value;
+		super("Heading3", value);
 	}
 	
-	public String getContent() {
-		if("".equals(this.value)){
-			return "";
-		}
-		
-		String txt = getStyle().getNewContentWithStyle(getTemplate()); //For convention, it should be the last thing before returning the xml content. 
-		
-		return txt.replace("{value}", this.value);
-	}
 	
+	public static Heading3 with(String string) {
+		return new Heading3(string);
+	}
 	
 }

@@ -17,6 +17,7 @@ import word.w2004.elements.ImageLocation;
 import word.w2004.elements.PageBreak;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
+import word.w2004.style.Color;
 import word.w2004.style.HeadingStyle;
 import word.w2004.style.ParagraphPieceStyle;
 
@@ -146,7 +147,7 @@ public class Document2004Test extends Assert {
 		piece01.getStyle().setTextColor("FF0000");
 		
 		ParagraphPiece piece02 = new ParagraphPiece("22222");
-		piece02.getStyle().setTextColor(ParagraphPieceStyle.Color.RED);
+		piece02.getStyle().setTextColor(Color.RED);
 		
 		Paragraph p01 = new Paragraph(piece01, piece02);
 		
@@ -154,17 +155,31 @@ public class Document2004Test extends Assert {
 //		System.out.println(myDoc.getContent());
 	}
 	
-	@Test
+	@Test //Cool! works with type cast...
 	public void basicFluentTest() {
 		IDocument doc = new Document2004();
-//		Heading1 h1 = new Heading1("h111");
-//		h1.getStyle().setBold(true).setItalic(true);
+		Heading1 h1 = (Heading1) Heading1.with("h111").withStyle().setBold(true).setItalic(true).setAlign(HeadingStyle.Align.CENTER).create();
 		
-//		Heading1 h2 = Heading1.with("h111").withStyle().setBold(true).setItalic(true).create();
+		Heading2 h2 = (Heading2) Heading2.with("h222").withStyle().setBold(true).setItalic(true).create();
 //		
-//		doc.getBody().addEle(h2);
+		doc.getBody().addEle(h1);
+		doc.getBody().addEle(h2);
+		doc.getBody().addEle(Heading1.with("h3333").withStyle().setBold(true).setItalic(true).create()); // no cast...
+		System.out.println(doc.getContent());
+	}
+	
+	@Test
+	public void basicFluentTest02() {
+		IDocument doc = new Document2004();
+		
+//		Heading1222 h1 = (Heading1222) Heading1222.with("h222").withStyle().setBold(true).setItalic(true).create();
+
+//		doc.getBody().addEle(h1);
 //		System.out.println(doc.getContent());
 	}
+	
+	
+	
 	
 	@Ignore
 	@Test

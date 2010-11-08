@@ -1,15 +1,19 @@
 package word.w2004.elements;
 
+import word.api.interfaces.IElement;
+import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.HeadingStyle;
 
-public abstract class AbstractHeading {
+public abstract class AbstractHeading<E> implements IElement,  IFluentElementStylable<E>{
 
-	private String headingType;
+	private String headingType; // this is heading1, heading2...
+	private String value; //value/text for the Heading
 
-	protected AbstractHeading(String headingType){
+	protected AbstractHeading(String headingType, String value){
 		this.headingType = headingType;
+		this.value = value;
 	}
-	//Heading1
+		
 	private String template = 
 		"\n<w:p wsp:rsidR=\"004429ED\" wsp:rsidRDefault=\"00000000\" wsp:rsidP=\"004429ED\">"		
 		+"\n	<w:pPr>"
@@ -24,19 +28,17 @@ public abstract class AbstractHeading {
 
 	private HeadingStyle style = new HeadingStyle();
 	
-	// this method could maybe be in an abstract class for any class that needs to apply style...
+	public String getContent() {
+		if("".equals(this.value)){
+			return "";
+		}
+		
+		//For convention, it should be the last thing before returning the xml content.
+		String txt = style.getNewContentWithStyle(getTemplate());
+		
+		return txt.replace("{value}", this.value);
+	}
 	
-//	protected String applyStyle(String txt) {
-//		if(style != null){
-//			txt = this.style.getNewContentWithStyle(txt);
-//		}else{ 
-//			//clean up {styleXXXXX} place holders...
-//			txt = txt.replaceAll("[{]style(.*)[}]", "");
-//		}
-//			
-//		return txt;
-//	}
-
 	
 	// #### Getters and setters #### 
 	
@@ -49,5 +51,12 @@ public abstract class AbstractHeading {
 	public void setStyle(HeadingStyle style) {
 		this.style = style;
 	}
+
+	//Implements the stylable and the heading classes reuse it
+	@SuppressWarnings("unchecked")
+	public E withStyle() {
+		this.getStyle().setElement(this); //, Heading1.class
+		return (E) this.getStyle();
+	}	
 	
 }

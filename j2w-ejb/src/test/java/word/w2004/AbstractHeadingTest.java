@@ -13,7 +13,7 @@ public class AbstractHeadingTest extends Assert{
 	//### TODO: I won't test the method applyStyle because I will pull this off to another class in order to reuse this for all other "stylable" class. 
 	
 	//anonymous implementation - this is the way I leaned how to test abstract classes. 
-	AbstractHeading heading1 = new AbstractHeading("Heading1") {
+	AbstractHeading heading1 = new AbstractHeading("Heading1", "h111") {
 		
 	};
 	
