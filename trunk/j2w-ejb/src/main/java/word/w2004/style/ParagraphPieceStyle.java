@@ -1,14 +1,13 @@
 package word.w2004.style;
 
 import word.api.interfaces.ISuperStylin;
-import word.w2004.elements.ParagraphPiece;
 
 
 /**
  * @author anyone
  * 
  */
-public class ParagraphPieceStyle implements ISuperStylin{
+public class ParagraphPieceStyle extends AbrstractStyle implements ISuperStylin{
 
 	private boolean bold = false;
 	private boolean italic = false;

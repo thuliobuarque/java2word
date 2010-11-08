@@ -1,39 +1,17 @@
 package word.w2004.elements;
 
-import word.api.interfaces.IElement;
 import word.w2004.style.HeadingStyle;
 
-public class Heading1 extends AbstractHeading implements IElement{
+public class Heading1 extends AbstractHeading<HeadingStyle> { // implements IFluentElementStylable<HeadingStyle>
 
-	private String value;
-	
 	//Constructor
 	public Heading1(String value){
-		super("Heading1");
-		this.value = value;
+		super("Heading1", value);
 	}
 	
-	public String getContent() {
-		if("".equals(this.value)){
-			return "";
-		}
-		
-//		String txt = applyStyle(getTemplate());
-		
-		//For convention, it should be the last thing before returning the xml content.
-		String txt = getStyle().getNewContentWithStyle(getTemplate());
-		
-		return txt.replace("{value}", this.value);
+	//this method is specific for each class. Constructor can be different...Don't know if we can make it generic
+	public static Heading1 with(String string) {
+		return new Heading1(string);
 	}
-
 	
-//	//### TEST Fluent
-//	public static Heading1 with(String string) {
-//		return new Heading1(string);
-//	}
-//	public HeadingStyle withStyle() {
-//		this.getStyle().setElement(this);
-//		return this.getStyle();
-//	}
-
 }

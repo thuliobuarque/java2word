@@ -4,11 +4,12 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import word.api.interfaces.IElement;
 import word.utils.TestUtils;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
 import word.w2004.elements.Heading3;
-import word.w2004.elements.ParagraphPiece;
+import word.w2004.style.HeadingStyle;
 
 public class HeadingTest extends Assert{
 	
@@ -65,5 +66,23 @@ public class HeadingTest extends Assert{
 		assertEquals("", h3.getContent());
 		
 	}
+	
+	@Test
+	public void testFluent(){
+		Heading1 h1 = (Heading1) Heading1.with("h111").withStyle().setBold(true).setItalic(true).setAlign(HeadingStyle.Align.CENTER).create();
+		Heading2 h2 = (Heading2) Heading2.with("h222").withStyle().setBold(true).setItalic(true).setAlign(HeadingStyle.Align.CENTER).create();
+		Heading3 h3 = (Heading3) Heading3.with("h222").withStyle().setBold(true).setItalic(true).setAlign(HeadingStyle.Align.CENTER).create();
+		verifyStyles(h1); 
+		verifyStyles(h2); 
+		verifyStyles(h3); 
+	}
+
+	private void verifyStyles(IElement e) {
+		assertEquals(2, TestUtils.regexCount(e.getContent(), "<*w:rPr>"));
+		assertEquals(1, TestUtils.regexCount(e.getContent(), "<w:jc w:val=\"center\" />")); //default is left
+		assertEquals(1, TestUtils.regexCount(e.getContent(), "<w:b/>")); 
+		assertEquals(1, TestUtils.regexCount(e.getContent(), "<w:i/>"));
+	}
+	
 	
 }

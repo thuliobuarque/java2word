@@ -1,5 +1,6 @@
-package word.w2004.style;
+package word.w2004.elements.SPIKE;
 
+import word.api.interfaces.IElement;
 import word.api.interfaces.ISuperStylin;
 
 /**
@@ -9,7 +10,7 @@ import word.api.interfaces.ISuperStylin;
  * 
  * 
  */
-public class HeadingStyle extends AbrstractStyle implements ISuperStylin{
+public class HeadingStyle222<E> implements ISuperStylin{
 
 	private Align align = Align.LEFT;
 	private boolean bold = false;
@@ -54,19 +55,63 @@ public class HeadingStyle extends AbrstractStyle implements ISuperStylin{
 	}
 	
 
-	//### Getters  setters... ###
-	public HeadingStyle setAlign(Align align) {
+	//### Getters and setters... ###
+	public HeadingStyle222 setAlign(Align align) {
 		this.align = align;
 		return this;
 	}
-	public HeadingStyle setBold(boolean bold) {
+	public HeadingStyle222 setBold(boolean bold) {
 		this.bold = bold;
 		return this;
 	}
-	public HeadingStyle setItalic(boolean italic) {
+	public HeadingStyle222 setItalic(boolean italic) {
 		this.italic = italic;
 		return this;
 	}
+	
+	
 
+//	//### TEST Fluent
+	private E element;
+//	private Class clazz;
+	
+	public void setElement(E element) {
+		this.element = element;
+	}
+	
+//	public E create() {
+//		System.out.println(this.element.getClass());
+//		return this.element;
+//	}
+
+
+	@Override
+	public void setElement(IElement element) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public IElement create() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	//public HeadingStyle222 withStyle() {
+		//this.getStyle().setElement(this); //, Heading1.class
+	//	return this;
+	//}
+	
+//	private Heading1 ele;
+//	
+//	public void setElement(Heading1 ele){
+//		this.ele = ele;
+//	}
+//	
+//	public Heading1 create() {
+//		//I ll have to use AbstractHeading, do instanceof and do a type cast...
+//		return this.ele;
+//	}
 
 }

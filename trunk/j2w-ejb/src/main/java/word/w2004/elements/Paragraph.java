@@ -1,9 +1,10 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
+import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.ParagraphStyle;
 
-public class Paragraph implements IElement{
+public class Paragraph implements IElement, IFluentElementStylable <ParagraphStyle> {
 
 	private ParagraphPiece[] pieces;
 	private ParagraphStyle style = new ParagraphStyle();
@@ -58,4 +59,18 @@ public class Paragraph implements IElement{
 		this.style = style;
 	}
 
+	@Override
+	public ParagraphStyle withStyle() {
+		this.style.setElement(this);
+		return this.style;
+	}
+
+	public static Paragraph with(String value) {
+		return new Paragraph(value);
+	}
+	
+	public static Paragraph withPieces(ParagraphPiece ... pieces) {
+		return new Paragraph(pieces);
+	}
+	
 }
