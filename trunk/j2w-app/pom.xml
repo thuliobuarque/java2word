@@ -8,20 +8,21 @@
 		<version>2.2.1.CR1</version>
 	</parent>
 
-
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>java2word</groupId>
-	<artifactId>j2w</artifactId>
-	<packaging>pom</packaging>
-	<version>1.0</version>
-	<name>j2w</name>
-
 	<properties>
 		<version.seam>2.2.1.CR1</version.seam>
 		<version.jboss.app>5</version.jboss.app>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<app.version>2.0</app.version>
 	</properties>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>java2word</groupId>
+	<artifactId>j2w</artifactId>
+	<packaging>pom</packaging>
+	<version>${app.version}</version>
+	<name>j2w</name>
+
 
 	<repositories>
 		<repository>
@@ -180,13 +181,13 @@
 			<dependency>
 				<groupId>leogroup</groupId>
 				<artifactId>j2w-ejb</artifactId>
-				<version>1.0</version>
+				<version>${app.version}</version>
 				<type>ejb</type>
 			</dependency>
 			<dependency>
 				<groupId>leogroup</groupId>
 				<artifactId>j2w-war</artifactId>
-				<version>1.0</version>
+				<version>${app.version}</version>
 				<type>war</type>
 			</dependency>
 

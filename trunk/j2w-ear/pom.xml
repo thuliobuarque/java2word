@@ -5,15 +5,15 @@
 	<parent>
 		<groupId>java2word</groupId>
 		<artifactId>j2w</artifactId>
-		<version>1.0</version>
 		<relativePath>../j2w-app/pom.xml</relativePath>
+		<version>${app.version}</version>
 	</parent>
 
 	<groupId>java2word</groupId>
 	<artifactId>j2w-ear</artifactId>
-	<version>1.0</version>
 	<packaging>ear</packaging>
 	<name>j2w - EAR</name>
+	<version>${app.version}</version>
 
 	<dependencies>
 		<dependency>
@@ -72,13 +72,13 @@
 			<groupId>java2word</groupId>
 			<artifactId>j2w-war</artifactId>
 			<type>war</type>
-			<version>1.0</version>
+			<version>${app.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>java2word</groupId>
 			<artifactId>j2w-ejb</artifactId>
 			<type>ejb</type>
-			<version>1.0</version>
+			<version>${app.version}</version>
 		</dependency>
 
 	</dependencies>

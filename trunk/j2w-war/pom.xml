@@ -4,15 +4,15 @@
 	<parent>
 		<groupId>java2word</groupId>
 		<artifactId>j2w</artifactId>
-		<version>1.0</version>
 		<relativePath>../j2w-app/pom.xml</relativePath>
+		<version>${app.version}</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>j2w-war</artifactId>
-	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>j2w - WAR</name>
+	<version>${app.version}</version>
 
 	<build>
 		<finalName>j2w-web</finalName>
@@ -47,7 +47,7 @@
 			<artifactId>j2w-ejb</artifactId>
 			<type>ejb</type>
 			<scope>provided</scope>
-			<version>1.0</version>
+			<version>${app.version}</version>
 		</dependency>
 
 		<dependency>
