@@ -8,10 +8,9 @@
 	<property name="jboss.dir" location="/Applications/jboss-4.2.3.GA/server/phages/deploy" />
 	<property name="root.dir" value="../phages-app" />
 	-->
-
+	
 	<property name="jboss.dir" location="${jboss.dir}" />
 	<property name="root.dir" value="${root.dir}" />
-
 
 	<property name="pom.file" value="pom.xml" />
 	<property name="ear.dist" location="../j2w-ear/target" />
@@ -22,9 +21,13 @@
 	<property name="war.filer" value="j2w-web.war" />
 	<property name="src.webapp.dir" location="../j2w-web/src/main/webapp" />
 
+	<!-- Fix ubuntu bug. See build.properties.example-->
+	<property name="mvn_full_path" value="" />
+	<property name="mvn_full_path" value="${mvn_full_path}" />
+
 	<target name="Code Metrics">
 		<echo>${root.dir}/${pom.file}</echo>
-		<exec executable="mvn">
+		<exec executable="${mvn_full_path}mvn">
 			<arg value="clean" />
 			<arg value="install" />
 			<arg value="cobertura:cobertura" />
@@ -40,7 +43,7 @@
 
 	<target name="JavaDoc">
 		<echo>${root.dir}/${pom.file}</echo>
-		<exec executable="mvn">
+		<exec executable="${mvn_full_path}mvn">
 		<!--	<arg value="-DoutputDirectory=docsleo" /> -->
 			<arg value="javadoc:javadoc" />
 			<arg value="javadoc:jar" />
@@ -49,7 +52,7 @@
 
 	<target name="build">
 		<echo>${root.dir}/${pom.file}</echo>
-		<exec executable="mvn">
+			<exec executable="${mvn_full_path}mvn">
 			<arg value="clean" />
 			<arg value="install" />
 			<arg value="-DskipTests=false" />
