@@ -32,11 +32,14 @@ public class ParagraphStyle extends AbrstractStyle implements ISuperStylin{
 	 */
 	@Override
 	public String getNewContentWithStyle(String txt) {
-		String alignValue = "\n	<w:pPr>\n		<w:jc w:val=\"" + align.getValue()+ "\"/> \n	{styleText}\n	</w:pPr>";
-		txt = txt.replace("{styleAlign}", alignValue);
+		String styleValue = "\n		<w:pPr>\n		" +
+							"	<w:jc w:val=\"" + align.getValue()+ "\"/> \n	" +
+							"		{styleText}\n 	" +
+							"	</w:pPr>";
+		txt = txt.replace("{styleAlign}", styleValue);
 		
-        txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after... 
-        
+		txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after... 
+		
 		return txt;
 	}
 	
@@ -48,5 +51,5 @@ public class ParagraphStyle extends AbrstractStyle implements ISuperStylin{
 		this.align = align;
 		return this;
 	}
-	
+
 }
