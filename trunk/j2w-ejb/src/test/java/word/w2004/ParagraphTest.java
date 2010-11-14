@@ -133,4 +133,27 @@ public class ParagraphTest extends Assert {
 		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:pPr>"));
 	}
 	
+	@Test
+	public void testFluentPiece(){		
+		ParagraphPiece pieces = new ParagraphPiece("111");
+		Paragraph p01 = (Paragraph) Paragraph.withPieces(pieces);
+		
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:p wsp:rsidR="));
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:t>111</w:t>"));
+		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:r>"));
+		assertEquals(1, TestUtils.regexCount(p01.getContent(), "</w:p>"));
+		
+		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:pPr>"));
+	}
+	
+	@Test
+	public void testFluentPieces(){		
+		ParagraphPiece piece = (ParagraphPiece) new ParagraphPiece("111").withStyle().setFont(ParagraphPieceStyle.Font.COURIER).create();
+		System.out.println(piece.getContent());
+		
+		//Paragraph p01 = (Paragraph) Paragraph.withPieces(piece);
+		
+		//System.out.println(p01.getContent());
+	}
+	
 }
