@@ -8,8 +8,10 @@
 	<property name="jboss.dir" location="/Applications/jboss-4.2.3.GA/server/phages/deploy" />
 	<property name="root.dir" value="../phages-app" />
 	-->
-	
-	<property name="jboss.dir" location="${jboss.dir}" />
+
+	<property name="jboss.dir" value="" />
+	<!--workaround when prop hasn't been set up -->
+	<property name="jboss.dir" value="${jboss.dir}" />
 	<property name="root.dir" value="${root.dir}" />
 
 	<property name="pom.file" value="pom.xml" />
@@ -25,7 +27,28 @@
 	<property name="mvn_full_path" value="" />
 	<property name="mvn_full_path" value="${mvn_full_path}" />
 
-	<target name="Code Metrics">
+
+	<target name="basicCheckings" description="This task verifies if you have set up your environment correctly.">
+
+		<fail message="I could NOT find the property file build.properties! Copy the example file and change it." taskname="GOOD_propertyFile">
+			<condition>
+				<not>
+					<available file="build.properties" />
+				</not>
+			</condition>
+		</fail>
+
+		<fail message="I could NOT find the property 'jboss.dir' in the build.properties!" taskname="BAD_jbossdir">
+			<condition>
+				<equals arg1="${jboss.dir}" arg2="" />
+			</condition>
+		</fail>
+
+
+		<echo>### Configuration looks good... well done man!</echo>
+	</target>
+
+	<target name="Code Metrics" depends="basicCheckings">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
 			<arg value="clean" />
@@ -44,15 +67,15 @@
 	<target name="JavaDoc">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
-		<!--	<arg value="-DoutputDirectory=docsleo" /> -->
+			<!--	<arg value="-DoutputDirectory=docsleo" /> -->
 			<arg value="javadoc:javadoc" />
 			<arg value="javadoc:jar" />
 		</exec>
 	</target>
 
-	<target name="build">
+	<target name="build" depends="basicCheckings">
 		<echo>${root.dir}/${pom.file}</echo>
-			<exec executable="${mvn_full_path}mvn">
+		<exec executable="${mvn_full_path}mvn">
 			<arg value="clean" />
 			<arg value="install" />
 			<arg value="-DskipTests=false" />
@@ -61,7 +84,7 @@
 	</target>
 
 	<target name="deploy" depends="build">
-		<!--
+		<!-- optional... those guys can be removed any time
 		<delete dir="${jboss.dir}/../work"/>
 		<delete dir="${jboss.dir}/../tmp"/>
 		<delete dir="${jboss.dir}/../log"/>
@@ -73,11 +96,5 @@
 			<fileset dir="${ear.dist}/${ear.exploded.dir}" />
 		</copy>
 	</target>
-
-	<!--
-	<target name="deploy data source">
-		<copy file="${ds.dir}/${ds}" todir="${jboss.dir}" />
-	</target>
-	-->
 
 </project>
