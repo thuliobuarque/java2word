@@ -20,6 +20,7 @@ import word.w2004.elements.ParagraphPiece;
 import word.w2004.style.Color;
 import word.w2004.style.HeadingStyle;
 import word.w2004.style.ParagraphPieceStyle;
+import word.w2004.style.ParagraphStyle;
 
 /**
  * @author leonardo_correa
@@ -161,11 +162,11 @@ public class Document2004Test extends Assert {
 		Heading1 h1 = (Heading1) Heading1.with("h111").withStyle().setBold(true).setItalic(true).setAlign(HeadingStyle.Align.CENTER).create();
 		
 		Heading2 h2 = (Heading2) Heading2.with("h222").withStyle().setBold(true).setItalic(true).create();
-//		
+	
 		doc.getBody().addEle(h1);
 		doc.getBody().addEle(h2);
 		doc.getBody().addEle(Heading1.with("h3333").withStyle().setBold(true).setItalic(true).create()); // no cast...
-		System.out.println(doc.getContent());
+//		System.out.println(doc.getContent());
 	}
 	
 	@Test
@@ -174,8 +175,17 @@ public class Document2004Test extends Assert {
 		
 //		Heading1222 h1 = (Heading1222) Heading1222.with("h222").withStyle().setBold(true).setItalic(true).create();
 
-//		doc.getBody().addEle(h1);
-//		System.out.println(doc.getContent());
+		ParagraphPiece piece = new ParagraphPiece("Leonardo Correa Courrier");
+		piece.getStyle().setFont(ParagraphPieceStyle.Font.COURIER);
+		
+		Paragraph p01 = new Paragraph(piece);
+		
+		Paragraph p02 = new Paragraph("This is default font");
+		
+		doc.addEle(p01);
+		doc.addEle(p02);
+		doc.addEle(Heading1.with("h3333").create());
+		System.out.println(doc.getContent());
 	}
 	
 	

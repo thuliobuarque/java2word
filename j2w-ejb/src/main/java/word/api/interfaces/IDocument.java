@@ -1,6 +1,7 @@
 package word.api.interfaces;
 
-public interface IDocument extends IElement{
+
+public interface IDocument extends IHasElement{
 
 	public String getUri();
 
@@ -12,4 +13,5 @@ public interface IDocument extends IElement{
 
 	public IFooter getFooter();
 
+	
 }

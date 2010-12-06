@@ -81,4 +81,20 @@ public class Document2004 implements IDocument, IElement{
 		return this.getBody().getHeader(); //forward it to the body
 	}
 
+	/**
+	 * This is an alias to 'getBody().addEle' 
+	 */
+	@Override
+	public void addEle(IElement e) {
+		this.getBody().addEle(e);
+	}
+
+	/**
+	 * This is an alias to 'getBody().addEle' 
+	 */
+	@Override
+	public void addEle(String str) {
+		this.getBody().addEle(str);
+	}
+
 }

@@ -1,10 +1,15 @@
 package word.api.interfaces;
 
+import word.w2004.elements.Heading1;
+
 
 /**
  * @author no one
  * 
- * I invented the word "Stylable"
+ * I invented the word "Stylable". Don't try to look up at the dictionary pls.
+ * This will make all Style classes fluent. You are able to write code like:
+ * 
+ *  	Heading1.with("h3333").withStyle().setBold(true);
  *
  */
 public interface IFluentElementStylable <S>{
