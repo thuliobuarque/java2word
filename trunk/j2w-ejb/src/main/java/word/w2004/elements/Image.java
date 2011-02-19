@@ -13,6 +13,13 @@ import org.apache.log4j.Logger;
 import word.api.interfaces.IImage;
 import word.utils.ImageUtils;
 
+/**
+ * 
+ * @author leonardo
+ *
+ * Use this class when you want to add images to your document.
+ * You can insert images inside Paragraphs, Tables, Headings, Header, Footer and obviously, at the body of a Document. 
+ */
 public class Image implements IImage {
 
 	static Logger log = Logger.getLogger(Image.class);
@@ -26,26 +33,13 @@ public class Image implements IImage {
 	BufferedImage bufferedImage;
 
 	/**
-	 * Use the other constructor and specify the image type: FULL_LOCAL_PATH or WEB_URL.
 	 *
-	 * FULL_LOCAL_PATH: It has to start from the root of your system
-	 * WEB_URL: it can be http://localhost/your_app/img/xxx.gif or http://google.com/img/logoWhatever.png
-	 * CLASSPATH: This is for non-web apps. I don't have any example of web usage of this yet.
-	 *
-	 * This constructor will be removed in the next version.
-	 */
-	@Deprecated
-	public Image(String path) {
-		this(path, ImageLocation.FULL_LOCAL_PATH);
-	}
-
-	/**
-	 *
-	 * @param path
 	 *
 	 * This is the location on your image. If you specify  "imageLocation" as WEB_URL, your path should start with "http://..."
 	 * But if you choose "imageLocation" as FULL_LOCAL_PATH, you should specify path value as absolute path from the root of your server. Eg.: /Users/YourName/imgs/...
 	 *
+	 * @param path Path of the image. It will depend on the location: web, local or classpath.
+	 * 
 	 * @param imageLocation
 	 * FULL_LOCAL_PATH:  Full path absolute (from the root of your server.) including file name and extension.
 	 * It has to start from the root of your system.
