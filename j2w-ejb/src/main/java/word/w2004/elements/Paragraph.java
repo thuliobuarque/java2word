@@ -1,15 +1,33 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
+import word.api.interfaces.IFluentElement;
 import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.ParagraphStyle;
 
-public class Paragraph implements IElement, IFluentElementStylable <ParagraphStyle> {
+
+/**
+ * 
+ * @author leonardo
+ *
+ * Use this class to create paragraphs.
+ * 
+ *  @see
+ *  ParagraphPiece
+ *  
+ */
+public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentElementStylable <ParagraphStyle> {
 
 	private ParagraphPiece[] pieces;
 	private ParagraphStyle style = new ParagraphStyle();
 	
 	//Constructor
+	/**
+	 * 
+	 * @param value
+	 * 
+	 * String for a simple Paragraph. Assuming that you don't want to apply style on part of this text.
+	 */
 	public Paragraph(String value) {
 		if(value == null || "".equals(value)){
 			return;
@@ -19,6 +37,13 @@ public class Paragraph implements IElement, IFluentElementStylable <ParagraphSty
 			pieces[0] = piece;
 	}
 	
+	/**
+	 * 
+	 * @param pieces
+	 * 
+	 * It receives many ParagraphPieces with their own style/formating 
+	 * 
+	 */
 	public Paragraph(ParagraphPiece ... pieces) {
 		this.pieces = pieces;
 	}
@@ -73,4 +98,8 @@ public class Paragraph implements IElement, IFluentElementStylable <ParagraphSty
 		return new Paragraph(pieces);
 	}
 	
+	@Override
+	public Paragraph create() {
+		return this;
+	}
 }
