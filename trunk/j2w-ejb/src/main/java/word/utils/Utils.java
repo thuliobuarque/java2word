@@ -25,6 +25,11 @@ public class Utils {
 
 	static Logger log = Logger.getLogger(Document2004.class);
 	
+	/**
+	 * @return
+	 * 
+	 * The root of the web app as String.
+	 */
 	public static String getAppRoot(){
 		File file = new File(".");
 		try {
@@ -35,6 +40,15 @@ public class Utils {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * @param file: 
+	 * It is the full path to the file
+	 * 
+	 * @return 
+	 * String with the content of the file
+	 */
 	public static String readFile(String file) {
 		BufferedReader reader = null;
 		try {
@@ -59,8 +73,14 @@ public class Utils {
 	}
 
 	
-	
-	
+	/**
+	 * 
+	 * @param xml
+	 * xml to be pretifized
+	 * 
+	 * @return
+	 * pretifized xml
+	 */
 	public static String pretty(String xml) {
 		//log.info("pretty...");
 		try {
