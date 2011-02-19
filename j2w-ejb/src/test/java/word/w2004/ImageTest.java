@@ -124,16 +124,5 @@ public class ImageTest extends Assert {
                 + "/src/test/resources/whatever", ImageLocation.FULL_LOCAL_PATH);
     }
 
-    @SuppressWarnings("deprecation")
-    @Test
-    public void deprecatedConstructorTest() throws IOException{
-        Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif");
-        assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
-        assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
-        assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
-        assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
-        //for dtPicker.gif
-        assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNSqWmpdbT1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAACH5BAEAAAYALAAAAAAQABAAQwRI0MhJqxmlkLwLyF8hYBpnluJArGzbjkEsB0NtD6PLAjyw\njqeOMANEDVGjm1IJm8WWONLxWDyGQjkdoecjVIOnrzEsKJvPaEEEADs="));
-    }
 
 }
