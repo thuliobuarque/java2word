@@ -4,6 +4,17 @@ import word.api.interfaces.IElement;
 import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.HeadingStyle;
 
+/**
+ * 
+ * @author leonardo
+ *
+ * @param <E>
+ * 
+ * Heading is utilized to organize documents the same way you do for web pages.
+ * 
+ * You can use Heading1 to 3.
+ * 
+ */
 public abstract class AbstractHeading<E> implements IElement,  IFluentElementStylable<E>{
 
 	private String headingType; // this is heading1, heading2...
