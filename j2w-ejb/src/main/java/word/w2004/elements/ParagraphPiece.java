@@ -5,6 +5,14 @@ import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.ParagraphPieceStyle;
 import word.w2004.style.ParagraphStyle;
 
+/**
+ * 
+ * @author leonardo
+ *
+ * Use this class ONLY inside Paragraph in order to format pieces of a paragraph.
+ * for example, if you want to make one and only one word of the paragraph bold.
+ *  
+ */
 public class ParagraphPiece implements IElement, IFluentElementStylable <ParagraphPieceStyle> {
 	
 	private String value = "";
