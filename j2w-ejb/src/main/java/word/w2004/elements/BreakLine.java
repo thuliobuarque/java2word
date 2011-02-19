@@ -2,6 +2,19 @@ package word.w2004.elements;
 
 import word.api.interfaces.IElement;
 
+/**
+ * 
+ * Breaks lines like when you press enter in your MS Word.
+ * 
+ * You can insert many Breaklines at once. Eg.:
+ * 
+ * <code>
+ * new BreakLine(3)
+ * </code>
+ *
+ *This will insert 3 Breaklines
+ *
+ */
 public class BreakLine implements IElement{
 
 	private int times = 1;
