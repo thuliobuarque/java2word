@@ -29,6 +29,9 @@ public interface IHasElement extends IElement{
 
 	/**
 	 * The content of the Element will be evaluated inside the object.
+	 * 
+	 * This is an alias to 'getBody().addEle' 
+	 * 
 	 */
 	public void addEle(IElement e);
 
@@ -43,6 +46,8 @@ public interface IHasElement extends IElement{
 	 *		myDoc.getBody().addEle(new Paragraph("This is a my graph: " + myXml));
 	 * </code>
 	 *
+	 * This is an alias to 'getBody().addEle'
+	 *  
 	 */
 	public void addEle(String str);
 
