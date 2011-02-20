@@ -9,7 +9,7 @@ import word.w2004.elements.ParagraphPiece;
  * @author anyone
  * 
  */
-public class ParagraphPieceStyle extends AbrstractStyle implements ISuperStylin{
+public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 
 	private boolean bold = false;
 	private boolean italic = false;
