@@ -8,8 +8,6 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import org.apache.log4j.Logger;
-
 import word.api.interfaces.IFluentElement;
 import word.api.interfaces.IImage;
 import word.utils.ImageUtils;
@@ -23,7 +21,6 @@ import word.utils.ImageUtils;
  */
 public class Image implements IImage, IFluentElement<IImage> {
 
-	static Logger log = Logger.getLogger(Image.class);
 	private StringBuilder txt = new StringBuilder("");
 	private boolean hasBeenCalledBefore = false;
 	private String path = "";
@@ -68,7 +65,6 @@ public class Image implements IImage, IFluentElement<IImage> {
 	public String getOriginalWidthHeight() {
 		String res = bufferedImage.getWidth() + "#" + bufferedImage.getHeight()
 				+ "";
-		log.debug(res);
 		return res;
 	}
 
@@ -95,21 +91,15 @@ public class Image implements IImage, IFluentElement<IImage> {
 		}
 		// Placeholders: internalFileName, fileName, binary, width and height
 
-		log.debug("@@@ path: " + path);
-
 		String[] arr = path.split("/");
 		String fileName = arr[arr.length - 1];
 
-		log.debug("@@@ fileName: " + fileName);
-
 		String internalFileName = System.currentTimeMillis() + fileName;
-		log.debug(internalFileName);
 
 		// String binary = ImageUtils.getImageHexaBase64(path);
 		String imageformat = path.substring(path.lastIndexOf('.') + 1);
 		String binary = ImageUtils.getImageHexaBase64(bufferedImage,
 				imageformat);
-		log.debug("@@@ Bynary: " + binary);
 
 		setUpSize();
 

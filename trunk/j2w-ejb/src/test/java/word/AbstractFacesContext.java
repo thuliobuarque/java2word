@@ -28,8 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import junit.framework.Assert;
 
-import org.apache.log4j.Logger;
-
 /**
  * @author leonardo_correa
  * ATENTION: All of this could possibly be achieved using JSF Mock Framework.
@@ -41,8 +39,6 @@ import org.apache.log4j.Logger;
  */
 public class AbstractFacesContext extends Assert{
 
-	static Logger log = Logger.getLogger(AbstractFacesContext.class);
-	
 	public static FacesContext getMockedFacesContext() throws FileNotFoundException{
 
 		final ExternalContext	ec = AbstractFacesContext.getMockedExternalContext();
@@ -51,14 +47,11 @@ public class AbstractFacesContext extends Assert{
 
 			@Override //### LEO
 			public ExternalContext getExternalContext() {
-				log.debug("## getExternalContext - begin");
-				log.debug("## getExternalContext - just before returning: " + ec);
 				return  ec;
 			}
 			@Override
 			public void responseComplete() {
 				// TODO Auto-generated method stub
-				log.debug("### setting responseComplete");
 			}
 			
 			@Override
@@ -182,8 +175,6 @@ public class AbstractFacesContext extends Assert{
 			private String contentType;
 
 			public PrintWriter getWriter() throws IOException {
-				log.debug("### getWriter - getting PrintWriter");
-//				PrintWriter pw = new PrintWriter(new File("xxx.txt"));  
 				return pw;
 			}			
 			
@@ -356,7 +347,6 @@ public class AbstractFacesContext extends Assert{
 			
 			@Override //### Leo
 			public Object getResponse() {
-				log.debug("@@@ ExternalContext - getMockedExternalContext - begin ");
 				return resp;				
 				
 			}
