@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
+import word.api.interfaces.IFluentElement;
 import word.api.interfaces.IImage;
 import word.utils.ImageUtils;
 
@@ -20,7 +21,7 @@ import word.utils.ImageUtils;
  * Use this class when you want to add images to your document.
  * You can insert images inside Paragraphs, Tables, Headings, Header, Footer and obviously, at the body of a Document. 
  */
-public class Image implements IImage {
+public class Image implements IImage, IFluentElement<IImage> {
 
 	static Logger log = Logger.getLogger(Image.class);
 	private StringBuilder txt = new StringBuilder("");
@@ -123,12 +124,14 @@ public class Image implements IImage {
 		return txt.toString();
 	}
 
-	public void setWidth(String value) {
+	public Image setWidth(String value) {
 		this.width = value;
+		return this;
 	}
 
-	public void setHeight(String value) {
+	public Image setHeight(String value) {
 		this.height = value;
+		return this;
 	}
 
 	private String img_template = "\n<w:pict>"
@@ -153,6 +156,16 @@ public class Image implements IImage {
 			+ "\n<w:binData w:name=\"wordml://{internalFileName}\" xml:space=\"preserve\">{binary}</w:binData>"
 			+ "\n	<v:shape id=\"_x0000_i1026\" type=\"#_x0000_t75\" style=\"width:{width}pt;height:{height}pt\"><v:imagedata src=\"wordml://{internalFileName}\" o:title=\"{fileName}\"/>"
 			+ "\n	</v:shape>" + "\n</w:pict>";
+
+	
+	public static Image from_WEB_URL(String path) {
+		return new Image(path,  ImageLocation.WEB_URL);
+	}
+	
+	@Override
+	public IImage create() {
+		return this;
+	}
 
 	/*
 	 * private String imgTst = "\n<w:pict>" +

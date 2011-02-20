@@ -1,8 +1,10 @@
 package word.api.interfaces;
 
+import word.w2004.elements.Image;
+
 public interface IImage extends IElement{
 	
-	public void setWidth(String value);
-	public void setHeight(String value);
+	public Image setWidth(String value);
+	public Image setHeight(String value);
 	
 }
