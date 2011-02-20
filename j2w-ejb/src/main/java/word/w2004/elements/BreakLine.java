@@ -1,6 +1,7 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
+import word.api.interfaces.IFluentElement;
 
 /**
  * 
@@ -15,7 +16,7 @@ import word.api.interfaces.IElement;
  *This will insert 3 Breaklines
  *
  */
-public class BreakLine implements IElement{
+public class BreakLine implements IElement, IFluentElement<BreakLine>{
 
 	private int times = 1;
 
@@ -42,5 +43,20 @@ public class BreakLine implements IElement{
 	 */
 	public BreakLine(){
 	}
+
+	/**
+	 * Created Breaklines according to the number of times provided.
+	 * @param value number of times
+	 * @return the Breakline object ready to go!
+	 */
+	public static BreakLine times(Integer value) {
+		return new BreakLine(value);
+	}
 	
-}
+	
+	@Override
+	public BreakLine create() {
+		return this;
+	}
+	
+}	
