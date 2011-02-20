@@ -12,7 +12,7 @@ public interface IFluentElement <F>{
 	 * It is just to have that "create()" at the end but the following code is the same:
 	 * 		Heading1 myHEading = Heading1.with("h3333");
 	 * 
-	 * Anyway, it is here for sake of consistency
+	 * Anyway, it is here for sake of consistency or semantic
 	 * 
 	 * @return
 	 * 

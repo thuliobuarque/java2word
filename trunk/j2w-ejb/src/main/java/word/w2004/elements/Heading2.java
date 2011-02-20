@@ -1,8 +1,9 @@
 package word.w2004.elements;
 
+import word.api.interfaces.IFluentElement;
 import word.w2004.style.HeadingStyle;
 
-public class Heading2 extends AbstractHeading<HeadingStyle> {
+public class Heading2 extends AbstractHeading<HeadingStyle> implements IFluentElement<Heading2>{
 
 	//Constructor
 	public Heading2(String value){
@@ -12,6 +13,12 @@ public class Heading2 extends AbstractHeading<HeadingStyle> {
 	
 	public static Heading2 with(String string) {
 		return new Heading2(string);
+	}
+
+
+	@Override
+	public Heading2 create() {
+		return this;
 	}
 	
 	// #### Getters and setters #### 

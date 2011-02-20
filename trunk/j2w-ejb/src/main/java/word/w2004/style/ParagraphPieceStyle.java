@@ -1,6 +1,8 @@
 package word.w2004.style;
 
+import word.api.interfaces.IElement;
 import word.api.interfaces.ISuperStylin;
+import word.w2004.elements.ParagraphPiece;
 
 
 /**
@@ -49,6 +51,19 @@ public class ParagraphPieceStyle extends AbrstractStyle implements ISuperStylin{
 	}
 	
 	//### Getters and setters... ###
+	
+	/**
+	 * 
+	 * This is the ParagraphPiece! I am using Covariants return! 
+	 * to be honest, I have never thought how to use and finally here we go!!!
+	 * It will give the chance to eliminate the necessity of type cast for elements.
+	 * 
+	 */
+	@Override
+	public ParagraphPiece create() {
+		return (ParagraphPiece) super.create();
+	}
+	
 //	public boolean isBold() {
 //		return bold;
 //	}
@@ -73,6 +88,15 @@ public class ParagraphPieceStyle extends AbrstractStyle implements ISuperStylin{
 //	public String getTextColor() {
 //		return textColor;
 //	}
+	
+	/**
+	 * If you know the color code, just to straight to the point! Eg.:
+	 * yellow: FFFF00, black: 000000, red: FF0000, blue: 0000FF, green: 008000, etc...
+	 * 
+	 * If you want, you can use the class Color.whatever_color.
+	 * 
+	 * @param hexadecimal color code 
+	 */
 	public ParagraphPieceStyle setTextColor(String textColor) {
 		this.textColor = textColor;
 		return this;

@@ -1,6 +1,7 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
+import word.api.interfaces.IFluentElement;
 import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.ParagraphPieceStyle;
 import word.w2004.style.ParagraphStyle;
@@ -13,7 +14,7 @@ import word.w2004.style.ParagraphStyle;
  * for example, if you want to make one and only one word of the paragraph bold.
  *  
  */
-public class ParagraphPiece implements IElement, IFluentElementStylable <ParagraphPieceStyle> {
+public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>, IFluentElementStylable <ParagraphPieceStyle> {
 	
 	private String value = "";
 	private ParagraphPieceStyle style = new ParagraphPieceStyle();
@@ -53,6 +54,15 @@ public class ParagraphPiece implements IElement, IFluentElementStylable <Paragra
 	public ParagraphPieceStyle withStyle() {
 		this.style.setElement(this);
 		return this.style;
+	}
+
+	public static ParagraphPiece with(String value) {
+		return new ParagraphPiece(value);
+	}
+	
+	@Override
+	public ParagraphPiece create() {
+		return this;
 	}
 	
 }
