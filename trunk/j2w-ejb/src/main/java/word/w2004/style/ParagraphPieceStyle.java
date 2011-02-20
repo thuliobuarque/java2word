@@ -54,7 +54,7 @@ public class ParagraphPieceStyle extends AbrstractStyle implements ISuperStylin{
 	
 	/**
 	 * 
-	 * This is the ParagraphPiece! I am using Covariants return! 
+	 * This is the ParagraphPiece! I am using Covariant Return Type!!! 
 	 * to be honest, I have never thought how to use and finally here we go!!!
 	 * It will give the chance to eliminate the necessity of type cast for elements.
 	 * 

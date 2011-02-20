@@ -158,8 +158,22 @@ public class Image implements IImage, IFluentElement<IImage> {
 			+ "\n	</v:shape>" + "\n</w:pict>";
 
 	
+	/***
+	 * It creates an image from the Web.
+	 * @param path Image full path. To know if it will work, you should be able to see this image in your browser
+	 * @return
+	 */
 	public static Image from_WEB_URL(String path) {
 		return new Image(path,  ImageLocation.WEB_URL);
+	}
+	
+	/***
+	 * It creates an image from your local machine.
+	 * @param path Image full path. To know if it will work, probably you should specify full path from the root of your system.
+	 * @return
+	 */
+	public static Image from_FULL_LOCAL_PATHL(String path) {
+		return new Image(path,  ImageLocation.FULL_LOCAL_PATH);
 	}
 	
 	@Override
