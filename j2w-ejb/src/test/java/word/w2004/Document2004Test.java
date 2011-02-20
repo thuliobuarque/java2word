@@ -217,7 +217,7 @@ public class Document2004Test extends Assert {
 	}
 
 	
-	//@Ignore //ignored by default just to not create files in your system or break the build...
+@Ignore //ignored by default just to not create files in your system or break the build...
 @Test
 public void testJava2wordAllInOne() {
 
@@ -257,15 +257,15 @@ public void testJava2wordAllInOne() {
 	myDoc.addEle(Paragraph.with("I am a very simple paragraph.").create());
 	
 	myDoc.addEle(BreakLine.times(1).create()); 		
-	ParagraphPiece myParPiece01 = new ParagraphPiece("If you use the class 'Paragraph', you will have limited style. Maybe only paragraph aligment.");
-	ParagraphPiece myParPiece02 = new ParagraphPiece("In order to use more advanced style, you have to use ParagraphPiece");
-	ParagraphPiece myParPiece03 = new ParagraphPiece("One example of this is when you want to make ONLY one word BOLD or ITALIC. the way to to this is create many pieces, format them separetely and put all together in a Paragraph object. Example:");
+	ParagraphPiece myParPiece01 = ParagraphPiece.with("If you use the class 'Paragraph', you will have limited style. Maybe only paragraph aligment.");
+	ParagraphPiece myParPiece02 = ParagraphPiece.with("In order to use more advanced style, you have to use ParagraphPiece");
+	ParagraphPiece myParPiece03 = ParagraphPiece.with("One example of this is when you want to make ONLY one word BOLD or ITALIC. the way to to this is create many pieces, format them separetely and put all together in a Paragraph object. Example:");
 	
 	myDoc.addEle(Paragraph.withPieces(myParPiece01, myParPiece02, myParPiece03).create());
 	
-	ParagraphPiece myParPieceJava = new ParagraphPiece("I like Java and ").withStyle().setFont(Font.COURIER).create();
-	ParagraphPiece myParPieceRuby = new ParagraphPiece("Ruby!!! ").withStyle().setBold(true).setItalic(true).create();
-	ParagraphPiece myParPieceAgile = new ParagraphPiece("I actully love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().setTextColor("008000").create();
+	ParagraphPiece myParPieceJava = ParagraphPiece.with("I like Java and ").withStyle().setFont(Font.COURIER).create();
+	ParagraphPiece myParPieceRuby = ParagraphPiece.with("Ruby!!! ").withStyle().setBold(true).setItalic(true).create();
+	ParagraphPiece myParPieceAgile = ParagraphPiece.with("I actully love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().setTextColor("008000").create();
 			
 	myDoc.addEle(Paragraph.withPieces(myParPieceJava, myParPieceRuby, myParPieceAgile).create());
 	
@@ -293,7 +293,7 @@ public void testJava2wordAllInOne() {
 	myDoc.addEle(Paragraph.with("Images can be created from diferent locations. It can be from your local machine, from web URL or classpath.").create());
 	
 	myDoc.addEle(Paragraph.with("This one is coming from WEB, google web site: ").create());		
-	myDoc.addEle(new Image("http://www.google.com/images/logos/ps_logo2.png", ImageLocation.WEB_URL));
+	myDoc.addEle(Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png"));
 	
 	myDoc.addEle(BreakLine.times(2).create()); 
 	myDoc.addEle(Paragraph.with("You can change the image dimensions:.").create());		
@@ -305,9 +305,8 @@ public void testJava2wordAllInOne() {
 	
 	myDoc.addEle(
 			new Paragraph("This document inside the paragraph, coming from '/src/test/resources/dtpick.gif': "
-					+ new Image(Utils.getAppRoot()
-							+ "/src/test/resources/dtpick.gif",
-							ImageLocation.FULL_LOCAL_PATH).getContent()));
+					+ Image.from_FULL_LOCAL_PATHL(Utils.getAppRoot()
+							+ "/src/test/resources/dtpick.gif").getContent()));
 			
 	myDoc.addEle(BreakLine.times(1).create()); 
 
