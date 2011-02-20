@@ -9,7 +9,7 @@ import word.api.interfaces.ISuperStylin;
  * 
  * 
  */
-public class HeadingStyle extends AbrstractStyle implements ISuperStylin{
+public class HeadingStyle extends AbstractStyle implements ISuperStylin{
 
 	private Align align = Align.LEFT;
 	private boolean bold = false;
