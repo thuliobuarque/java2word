@@ -13,18 +13,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Node;
 
-import word.w2004.Document2004;
-
 
 public class Utils {
 
-	static Logger log = Logger.getLogger(Document2004.class);
-	
 	/**
 	 * @return
 	 * 
@@ -82,7 +77,6 @@ public class Utils {
 	 * pretifized xml
 	 */
 	public static String pretty(String xml) {
-		//log.info("pretty...");
 		try {
 			org.dom4j.Document document = DocumentHelper.parseText(xml)
 					.getDocument();

@@ -2,20 +2,16 @@ package word.w2004;
 
 import junit.framework.Assert;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import word.api.interfaces.IElement;
 import word.utils.TestUtils;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
-import word.w2004.elements.SPIKE.Create;
 import word.w2004.style.ParagraphPieceStyle;
 import word.w2004.style.ParagraphStyle;
 
 public class ParagraphTest extends Assert {
-
-	static Logger log = Logger.getLogger(ParagraphTest.class);
 
 	@Test
 	public void sanityTest() {

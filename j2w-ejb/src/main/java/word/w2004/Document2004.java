@@ -1,7 +1,5 @@
 package word.w2004;
 
-import org.apache.log4j.Logger;
-
 import word.api.interfaces.IBody;
 import word.api.interfaces.IDocument;
 import word.api.interfaces.IElement;
@@ -18,9 +16,6 @@ import word.api.interfaces.IHeader;
  *
  */
 public class Document2004 implements IDocument, IElement{
-
-
-	static Logger log = Logger.getLogger(Document2004.class);
 
 	private StringBuilder txt = new StringBuilder();
 	private IHead head = new Head2004();

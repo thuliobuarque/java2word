@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 
 import junit.framework.Assert;
 
-import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -35,7 +34,7 @@ import word.w2004.style.ParagraphPieceStyle.Font;
  */
 public class Document2004Test extends Assert {
 
-	static Logger log = Logger.getLogger(Document2004.class);
+//	static Logger log = Logger.getLogger(Document2004.class);
 
 	@Test
 	public void sanityTest() {

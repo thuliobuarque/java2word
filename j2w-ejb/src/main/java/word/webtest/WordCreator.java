@@ -6,13 +6,11 @@ import java.io.PrintWriter;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
 import org.jboss.seam.annotations.Name;
 
 @Name("wordCreator")
 public class WordCreator {
 
-	static Logger log = Logger.getLogger(WordCreator.class);
 	private String xml;
 	private FacesContext fc = FacesContext.getCurrentInstance();
 
@@ -58,7 +56,7 @@ public class WordCreator {
 			// os.write(bytes);
 			fc.responseComplete();
 		} catch (IOException e) {
-			log.error("@@@@@@@@@ Problem executing report.");
+			System.out.println("@@@@@@@@@ Problem executing report.");
 		}
 	}
 
@@ -66,13 +64,13 @@ public class WordCreator {
 
 		byte[] data = null;
 
-		log.info("### about to generate your Word Document");
+		System.out.println("### about to generate your Word Document");
 
-		log.debug("#########################################");
-		log.debug(txt);
+		System.out.println("#########################################");
+		System.out.println(txt);
 
-		log.debug("### porra - XML from the textArea: " + this.getXml());
-		log.debug("#########################################");
+		System.out.println("### porra - XML from the textArea: " + this.getXml());
+		System.out.println("#########################################");
 
 		this.write(this.getXml(), data, "application/msword", "leoWord" + "."
 				+ "doc");
