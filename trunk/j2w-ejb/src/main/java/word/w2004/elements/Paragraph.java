@@ -18,7 +18,7 @@ import word.w2004.style.ParagraphStyle;
  */
 public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentElementStylable <ParagraphStyle> {
 
-	private ParagraphPiece[] pieces;
+	private ParagraphPiece[] pieces = null;
 	private ParagraphStyle style = new ParagraphStyle();
 	
 	//Constructor
@@ -49,7 +49,7 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
 	}
 
 	public String getContent() {
-		if(pieces == null || pieces.length == 0){
+		if(pieces == null) {  // || pieces.length == 0){
 			return "";
 		}
 

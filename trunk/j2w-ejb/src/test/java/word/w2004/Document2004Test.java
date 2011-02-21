@@ -10,6 +10,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import word.api.interfaces.IDocument;
+import word.utils.TestUtils;
 import word.utils.Utils;
 import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
@@ -36,6 +37,8 @@ public class Document2004Test extends Assert {
 
 //	static Logger log = Logger.getLogger(Document2004.class);
 
+	//TODO: do tests with assert for document
+	
 	@Test
 	public void sanityTest() {
 		IDocument myDoc = new Document2004();
@@ -44,7 +47,7 @@ public class Document2004Test extends Assert {
 	}
 
 	@Test
-	public void uriTest() {
+	public void testUri() {
 		IDocument myDoc = new Document2004();
 		String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
 				+ "<?mso-application progid=\"Word.Document\"?> "
@@ -65,7 +68,7 @@ public class Document2004Test extends Assert {
 	}
 
 	@Test
-	public void headTest() {
+	public void testHead() {
 		IDocument myDoc = new Document2004();
 		assertTrue(myDoc.getHead().getContent().contains("<w:docPr>"));
 		assertTrue(myDoc.getHead().getContent()
@@ -76,10 +79,47 @@ public class Document2004Test extends Assert {
 	}
 
 	@Test
-	public void bodyTest() {
+	public void testGetHeader() {
 		IDocument myDoc = new Document2004();
 		assertTrue(myDoc.getBody().getContent().contains("<w:body>"));
 		assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
+	}
+	
+	@Test
+	public void testBody() {
+		IDocument myDoc = new Document2004();
+		
+		assertEquals(1, TestUtils.regexCount(myDoc.getBody().getContent(), "<w:body>"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getBody().getContent(), "</w:body>"));
+	}
+	
+	@Test
+	public void testHeader() {
+		IDocument myDoc = new Document2004();
+		
+		assertEquals("", myDoc.getHeader().getContent());
+		
+		myDoc.getHeader().addEle(Paragraph.with("paragraph01").create());
+		
+		assertEquals(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "<w:hdr w:type=\"odd\">"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "<w:t>paragraph01</w:t>"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getHeader().getContent(), "</w:hdr>"));
+	}
+	
+	@Test
+	public void testFooter() {
+		IDocument myDoc = new Document2004();
+		
+		assertEquals("", myDoc.getFooter().getContent());
+		
+		myDoc.getFooter().addEle(Paragraph.with("paragraph01").create());		
+		
+		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:ftr w:type=\"odd\">"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:t>paragraph01</w:t>"));
+		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "</w:ftr>"));
+		
 	}
 
 	// This is a basic test which contains a little bit of everything and is a
@@ -167,8 +207,8 @@ public class Document2004Test extends Assert {
 		myDoc.getBody().addEle(p01);
 	}
 
+	//TODO: remove this type cast
 	@Test
-	// Cool! works with type cast...
 	public void basicFluentTest() {
 		IDocument doc = new Document2004();
 		Heading1 h1 = (Heading1) Heading1.with("h111").withStyle()
@@ -208,13 +248,21 @@ public class Document2004Test extends Assert {
 				+ "      <w:pgMar w:top=\"1800\" w:right=\"1440\" w:bottom=\"1800\" w:left=\"1440\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n"
 				+ "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
 
-		System.out.println(doc.getContent().replace("</w:body>",
-				orientation + "\n</w:body>"));
+		//System.out.println(doc.getContent().replace("</w:body>", orientation + "\n</w:body>"));
 
 		// String xx =Utils.readFile("/home/leonardo/Desktop/wordDoc.doc");
 		// System.out.println(xx);
 	}
 
+	@Test
+	public void testAddElementAliasString() {
+		IDocument myDoc = new Document2004();
+		myDoc.addEle(Heading1.with("heading1").create().getContent());
+		
+		assertTrue(myDoc.getBody().getContent().contains("<w:body>"));
+		assertTrue(myDoc.getBody().getContent().contains("<w:t>heading1</w:t>"));
+		assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
+	}
 	
 @Ignore //ignored by default just to not create files in your system or break the build...
 @Test

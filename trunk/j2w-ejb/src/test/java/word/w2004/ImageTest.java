@@ -37,8 +37,18 @@ public class ImageTest extends Assert {
     }
 
     @Test
-    public void localImageTest(){
-        Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
+    public void testLocalImage(){
+    	Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.FULL_LOCAL_PATH);
+    	assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
+    	assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
+    	assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
+    	assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
+    	assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNS"));//just the beginning of...
+    }
+    
+    @Test
+    public void testLocalImageFluent(){
+        Image img = Image.from_FULL_LOCAL_PATHL(Utils.getAppRoot() + "/src/test/resources/dtpick.gif");
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
@@ -46,6 +56,24 @@ public class ImageTest extends Assert {
         assertEquals(1, TestUtils.regexCount(img.getContent(), "R0lGODlhEAAQAPMAAKVNSkpNpUpNS"));//just the beginning of...
     }
 
+    @Test(expected = RuntimeException.class )
+    public void localImageTestWeb(){
+    	@SuppressWarnings("unused") //ok... jst to hit coverage
+		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.WEB_URL);
+    }
+    
+    @Test(expected = RuntimeException.class )
+    public void localImageTestClasspath(){
+    	@SuppressWarnings("unused") //ok... jst to hit coverage
+    	Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.CLASSPATH);
+    }
+    
+    @Test(expected = RuntimeException.class )
+    public void localImageTestClasspathFluent(){
+    	@SuppressWarnings("unused") //ok... jst to hit coverage
+        Image img = Image.from_WEB_URL(Utils.getAppRoot() + "/src/test/resources/dtpick.gif").create();
+    }
+    
     /**
      * ignore because it could fail if you are under a proxy. So for a matter of demostration, uncomment and run it
      */
@@ -64,7 +92,7 @@ public class ImageTest extends Assert {
     @Test
     public void classpathImageTest(){
         Image img = new Image("/dtpick.gif", ImageLocation.CLASSPATH);
-        System.out.println(img.getContent());
+
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >

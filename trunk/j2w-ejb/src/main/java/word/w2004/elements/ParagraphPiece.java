@@ -4,7 +4,6 @@ import word.api.interfaces.IElement;
 import word.api.interfaces.IFluentElement;
 import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.ParagraphPieceStyle;
-import word.w2004.style.ParagraphStyle;
 
 /**
  * 

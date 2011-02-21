@@ -11,11 +11,19 @@ public class BreakLineTest extends Assert{
 
 		
 	@Test 
-	public void breakDefaultTest(){
+	public void testBreakDefaultTest(){
 		BreakLine br = new BreakLine();
 		assertEquals("\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>", br.getContent());
 		int tot = TestUtils.regexCount(br.getContent(), "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
 		assertEquals(1, tot);
+	}
+	
+	@Test 
+	public void testBreakTimes(){
+		BreakLine br = BreakLine.times(3).create();
+		int tot = TestUtils.regexCount(br.getContent(), "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
+		System.out.println(br.getContent());
+		assertEquals(3, tot);
 	}
 	
 	@Test 
