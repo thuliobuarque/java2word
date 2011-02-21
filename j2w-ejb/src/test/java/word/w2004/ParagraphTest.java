@@ -2,6 +2,7 @@ package word.w2004;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import word.api.interfaces.IElement;
@@ -10,6 +11,7 @@ import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
 import word.w2004.style.ParagraphPieceStyle;
 import word.w2004.style.ParagraphStyle;
+import word.w2004.style.ParagraphStyle.Align;
 
 public class ParagraphTest extends Assert {
 
@@ -18,7 +20,40 @@ public class ParagraphTest extends Assert {
 		IElement par = new Paragraph("");
 		assertEquals(par.getContent(), "");
 	}
+	
+	@Test
+	public void sanityTest02() {
+		IElement par = new Paragraph(new ParagraphPiece(""));
+		assertEquals(par.getContent(), "");
+	}
+	
+	@Test
+	public void sanityTest03() {
+		IElement par = Paragraph.withPieces(new ParagraphPiece(null)).create();
+		assertEquals(par.getContent(), "");
+	}
 
+	@Test
+	public void sanityTestFluent() {
+		IElement par = Paragraph.with("par01").withStyle().setAlign(Align.CENTER).create();
+		
+		assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>par01</w:t>"));
+		assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:p wsp:rsidR="));
+		assertEquals(2, TestUtils.regexCount(par.getContent(), "<*w:r>"));
+		assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:p>"));
+		
+		assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:jc w:val=\"center\"/>"));
+		assertEquals(2, TestUtils.regexCount(par.getContent(), "<*w:pPr>"));
+		
+	}
+	
+	@Test
+	public void testWithStile() {
+		IElement par = Paragraph.with("").withStyle().create();
+		assertEquals(par.getContent(), "");
+	}
+	
+	
 	@Test
 	public void goodParagraphTest() {
 		IElement par = new Paragraph("This is my paragraph");
@@ -142,13 +177,11 @@ public class ParagraphTest extends Assert {
 		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:pPr>"));
 	}
 	
+	@Ignore
 	@Test
 	public void testFluentPieces(){		
 		ParagraphPiece piece = (ParagraphPiece) new ParagraphPiece("111").withStyle().setFont(ParagraphPieceStyle.Font.COURIER).create();
-		System.out.println(piece.getContent());
-		
 		//Paragraph p01 = (Paragraph) Paragraph.withPieces(piece);
-		
 		//System.out.println(p01.getContent());
 	}
 	

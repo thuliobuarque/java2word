@@ -52,11 +52,7 @@ public class Document2004 implements IDocument, IElement{
 
 		txt.append(this.getBody().getContent());
 		
-		//txt.append(this.getHeader().getContent());
-	
-		
 		txt.append("\n</w:wordDocument>");
-	
 		
 		return txt.toString();
 	}

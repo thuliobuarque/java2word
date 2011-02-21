@@ -19,7 +19,7 @@ import word.utils.ImageUtils;
  * Use this class when you want to add images to your document.
  * You can insert images inside Paragraphs, Tables, Headings, Header, Footer and obviously, at the body of a Document. 
  */
-public class Image implements IImage, IFluentElement<IImage> {
+public class Image implements IImage, IFluentElement<Image> {
 
 	private StringBuilder txt = new StringBuilder("");
 	private boolean hasBeenCalledBefore = false;
@@ -167,7 +167,7 @@ public class Image implements IImage, IFluentElement<IImage> {
 	}
 	
 	@Override
-	public IImage create() {
+	public Image create() {
 		return this;
 	}
 
