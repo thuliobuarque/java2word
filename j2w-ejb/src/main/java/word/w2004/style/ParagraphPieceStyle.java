@@ -1,6 +1,5 @@
 package word.w2004.style;
 
-import word.api.interfaces.IElement;
 import word.api.interfaces.ISuperStylin;
 import word.w2004.elements.ParagraphPiece;
 
@@ -23,30 +22,61 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 	 */
 	@Override
 	public String getNewContentWithStyle(String txt) {
-		
-		StringBuilder sbText = new StringBuilder("");
-        if (bold || italic || underline || !textColor.equals("") || color != null || this.font != null) {
-            sbText.append("\n	 <w:rPr>");
-            if(bold) sbText.append("\n            	<w:b/>");
-            if(italic) sbText.append("\n            	<w:i/>");
-            if(underline) sbText.append("\n			<w:u w:val=\"single\"/>");
-            
-            if(!textColor.equals("")) sbText.append("\n			<w:color w:val=\"" + textColor + "\"/>");
-            if(this.color != null && !this.color.getValue().equals("")) sbText.append("\n			<w:color w:val=\"" + color.getValue() + "\"/>");
-            
-    		if(this.font != null) {
-//    			"		{styleFont}\n	" +
-//    			String fontTxt = 
-    			sbText.append("			<w:rFonts w:ascii=\"" + font.getValue() + "\" w:h-ansi=\"" + font.getValue() + "\"/>\n"); 
-    			sbText.append("			<wx:font wx:val=\"" + font.getValue() + "\"/>");
-    		}
-            
-            sbText.append("\n	 </w:rPr>");
+		StringBuilder style = new StringBuilder("");
+
+		doStyleBold(style);
+        
+        doStyleItalic(style);
+        
+        doStyleUnderline(style);
+        
+        doStyleTextColorHexa(style);
+        
+        doStyleColorEnum(style);
+        
+		doStyleFont(style);
+
+		return doStyleReplacement(style, txt);
+	}
+
+	private void doStyleBold(StringBuilder style) {
+		if(this.bold) style.append("\n            	<w:b/>");
+	}
+
+	private void doStyleItalic(StringBuilder style) {
+		if(this.italic) style.append("\n            	<w:i/>");
+	}
+
+	private void doStyleUnderline(StringBuilder style) {
+		if(this.underline) style.append("\n			<w:u w:val=\"single\"/>");
+	}
+
+	private void doStyleTextColorHexa(StringBuilder style) {
+		if(!this.textColor.equals("")) {
+        	style.append("\n			<w:color w:val=\"" + this.textColor + "\"/>");
         }
-        
-        txt = txt.replace("{styleText}", sbText.toString());//Convention: apply styles
-        txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after... 
-        
+	}
+
+	private void doStyleColorEnum(StringBuilder style) {
+		if(this.color != null && !this.color.getValue().equals("")) { 
+        	style.append("\n			<w:color w:val=\"" + color.getValue() + "\"/>");
+        }
+	}
+
+	private void doStyleFont(StringBuilder style) {
+		if(this.font != null) {
+			style.append("			<w:rFonts w:ascii=\"" + font.getValue() + "\" w:h-ansi=\"" + font.getValue() + "\"/>\n"); 
+			style.append("			<wx:font wx:val=\"" + font.getValue() + "\"/>");
+		}
+	}
+	
+	private String doStyleReplacement(StringBuilder style, String txt) {
+		if(!"".equals(style.toString())) {
+			style.insert(0, "\n	 <w:rPr>");
+			style.append("\n	 </w:rPr>");
+	        txt = txt.replace("{styleText}", style.toString());//Convention: apply styles
+	        txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after...
+		}
 		return txt;
 	}
 	

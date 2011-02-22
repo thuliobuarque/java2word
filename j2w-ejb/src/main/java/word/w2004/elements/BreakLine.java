@@ -22,10 +22,14 @@ public class BreakLine implements IElement, IFluentElement<BreakLine>{
 
 	public String getContent() {
 		StringBuilder res = new StringBuilder(""); 
+		applyBreakLineTimes(res);
+		return res.toString();
+	}
+
+	private void applyBreakLineTimes(StringBuilder res) {
 		for (int i = 0; i < this.times; i++) {
 			res.append("\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>");
 		}
-		return res.toString();
 	}
 	
 	
