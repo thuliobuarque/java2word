@@ -14,13 +14,13 @@ import word.w2004.elements.tableElements.TableHeader;
 public class TableFactoryMethodTest extends Assert{
 	
 	@Test
-	public void getInstanceTest(){
+	public void testGetInstance(){
 		TableFactoryMethod instance = TableFactoryMethod.getInstance();
 		assertNotNull(instance);
 	}
 	
 	@Test
-	public void getTableItemTest(){
+	public void testGetTableItem(){
 		TableFactoryMethod instance = TableFactoryMethod.getInstance();
 		
 		assertTrue(instance.getTableItem(TableEle.TABLE_DEF) instanceof TableDefinition);

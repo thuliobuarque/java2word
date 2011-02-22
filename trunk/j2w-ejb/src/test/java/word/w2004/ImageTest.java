@@ -57,19 +57,19 @@ public class ImageTest extends Assert {
     }
 
     @Test(expected = RuntimeException.class )
-    public void localImageTestWeb(){
+    public void testLocalImageWeb(){
     	@SuppressWarnings("unused") //ok... jst to hit coverage
 		Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.WEB_URL);
     }
     
     @Test(expected = RuntimeException.class )
-    public void localImageTestClasspath(){
+    public void testLocalImageClasspath(){
     	@SuppressWarnings("unused") //ok... jst to hit coverage
     	Image img = new Image(Utils.getAppRoot() + "/src/test/resources/dtpick.gif", ImageLocation.CLASSPATH);
     }
     
     @Test(expected = RuntimeException.class )
-    public void localImageTestClasspathFluent(){
+    public void testLocalImageClasspathFluent(){
     	@SuppressWarnings("unused") //ok... jst to hit coverage
         Image img = Image.from_WEB_URL(Utils.getAppRoot() + "/src/test/resources/dtpick.gif").create();
     }
@@ -79,7 +79,7 @@ public class ImageTest extends Assert {
      */
     @Ignore
     @Test
-    public void webImageTest(){
+    public void testWebImage(){
         Image img = new Image("http://www.google.com.au/intl/en_com/images/srpr/logo1w.png", ImageLocation.WEB_URL);
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
@@ -90,7 +90,7 @@ public class ImageTest extends Assert {
     }
 
     @Test
-    public void classpathImageTest(){
+    public void testClasspathImage(){
         Image img = new Image("/dtpick.gif", ImageLocation.CLASSPATH);
 
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
@@ -102,7 +102,7 @@ public class ImageTest extends Assert {
     }
 
     @Test
-    public void defaultSizeTest() throws IOException {
+    public void testDefaultSize() throws IOException {
         Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
         assertEquals(1, TestUtils.regexCount(img.getContent(),
@@ -110,7 +110,7 @@ public class ImageTest extends Assert {
     }
 
     @Test
-    public void widthTest() throws IOException {
+    public void testWidth() throws IOException {
         Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
         img.setWidth("120");
@@ -121,7 +121,7 @@ public class ImageTest extends Assert {
     }
 
     @Test
-    public void heightTest() throws IOException {
+    public void testHeight() throws IOException {
         Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
         img.setHeight("110");
@@ -132,7 +132,7 @@ public class ImageTest extends Assert {
     }
 
     @Test
-    public void widthAndHeightTest() throws IOException {
+    public void testWidthAndHeight() throws IOException {
         Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/base2logo.png", ImageLocation.FULL_LOCAL_PATH);
         img.setWidth("121");
@@ -146,7 +146,7 @@ public class ImageTest extends Assert {
 
 
     @Test(expected = java.lang.RuntimeException.class)
-    public void invalidImageTest(){
+    public void testInvalidImage(){
         @SuppressWarnings("unused")
         Image img = new Image(Utils.getAppRoot()
                 + "/src/test/resources/whatever", ImageLocation.FULL_LOCAL_PATH);

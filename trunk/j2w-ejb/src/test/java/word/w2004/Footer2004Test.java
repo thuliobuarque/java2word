@@ -17,7 +17,7 @@ public class Footer2004Test extends Assert{
 	}
 
 	@Test
-	public void addEleTest(){
+	public void testAddEle(){
 		Footer2004 ft = new Footer2004();
 		ft.addEle(new Paragraph("p1"));
 		assertEquals(2, TestUtils.regexCount(ft.getContent(), "<*w:ftr"));
@@ -26,7 +26,7 @@ public class Footer2004Test extends Assert{
 	}
 
 	@Test
-	public void addEleStringTest(){
+	public void testAddEleString(){
 		Footer2004 ft = new Footer2004();
 		ft.addEle("<w:t>p1</w:t>");
 		assertEquals(2, TestUtils.regexCount(ft.getContent(), "<*w:ftr"));
@@ -35,7 +35,7 @@ public class Footer2004Test extends Assert{
 	
 	
 	@Test
-	public void footerWithNoPageNumberTest(){
+	public void testFooterWithNoPageNumber(){
 		Footer2004 ft = new Footer2004();
 		ft.showPageNumber(false);
 		ft.addEle(new Paragraph("p1"));

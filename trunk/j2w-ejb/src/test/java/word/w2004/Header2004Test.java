@@ -17,7 +17,7 @@ public class Header2004Test extends Assert{
 	}
 
 	@Test
-	public void addEleTest(){
+	public void testAddEle(){
 		Header2004 hd = new Header2004();
 		hd.addEle(new Paragraph("p1"));
 		assertEquals(2, TestUtils.regexCount(hd.getContent(), "<*w:hdr"));
@@ -25,7 +25,7 @@ public class Header2004Test extends Assert{
 	}
 
 	@Test
-	public void addEleStringTest(){
+	public void testAddEleString(){
 		Header2004 hd = new Header2004();
 		hd.addEle("<w:t>p1</w:t>");
 		assertEquals(2, TestUtils.regexCount(hd.getContent(), "<*w:hdr"));
@@ -33,7 +33,7 @@ public class Header2004Test extends Assert{
 	}
 	
 	@Test
-	public void hideHeaderandFooterTest(){ //this has to be tested in the body...
+	public void testHideHeaderandFooter(){ //this has to be tested in the body...
 		Header2004 hd = new Header2004();
 		hd.setHideHeaderAndFooterFirstPage(true);
 		assertTrue(hd.getHideHeaderAndFooterFirstPage());
