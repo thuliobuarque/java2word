@@ -177,12 +177,5 @@ public class ParagraphTest extends Assert {
 		assertEquals(2, TestUtils.regexCount(p01.getContent(), "<*w:pPr>"));
 	}
 	
-	@Ignore
-	@Test
-	public void testFluentPieces(){		
-		ParagraphPiece piece = (ParagraphPiece) new ParagraphPiece("111").withStyle().setFont(ParagraphPieceStyle.Font.COURIER).create();
-		//Paragraph p01 = (Paragraph) Paragraph.withPieces(piece);
-		//System.out.println(p01.getContent());
-	}
 	
 }

@@ -27,7 +27,7 @@ public class BreakLineTest extends Assert{
 	}
 	
 	@Test 
-	public void breakNumberConstructorTest(){
+	public void testBreakNumberConstructor(){
 		BreakLine br = new BreakLine(1);
 		assertEquals("\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>", br.getContent());
 		int tot = TestUtils.regexCount(br.getContent(), "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
@@ -35,7 +35,7 @@ public class BreakLineTest extends Assert{
 	}
 
 	@Test 
-	public void breakNumberConstructor02Test(){
+	public void testBreakNumberConstructor02(){
 		BreakLine br02 = new BreakLine(2);
 		int tot = TestUtils.regexCount(br02.getContent(), "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
 		assertEquals(2, tot);

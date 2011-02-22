@@ -15,14 +15,14 @@ public class TableTest extends Assert{
 
 		
 	@Test // New table has to return ""
-	public void createEmptyTableTest(){
+	public void testCreateEmptyTable(){
 		Table tbl01 = new Table();
 		assertEquals("", tbl01.getContent());		
 	}
 
 	//### TH - Table Header ###
 	@Test 
-	public void createTableWithArrayTest(){
+	public void testTableWithArray(){
 		Table tbl01 = new Table();
 		String [] cols = {"aaa", "bbb"};
 		tbl01.addTableEle(TableEle.TH, cols);
@@ -40,7 +40,7 @@ public class TableTest extends Assert{
 	}
 
 	@Test 
-	public void createTableEmptyTHTest(){
+	public void testCreateTableEmptyTH(){
 		Table tbl03 = new Table();
 		tbl03.addTableEle(TableEle.TH, null);
 		assertEquals("", tbl03.getContent());		
@@ -50,7 +50,7 @@ public class TableTest extends Assert{
 	}
 	
 	@Test 
-	public void tableDefinitionTest(){
+	public void testTableDefinition(){
 		TableDefinition tbldef = new TableDefinition();		
 		assertEquals(1, TestUtils.regexCount(tbldef.getTop(), "<*w:tbl>"));
 		assertEquals(2, TestUtils.regexCount(tbldef.getTop(), "<*w:tblPr>"));
@@ -61,7 +61,7 @@ public class TableTest extends Assert{
 	}
 	
 	@Test 
-	public void tableColTest(){
+	public void testTableCol(){
 		TableCol tblcol = new TableCol();
 		assertEquals(1, TestUtils.regexCount(tblcol.getTop(), "<*w:tr"));
 		assertEquals(2, TestUtils.regexCount(tblcol.getMiddle(), "<*w:tc>"));
@@ -70,7 +70,7 @@ public class TableTest extends Assert{
 	}
 	
 	@Test 
-	public void tableFooterTest(){
+	public void testTableFooter(){
 		TableFooter tblFooter = new TableFooter();
 		assertEquals(1, TestUtils.regexCount(tblFooter.getTop(), "<*w:tr"));
 		assertEquals(2, TestUtils.regexCount(tblFooter.getMiddle(), "<*w:tc>"));
@@ -80,14 +80,14 @@ public class TableTest extends Assert{
 	}
 	
 	@Test 
-	public void nullTest(){
+	public void testNull(){
 		Table tbl = new Table();
 		tbl.addTableEle(TableEle.TABLE_DEF, null);
 		assertEquals("", tbl.getContent());
 	}
 	
 	@Test 
-	public void emptyTest(){
+	public void testEmpty(){
 		Table tbl = new Table();
 		String [] arr = {};
 		tbl.addTableEle(TableEle.TABLE_DEF, arr);
@@ -96,7 +96,7 @@ public class TableTest extends Assert{
 	
 	//### Full Table!!! ###
 	@Test 
-	public void createFullTableTest(){
+	public void testCreateFullTable(){
 		Table tbl = new Table();
 		tbl.addTableEle(TableEle.TH, "Name", "Salary");
 

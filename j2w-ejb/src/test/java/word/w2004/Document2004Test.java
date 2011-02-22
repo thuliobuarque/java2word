@@ -17,7 +17,6 @@ import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
 import word.w2004.elements.Heading3;
 import word.w2004.elements.Image;
-import word.w2004.elements.ImageLocation;
 import word.w2004.elements.PageBreak;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
@@ -119,47 +118,10 @@ public class Document2004Test extends Assert {
 		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"00000000\">"));
 		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "<w:t>paragraph01</w:t>"));
 		assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "</w:ftr>"));
-		
-	}
-
-	// This is a basic test which contains a little bit of everything and is a
-	// good reference to start writing your own Word Document Builder
-	@Test
-	public void basicDocTest() {
-		IDocument myDoc = new Document2004();
-		myDoc.getBody().addEle(new Heading1("h1h1h1h1h1h1h"));
-		myDoc.getBody().addEle(
-				new Paragraph("This document is an example of paragraph"));
-
-		myDoc.getBody().addEle(
-				new Image(Utils.getAppRoot()
-						+ "/src/test/resources/base2logo.png",
-						ImageLocation.FULL_LOCAL_PATH));
-
-		myDoc.getBody().addEle(new BreakLine(2));
-
-		myDoc.getBody().addEle(new Heading2("h2h2h2h2h2h2h2h"));
-		myDoc.getBody().addEle(
-				new Paragraph("This document is an example of paragraph: "
-						+ new Image(Utils.getAppRoot()
-								+ "/src/test/resources/dtpick.gif",
-								ImageLocation.FULL_LOCAL_PATH).getContent()));
-
-		myDoc.getBody().addEle(new PageBreak());
-
-		myDoc.getBody().addEle(new Heading3("h3h3h3h3h3h3h3h3h3h3h3h3h3h"));
-		myDoc.getBody().addEle(
-				new Paragraph("This document is an example of paragraph"));
-
-		myDoc.getHeader().setHideHeaderAndFooterFirstPage(true); // conf for
-																	// header...
-		myDoc.getHeader().addEle(new Paragraph("Header par11111"));
-		myDoc.getFooter().addEle(new Paragraph("Footer par11111"));
-
 	}
 
 	@Test
-	public void basicHeadingStyleTest() {
+	public void testBasicHeadingStyle() {
 		IDocument myDoc = new Document2004();
 		Heading1 h1 = new Heading1("Heading 111");
 		HeadingStyle headingStyle = new HeadingStyle();
@@ -173,8 +135,8 @@ public class Document2004Test extends Assert {
 		myDoc.getBody().addEle(new Heading3("Heading 333"));
 	}
 
-	@Test
-	public void basicParagraphStyleTest() {
+	@Test //TODO: make this useful
+	public void testBasicParagraphStyle() {
 		IDocument myDoc = new Document2004();
 
 		ParagraphPieceStyle style = new ParagraphPieceStyle();
@@ -189,11 +151,10 @@ public class Document2004Test extends Assert {
 		Paragraph p02 = new Paragraph(piece01, piece02);
 
 		myDoc.getBody().addEle(p02);
-
 	}
 
-	@Test
-	public void basicParagraphStyleColorTest() {
+	@Test //TODO: make this useful
+	public void testBasicParagraphStyleColor() {
 		IDocument myDoc = new Document2004();
 
 		ParagraphPiece piece01 = new ParagraphPiece("11111");
@@ -207,9 +168,9 @@ public class Document2004Test extends Assert {
 		myDoc.getBody().addEle(p01);
 	}
 
-	//TODO: remove this type cast
-	@Test
-	public void basicFluentTest() {
+	//TODO: remove this type cast for Heading
+	@Test //TODO: make this useful
+	public void testBasicHeadingFluent() {
 		IDocument doc = new Document2004();
 		Heading1 h1 = (Heading1) Heading1.with("h111").withStyle()
 				.setBold(true).setItalic(true)
@@ -226,11 +187,8 @@ public class Document2004Test extends Assert {
 	}
 
 	@Test
-	public void basicFluentTest02() {
+	public void testPageOrientation() {
 		IDocument doc = new Document2004();
-
-		// Heading1222 h1 = (Heading1222)
-		// Heading1222.with("h222").withStyle().setBold(true).setItalic(true).create();
 
 		ParagraphPiece piece = new ParagraphPiece("Leonardo Correa Courrier");
 		piece.getStyle().setFont(ParagraphPieceStyle.Font.COURIER);
@@ -247,7 +205,7 @@ public class Document2004Test extends Assert {
 				+ "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"
 				+ "      <w:pgMar w:top=\"1800\" w:right=\"1440\" w:bottom=\"1800\" w:left=\"1440\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n"
 				+ "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
-
+		
 		//System.out.println(doc.getContent().replace("</w:body>", orientation + "\n</w:body>"));
 
 		// String xx =Utils.readFile("/home/leonardo/Desktop/wordDoc.doc");
