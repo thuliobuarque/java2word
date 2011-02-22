@@ -18,9 +18,9 @@ public interface IElement {
 	 * @return this is the String value of the element ready to be appended/inserted in the Document.<br>
 	 *
 	 * <p>This is the XML that generates a <code>BreakLine</code>:</p>
-* <br><code>
+	 * <code>
 	 *  <w:p wsp:rsidR='008979E8' wsp:rsidRDefault='008979E8'/>
-* </code>
+	 * </code>
 	 */
 	public String getContent();
 
