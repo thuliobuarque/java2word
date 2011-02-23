@@ -1,9 +1,10 @@
 package word.api.interfaces;
 
-/** The main interface for documents MS Word 2004+.
+/**
+ * The main interface for documents MS Word 2004+.
  * 
  * @author leonardo
- *
+ * 
  */
 public interface IDocument extends IHasElement {
 
@@ -28,7 +29,7 @@ public interface IDocument extends IHasElement {
 	IHeader getHeader();
 
 	/**
-	 * @return the Footer that may contain other elements	
+	 * @return the Footer that may contain other elements
 	 */
 	IFooter getFooter();
 
