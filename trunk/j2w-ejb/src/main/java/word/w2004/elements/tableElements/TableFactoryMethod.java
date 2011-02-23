@@ -22,21 +22,23 @@ public class TableFactoryMethod {
 	}
 
 	public ITableItemStrategy getTableItem(TableEle tableEle) {
-		if (tableEle != null) {
-			if (tableEle.getValue().equals("tableDef")) {
-				return new TableDefinition();
-			}
-			if (tableEle.getValue().equals("th")) {
-				return new TableHeader();
-			}
-			if (tableEle.getValue().equals("td")) {
-				return new TableCol();
-			}
-			if (tableEle.getValue().equals("tf")) {
-				return new TableFooter();
-			}
+		if (tableEle == null) {
+			return null;	
 		} 
-		return null;
+		
+		return getTableEle(tableEle);
+	}
+
+	private ITableItemStrategy getTableEle(TableEle tableEle) {
+		if (tableEle.getValue().equals("tableDef")) {
+			return new TableDefinition();
+		}else if (tableEle.getValue().equals("th")) {
+			return new TableHeader();
+		}else if (tableEle.getValue().equals("td")) {
+			return new TableCol();
+		}else { //if (tableEle.getValue().equals("tf")) {
+			return new TableFooter();
+		}
 	}
 
 }
