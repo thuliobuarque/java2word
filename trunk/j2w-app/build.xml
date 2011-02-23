@@ -63,6 +63,28 @@
 			<arg value="-Dbuild.env=dev" />
 		</exec>
 	</target>
+	
+	<target name="javancss" depends="basicCheckings">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="javancss:report" />
+			<arg value="-DskipTests=true" />
+			<arg value="-Dbuild.env=dev" />
+		</exec>
+	</target>
+	
+	<target name="checkstyle" depends="basicCheckings">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="checkstyle:checkstyle" />
+			<arg value="-DskipTests=true" />
+			<arg value="-Dbuild.env=dev" />
+		</exec>
+	</target>
 
 	<target name="JavaDoc">
 		<echo>${root.dir}/${pom.file}</echo>
