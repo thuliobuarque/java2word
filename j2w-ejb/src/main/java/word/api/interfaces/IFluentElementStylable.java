@@ -1,8 +1,5 @@
 package word.api.interfaces;
 
-import word.w2004.elements.Heading1;
-
-
 /**
  * @author no one
  * 

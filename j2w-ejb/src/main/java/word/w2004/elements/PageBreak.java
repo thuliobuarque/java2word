@@ -1,7 +1,6 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
-import word.api.interfaces.IFluentElement;
 
 /*
  *  It inserts a Page break at the point you add this class to the document.

@@ -1,4 +1,4 @@
-<project name="Java2Word" basedir="." default="deploy">
+<project name="Java2Word" basedir="." default="aabuild">
 	<description>
         Java2Word Application
     </description>
@@ -64,25 +64,45 @@
 		</exec>
 	</target>
 	
-	<target name="javancss" depends="basicCheckings">
+	<target name="findbugs">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
-			<arg value="clean" />
-			<arg value="install" />
-			<arg value="javancss:report" />
-			<arg value="-DskipTests=true" />
-			<arg value="-Dbuild.env=dev" />
+			<arg value="findbugs:findbugs" />
 		</exec>
 	</target>
 	
-	<target name="checkstyle" depends="basicCheckings">
+	<target name="pmd">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
-			<arg value="clean" />
-			<arg value="install" />
+			<arg value="pmd:pmd" />
+		</exec>
+	</target>
+	
+	<target name="cpd">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
+			<arg value="pmd:cpd" />
+		</exec>
+	</target>
+	
+	<target name="cobertura">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
+			<arg value="cobertura:cobertura" />
+		</exec>
+	</target>
+	
+	<target name="javancss">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
+			<arg value="javancss:report" />
+		</exec>
+	</target>
+	
+	<target name="checkstyle">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
 			<arg value="checkstyle:checkstyle" />
-			<arg value="-DskipTests=true" />
-			<arg value="-Dbuild.env=dev" />
 		</exec>
 	</target>
 
@@ -95,7 +115,7 @@
 		</exec>
 	</target>
 
-	<target name="build" depends="basicCheckings">
+	<target name="aabuild" depends="basicCheckings">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
 			<arg value="clean" />
@@ -105,7 +125,7 @@
 		</exec>
 	</target>
 
-	<target name="deploy" depends="build">
+	<target name="deploy" depends="aabuild">
 		<!-- optional... those guys can be removed any time
 		<delete dir="${jboss.dir}/../work"/>
 		<delete dir="${jboss.dir}/../tmp"/>

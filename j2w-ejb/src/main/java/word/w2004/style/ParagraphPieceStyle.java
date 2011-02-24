@@ -7,6 +7,8 @@ import word.w2004.elements.ParagraphPiece;
 /**
  * @author anyone
  * 
+ * Use this class in order to apply specifics style to paragraph. Eg.: one word in bold, other in italic.
+ * 
  */
 public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 
@@ -17,9 +19,6 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 	private Color color;
 	private Font font;
 	
-	/**
-	 * This implementation will ONLY apply superStylin to the WHOLE element. 
-	 */
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		StringBuilder style = new StringBuilder("");
