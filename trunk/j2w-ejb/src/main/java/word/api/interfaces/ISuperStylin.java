@@ -7,7 +7,7 @@ package word.api.interfaces;
 public interface ISuperStylin {
 
 	/**
-	 *	This method will called by 
+	 *	This method will called by IElement.getContent();
 	 */
 	public String getNewContentWithStyle(String txt);
 	

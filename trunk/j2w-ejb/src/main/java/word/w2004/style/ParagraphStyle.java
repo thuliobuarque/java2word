@@ -27,9 +27,6 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
 		}
 	}
 	
-	/**
-	 * This implementation will ONLY apply superStylin to the WHOLE element. 
-	 */
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		String styleValue = "\n		<w:pPr>\n		" +
@@ -37,16 +34,13 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
 							"		{styleText}\n 	" +
 							"	</w:pPr>";
 		txt = txt.replace("{styleAlign}", styleValue);
-		
 		txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after... 
-		
 		return txt;
 	}
 	
+	
 	//### Getters and setters... ###
-//	public Align getAlign() {
-//		return align;
-//	}
+
 	public ParagraphStyle setAlign(Align align) {
 		this.align = align;
 		return this;
