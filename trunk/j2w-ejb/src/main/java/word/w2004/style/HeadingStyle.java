@@ -6,11 +6,14 @@ import word.api.interfaces.ISuperStylin;
  * @author everybody - there is no ownership! 
  * 
  * Use this class to apply style to the whole Heading1 element. 
- * 
+ * Default align is left
  * 
  */
 public class HeadingStyle extends AbstractStyle implements ISuperStylin{
 
+    /**
+     * Default align is left
+     */
 	private Align align = Align.LEFT;
 	private boolean bold = false;
 	private boolean italic = false;
@@ -38,20 +41,32 @@ public class HeadingStyle extends AbstractStyle implements ISuperStylin{
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		String alignValue = "\n            	<w:jc w:val=\"" + align.getValue()+ "\" />";
-		String newStr = txt.replace("{styleAlign}", alignValue);
+		txt = txt.replace("{styleAlign}", alignValue);
 		
 		StringBuilder sbText = new StringBuilder("");
-        if (bold || italic) {
-            sbText.append("\n	 <w:rPr>");
-            if(bold) sbText.append("\n            	<w:b/><w:b-cs/>");
-            if(italic) sbText.append("\n            	<w:i/>");
+        
+        applyBoldAndItalic(sbText);
+        
+        if(!"".equals(sbText.toString())) {
+            sbText.insert(0, "\n	 <w:rPr>");
             sbText.append("\n	 </w:rPr>");
         }
-        newStr = newStr.replace("{styleText}", sbText.toString());//Convention: apply styles
-        newStr = newStr.replaceAll("[{]style(.*)[}]", ""); //Convention: remove unused styles after...
         
-		return newStr;
+        txt = txt.replace("{styleText}", sbText.toString());//Convention: apply styles
+        txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: remove unused styles after...
+        
+		return txt;
 	}
+
+
+    private void applyBoldAndItalic(StringBuilder sbText) {
+        if(this.bold) {
+            sbText.append("\n            	<w:b/><w:b-cs/>");
+        }
+        if(this.italic) {
+            sbText.append("\n            	<w:i/>");
+        }
+    }
 	
 
 	//### Getters  setters... ###

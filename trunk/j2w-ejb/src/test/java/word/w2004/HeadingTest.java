@@ -90,7 +90,6 @@ public class HeadingTest extends Assert{
 		
 		Heading3 h3 = new Heading3("");
 		assertEquals("", h3.getContent());
-		
 	}
 	
 	@Test

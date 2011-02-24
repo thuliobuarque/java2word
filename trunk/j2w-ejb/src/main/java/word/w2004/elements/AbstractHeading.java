@@ -17,7 +17,10 @@ import word.w2004.style.HeadingStyle;
  */
 public abstract class AbstractHeading<E> implements IElement,  IFluentElementStylable<E>{
 
-	private String headingType; // this is heading1, heading2...
+    /**
+     * this is actual heading1, heading2 or heading3.
+     */
+	private String headingType;
 	private String value; //value/text for the Heading
 
 	protected AbstractHeading(String headingType, String value){
