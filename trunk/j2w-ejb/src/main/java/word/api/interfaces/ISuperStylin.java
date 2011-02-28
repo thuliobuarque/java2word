@@ -18,7 +18,8 @@ public interface ISuperStylin {
 	public void setElement(IElement element);
 	
 	/**
-	 * This method returns the element. There should be a cast for the return
+	 * This method returns the element. There should be a cast for the return. 
+	 * The other option to avoid type cast is use covariant type return
 	 *
 	 */
 	public IElement create();
