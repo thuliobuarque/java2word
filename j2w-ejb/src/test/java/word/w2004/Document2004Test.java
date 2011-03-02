@@ -235,7 +235,6 @@ public class Document2004Test extends Assert {
 	    
 	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
 	    
-	    
 //	    System.out.println(Utils.pretty(myDoc.getContent()));
 	    
 	    createLocalDoc(myDoc);
