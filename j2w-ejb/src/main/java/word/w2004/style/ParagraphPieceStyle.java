@@ -18,36 +18,39 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 	private String textColor = "";
 	private Color color;
 	private Font font;
+	private String fontSize = "";
 	
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		StringBuilder style = new StringBuilder("");
 
 		doStyleBold(style);
-        
         doStyleItalic(style);
-        
         doStyleUnderline(style);
-        
         doStyleTextColorHexa(style);
-        
         doStyleColorEnum(style);
-        
-		doStyleFont(style);
+        doStyleFont(style);
+        doStyleFontSize(style);
 
 		return doStyleReplacement(style, txt);
 	}
 
 	private void doStyleBold(StringBuilder style) {
-		if(this.bold) style.append("\n            	<w:b/>");
+		if(this.bold) {
+		    style.append("\n            	<w:b/>");
+		}
 	}
 
 	private void doStyleItalic(StringBuilder style) {
-		if(this.italic) style.append("\n            	<w:i/>");
+		if(this.italic) {
+		    style.append("\n            	<w:i/>");
+		}
 	}
 
 	private void doStyleUnderline(StringBuilder style) {
-		if(this.underline) style.append("\n			<w:u w:val=\"single\"/>");
+		if(this.underline) {
+		    style.append("\n			<w:u w:val=\"single\"/>");
+		}
 	}
 
 	private void doStyleTextColorHexa(StringBuilder style) {
@@ -63,19 +66,28 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 	}
 
 	private void doStyleFont(StringBuilder style) {
-		if(this.font != null) {
-			style.append("			<w:rFonts w:ascii=\"" + font.getValue() + "\" w:h-ansi=\"" + font.getValue() + "\"/>\n"); 
-			style.append("			<wx:font wx:val=\"" + font.getValue() + "\"/>");
+	    if(this.font != null) {
+	        style.append("\n			<w:rFonts w:ascii=\"" + font.getValue() + "\" w:h-ansi=\"" + font.getValue() + "\"/>\n"); 
+	        style.append("\n			<wx:font wx:val=\"" + font.getValue() + "\"/>");
+	    }
+	}
+	
+	private void doStyleFontSize(StringBuilder style) {
+		if(!"".equals(this.fontSize)) {
+		    String ffsize = "\n               <w:sz w:val=\""+ this.fontSize +"\" />\n";
+		    ffsize += "\n               <w:sz-cs w:val=\""+ this.fontSize +"\" />\n" ;
+		    style.append(ffsize);
 		}
 	}
 	
 	private String doStyleReplacement(StringBuilder style, String txt) {
 		if(!"".equals(style.toString())) {
-			style.insert(0, "\n	 <w:rPr>");
+		    style.insert(0, "\n	 <w:rPr>");					        
 			style.append("\n	 </w:rPr>");
 	        txt = txt.replace("{styleText}", style.toString());//Convention: apply styles
-	        txt = txt.replaceAll("[{]style(.*)[}]", ""); //Convention: replace unused styles after...
 		}
+		//Convention: replace unused styles after...
+		txt = txt.replaceAll("[{]style(.*)[}]", ""); 
 		return txt;
 	}
 	
@@ -139,10 +151,18 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 		this.font = font;
 		return this;
 	}
+	
+	public ParagraphPieceStyle setFontSize(String fontSize) {
+        this.fontSize = fontSize;
+        return this;
+    }
 
-	//### Enums ###
+
+
+    //### Enums ###
 	public enum Font { 
-		COURIER("Courier");
+		COURIER("Courier"), CAMBRIA("Cambria"), TIMES_NEW_ROMAN("Times New Roman"), CALIBRI("Calibri");
+		
 		private String value;
 
 		Font(String value) {
