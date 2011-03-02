@@ -88,4 +88,9 @@ public class Document2004 implements IDocument, IElement{
 		this.getBody().addEle(str);
 	}
 
+	
+	@Override
+	public String toString() {	 
+	    return this.getContent();
+	}
 }
