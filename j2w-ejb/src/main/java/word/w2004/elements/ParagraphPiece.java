@@ -11,7 +11,14 @@ import word.w2004.style.ParagraphPieceStyle;
  *
  * Use this class ONLY inside Paragraph in order to format pieces of a paragraph.
  * for example, if you want to make one and only one word of the paragraph bold.
- *  
+ * ALWAYS USE THIS CLASS INSIDE A PARAGRAPH. OTHERWISE WON'T WORK. This is the way you should use it:
+ * <pre>
+ * myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").create()));
+ * </pre>
+ * NEVER LIKE THIS:
+ * <pre>
+ * myDoc.addEle(ParagraphPiece.with("This is one piece.").create());
+ * </pre> 
  */
 public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>, IFluentElementStylable <ParagraphPieceStyle> {
 	
