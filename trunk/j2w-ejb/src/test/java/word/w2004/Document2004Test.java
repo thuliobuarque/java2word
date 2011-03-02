@@ -222,6 +222,40 @@ public class Document2004Test extends Assert {
 		assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
 	}
 	
+	@Test
+	public void testParagraphPieceFontSize() {
+	    
+	    IDocument myDoc = new Document2004();
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.CAMBRIA).create()));
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.COURIER).create()));
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.CALIBRI).create()));
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.TIMES_NEW_ROMAN).create()));
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.CALIBRI).create()));
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").create()));
+	    
+	    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
+	    
+	    
+//	    System.out.println(Utils.pretty(myDoc.getContent()));
+	    
+	    createLocalDoc(myDoc);
+	}
+	
+	private void createLocalDoc(IDocument myDoc) {
+	    File fileObj = new File("/home/leonardo/Desktop/Java2word_allInOne.doc");
+
+	    PrintWriter writer = null;
+	    try {
+	        writer = new PrintWriter(fileObj);
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	    String myWord = myDoc.getContent();
+
+	    writer.println(myWord);
+	    writer.close();
+    }
+
 @Ignore //ignored by default just to not create files in your system or break the build...
 @Test
 public void testJava2wordAllInOne() {
@@ -270,10 +304,13 @@ public void testJava2wordAllInOne() {
 	
 	ParagraphPiece myParPieceJava = ParagraphPiece.with("I like Java and ").withStyle().setFont(Font.COURIER).create();
 	ParagraphPiece myParPieceRuby = ParagraphPiece.with("Ruby!!! ").withStyle().setBold(true).setItalic(true).create();
-	ParagraphPiece myParPieceAgile = ParagraphPiece.with("I actully love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().setTextColor("008000").create();
+	ParagraphPiece myParPieceAgile = ParagraphPiece.with("I actually love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().setTextColor("008000").create();
 			
+	
 	myDoc.addEle(Paragraph.withPieces(myParPieceJava, myParPieceRuby, myParPieceAgile).create());
 	
+	//font size
+	myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
 	
 	//Document Header and Footer
 	myDoc.addEle(BreakLine.times(2).create()); 
