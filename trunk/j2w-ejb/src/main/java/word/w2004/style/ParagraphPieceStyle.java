@@ -105,30 +105,18 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 		return (ParagraphPiece) super.create();
 	}
 	
-//	public boolean isBold() {
-//		return bold;
-//	}
 	public ParagraphPieceStyle setBold(boolean bold) {
 		this.bold = bold;
 		return this;
 	}
-//	public boolean isItalic() {
-//		return italic;
-//	}
 	public ParagraphPieceStyle setItalic(boolean italic) {
 		this.italic = italic;
 		return this;
 	}
-//	public boolean isUnderline() {
-//		return underline;
-//	}
 	public ParagraphPieceStyle setUnderline(boolean underline) {
 		this.underline = underline;
 		return this;
 	}
-//	public String getTextColor() {
-//		return textColor;
-//	}
 	
 	/**
 	 * If you know the color code, just to straight to the point! Eg.:
@@ -152,6 +140,10 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 		return this;
 	}
 	
+	 /***
+     * Pass '50' for something quite big. I am not sure if the unit is pixels or what... 
+     * find out later. sorry about that. 
+     */
 	public ParagraphPieceStyle setFontSize(String fontSize) {
         this.fontSize = fontSize;
         return this;
