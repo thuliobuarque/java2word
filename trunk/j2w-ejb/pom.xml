@@ -162,8 +162,6 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1-jboss</version>
 		</dependency>
-		<!-- <dependency> <groupId>apache-log4j</groupId> <artifactId>log4j</artifactId>
-			<version>1.2.15</version> </dependency> -->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -171,11 +169,7 @@
 			<version>4.4</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
-		</dependency>
+
 
 	</dependencies>
 </project>
