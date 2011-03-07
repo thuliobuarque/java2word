@@ -45,10 +45,10 @@ However there are a lot of users using <= 2004 and we should at least consider t
       
 ### Code Quality Tools
    
-JavaNCSS Ð Cyclomatic Complexity (CC) of methods. Basically it shows  the number of paths. 
-PMD Ð It shows reports about bad or questionable practices. Rulesets applied so far: braces.xml, basic.xml, unusedcode.xml and design.xml (List of all rulesets: http://pmd.sourceforge.net/rules/index.html )
-CPD Ð Duplicated Code - Copy and paste code.
-FindBugs Ð Typical code problems or possible problems.
+JavaNCSS ï¿½ Cyclomatic Complexity (CC) of methods. Basically it shows  the number of paths. 
+PMD ï¿½ It shows reports about bad or questionable practices. Rulesets applied so far: braces.xml, basic.xml, unusedcode.xml and design.xml (List of all rulesets: http://pmd.sourceforge.net/rules/index.html )
+CPD ï¿½ Duplicated Code - Copy and paste code.
+FindBugs ï¿½ Typical code problems or possible problems.
 
 If you are interested in Cyclomatic Complexity I have attached the original article written by Thomas McCabe in 1976. For something updated: http://en.wikipedia.org/wiki/Cyclomatic_complexity
 
@@ -64,7 +64,7 @@ findbugs:findbugs
 
 Dependencies: 
 if deployed in JBoss, you need j2w-ejb-X.X.jar (obviously), xstream-1.3.1.jar (needed if you use Image in your doc)
-if deployed in Tomcat, you need j2w-ejb-X.X.jar (obviously), xstream-1.3.1.jar and Log4J
+if deployed in Tomcat, you need j2w-ejb-X.X.jar (obviously) and xstream-1.3.1.jar
 
 
    

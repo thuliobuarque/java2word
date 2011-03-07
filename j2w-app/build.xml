@@ -124,6 +124,13 @@
 			<arg value="-Dbuild.env=dev" />
 		</exec>
 	</target>
+	
+	<target name="aaclean">
+		<echo>${root.dir}/${pom.file}</echo>
+		<exec executable="${mvn_full_path}mvn">
+			<arg value="clean" />
+		</exec>
+	</target>
 
 	<target name="deploy" depends="aabuild">
 		<!-- optional... those guys can be removed any time
