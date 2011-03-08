@@ -1,5 +1,8 @@
 package word.utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,5 +23,19 @@ public class TestUtils {
 		return total;
 	}
 	
+    public static void createLocalDoc(String myDoc) {
+        File fileObj = new File("/home/leonardo/Desktop/Java2word_allInOne.doc");
+
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(fileObj);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String myWord = myDoc;
+
+        writer.println(myWord);
+        writer.close();
+    }
 	
 }
