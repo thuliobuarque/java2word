@@ -219,23 +219,7 @@ public class Document2004Test extends Assert {
         assertTrue(myDoc.getBody().getContent().contains("<w:t>heading1</w:t>"));
         assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
     }
-    
-    @Ignore //ignored by default just to not create files in your system or break the build...
-    @Test
-    public void testParagraphPieceFontSize() {
-        IDocument myDoc = new Document2004();
-//      myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.CAMBRIA).create()));
-//      myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.COURIER).create()));
-//      myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.CALIBRI).create()));
-//      myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.TIMES_NEW_ROMAN).create()));
-//      myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").withStyle().setFont(Font.CALIBRI).create()));
-//      myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is one piece.").create()));
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
-        
-        String res = myDoc.getContent();
-        createLocalDoc(res);
-    }
-    
+       
 
 @Ignore //ignored by default just to not create files in your system or break the build...
 @Test
@@ -391,20 +375,17 @@ public void testJava2wordAllInOne() {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    private void createLocalDoc(String myDoc) {
-        File fileObj = new File("/home/leonardo/Desktop/Java2word_allInOne.doc");
 
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter(fileObj);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        String myWord = myDoc;
+    @Ignore //ignored by default just to not create files in your system or break the build...
+    @Test
+    public void testParagraphPieceFontSize() {
+        IDocument myDoc = new Document2004();
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size: " + Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("50").setWidth("100").create().getContent()).create()));
 
-        writer.println(myWord);
-        writer.close();
+        myDoc.addEle(Paragraph.with("No size: " + Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("50").setWidth("100").create().getContent()).withStyle().setAlign(word.w2004.style.ParagraphStyle.Align.RIGHT).create());
+        
+        TestUtils.createLocalDoc(myDoc.getContent());
     }
-
+    
     
 }
