@@ -14,6 +14,7 @@ public class Table implements IElement{
 	
 	StringBuilder txt = new StringBuilder("");
 	private boolean hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
+    private boolean isRepeatTableHeaderOnEveryPage = false;
 
 	
 	public String getContent() {
@@ -46,14 +47,43 @@ public class Table implements IElement{
 				th.append("\n" + item.getMiddle().replace("{value}", cols[i]));
 				//}
 			}
+			
 			if(!"".equals(th.toString())){
 				th.insert(0, item.getTop());
 				th.append(item.getBottom());
 			}
 			
-			txt.append(th);//final result appended
+			String finalResult = setUpRepeatTableHeaderOnEveryPage(th);
+			
+			txt.append(finalResult);//final result appended
 		}	
 	}
+
+	/**
+	 * Adds the repeat header code if this.isRepeatTableHeaderOnEveryPage is true.
+	 * If not, it removes {tblHeader} placeholder.
+	 * @param th 
+	 * @return the final string 
+	 */
+    private String setUpRepeatTableHeaderOnEveryPage(StringBuilder th) {
+        String res = th.toString();
+        if(this.isRepeatTableHeaderOnEveryPage) {
+           res = res.replace("{tblHeader}", "  \n<w:trPr>\n        <w:tblHeader/>\n    </w:trPr>\n ");  
+        }
+        
+        //clean up placeholder  
+        res = res.replace("{tblHeader}", "");
+        return res;
+    }
+
+    /***
+     * Pass 'true' if you want to repeat the table header when the table takes more than one page.
+     * Default is false. 
+     * @param value
+     */
+    public void setRepeatTableHeaderOnEveryPage(boolean value) {
+        this.isRepeatTableHeaderOnEveryPage  = value;
+    }
 
 	
 }

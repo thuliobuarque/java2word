@@ -393,6 +393,7 @@ public void testJava2wordAllInOne() {
         IDocument myDoc = new Document2004();
 
         Table tbl = new Table();
+        //tbl.setRepeatTableHeaderOnEveryPage(true);
         tbl.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
 
         tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
@@ -446,10 +447,8 @@ public void testJava2wordAllInOne() {
 
         myDoc.addEle(tbl);
         String str = myDoc.getContent();
-        str = str.replace("<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">", "<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\"> \n<w:trPr>\n<w:tblHeader/>\n </w:trPr>\n");
+        //str = str.replace("<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">", "<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\"> \n<w:trPr>\n<w:tblHeader/>\n </w:trPr>\n");
         System.out.println(str);
-
-        //String txt = Utils.readFile("/Users/leonardo/Desktop/wordDoc.doc2.xml");
 
         TestUtils.createLocalDoc(str);
     }
