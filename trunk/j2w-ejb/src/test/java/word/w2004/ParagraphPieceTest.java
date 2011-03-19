@@ -43,8 +43,6 @@ public class ParagraphPieceTest extends Assert {
                 .setItalic(true).setUnderline(true).setFontSize("50")
                 .setFont(Font.COURIER).setTextColor("008000").create();
 
-        System.out.println(par.getContent());
-
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
                 TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));

@@ -118,7 +118,7 @@ public class Document2004Test extends Assert {
         assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "</w:ftr>"));
     }
 
-    @Test
+    @Test //TODO: make this useful with assertions
     public void testBasicHeadingStyle() {
         IDocument myDoc = new Document2004();
         Heading1 h1 = new Heading1("Heading 111");
@@ -133,7 +133,7 @@ public class Document2004Test extends Assert {
         myDoc.getBody().addEle(new Heading3("Heading 333"));
     }
 
-    @Test //TODO: make this useful
+    @Test //TODO: make this useful with assertions
     public void testBasicParagraphStyle() {
         IDocument myDoc = new Document2004();
 
@@ -151,7 +151,7 @@ public class Document2004Test extends Assert {
         myDoc.getBody().addEle(p02);
     }
 
-    @Test //TODO: make this useful
+    @Test //TODO: make this useful with assertions
     public void testBasicParagraphStyleColor() {
         IDocument myDoc = new Document2004();
 
@@ -166,8 +166,7 @@ public class Document2004Test extends Assert {
         myDoc.getBody().addEle(p01);
     }
 
-    //TODO: remove this type cast for Heading
-    @Test //TODO: make this useful
+    @Test //TODO: make this useful with assertions
     public void testBasicHeadingFluent() {
         IDocument doc = new Document2004();
         Heading1 h1 = (Heading1) Heading1.with("h111").withStyle()
@@ -185,29 +184,17 @@ public class Document2004Test extends Assert {
     }
 
     @Test
-    public void testPageOrientation() {
+    public void testPageOrientationDefault() {
         IDocument doc = new Document2004();
-
-        ParagraphPiece piece = new ParagraphPiece("Leonardo Correa Courrier");
-        piece.getStyle().setFont(ParagraphPieceStyle.Font.COURIER);
-
-        Paragraph p01 = new Paragraph(piece);
-
-        Paragraph p02 = new Paragraph("This is default font");
-
-        doc.addEle(p01);
-        doc.addEle(p02);
-        doc.addEle(Heading1.with("h3333").create());
-
-        String orientation = "    <w:sectPr wsp:rsidR=\"00F04FB2\" wsp:rsidSect=\"00146B2A\">\n"
-                + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"
-                + "      <w:pgMar w:top=\"1800\" w:right=\"1440\" w:bottom=\"1800\" w:left=\"1440\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n"
-                + "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
-
-        //System.out.println(doc.getContent().replace("</w:body>", orientation + "\n</w:body>"));
-
-        // String xx =Utils.readFile("/home/leonardo/Desktop/wordDoc.doc");
-        // System.out.println(xx);
+        assertEquals(0, TestUtils.regexCount(doc.getContent(), "landscape"));
+    }
+    
+    @Test
+    public void testPageOrientationLandscape() {
+        IDocument doc = new Document2004();
+        doc.setPageOrientationLandscape();
+        
+        assertEquals(1, TestUtils.regexCount(doc.getContent(), "landscape"));
     }
 
     @Test
@@ -235,7 +222,8 @@ public void testJava2wordAllInOne() {
     }
 
     IDocument myDoc = new Document2004();
-
+    //myDoc.setPageOrientationLandscape();// default is Portrait be can be changed.
+    
     myDoc.addEle(BreakLine.times(1).create()); // this is one breakline
 
     //Headings
@@ -325,6 +313,7 @@ public void testJava2wordAllInOne() {
 
     Table tbl = new Table();
     tbl.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
+    tbl.setRepeatTableHeaderOnEveryPage();
 
     tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
     tbl.addTableEle(TableEle.TD, "Pele", "1281", "Brazil");
@@ -355,7 +344,6 @@ public void testJava2wordAllInOne() {
     myDoc.addEle(Paragraph.with("There is a PAGE BREAK before this line:").create());
 
 
-
     String myWord = myDoc.getContent();
 
     writer.println(myWord);
@@ -376,81 +364,13 @@ public void testJava2wordAllInOne() {
     }
 
 
-    @Ignore //ignored by default just to not create files in your system or break the build...
-    @Test
-    public void testParagraphPieceFontSize() {
-        IDocument myDoc = new Document2004();
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size: " + Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("50").setWidth("100").create().getContent()).create()));
-
-        myDoc.addEle(Paragraph.with("No size: " + Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("50").setWidth("100").create().getContent()).withStyle().setAlign(word.w2004.style.ParagraphStyle.Align.RIGHT).create());
-
-        TestUtils.createLocalDoc(myDoc.getContent());
-    }
-
     @Ignore
     @Test
     public void testTableHeaders() {
         IDocument myDoc = new Document2004();
+        //whatever...
 
-        Table tbl = new Table();
-        //tbl.setRepeatTableHeaderOnEveryPage(true);
-        tbl.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
-
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Arthur Friedenreich", "1329", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Pele", "1281", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Pele", "1281", "Brazil");
-        tbl.addTableEle(TableEle.TD, "Romario", "1002",  "Brazil");
-        tbl.addTableEle(TableEle.TD, "Tulio Maravilha", "956",  "Brazil");
-        tbl.addTableEle(TableEle.TD, "Zico", "815",  "Brazil");
-        tbl.addTableEle(TableEle.TD, "Roberto Dinamite", "748",  "Brazil");
-        tbl.addTableEle(TableEle.TD, "Di Stéfano", "715", "Argentina");
-        tbl.addTableEle(TableEle.TD, "Puskas", "689", "Hungary");
-        tbl.addTableEle(TableEle.TD, "Flávio", "591", "Brazil");
-        tbl.addTableEle(TableEle.TD, "James McGory", "550", "Scotland");
-        tbl.addTableEle(TableEle.TD, "Leonardo Correa", "299", "Brazil/Australia");
-
-        tbl.addTableEle(TableEle.TF, "Total", "1,100,000.00", " ");
-
-        myDoc.addEle(tbl);
-        String str = myDoc.getContent();
-        //str = str.replace("<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">", "<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\"> \n<w:trPr>\n<w:tblHeader/>\n </w:trPr>\n");
-        System.out.println(str);
-
-        TestUtils.createLocalDoc(str);
+        TestUtils.createLocalDoc(myDoc.getContent());
     }
 
 
