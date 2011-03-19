@@ -20,6 +20,7 @@ public class Document2004 implements IDocument, IElement{
 	private StringBuilder txt = new StringBuilder();
 	private IHead head = new Head2004();
 	private IBody body = new Body2004();
+	private boolean isLandscape = false;
 	
 	private boolean hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
 	
@@ -54,10 +55,26 @@ public class Document2004 implements IDocument, IElement{
 		
 		txt.append("\n</w:wordDocument>");
 		
-		return txt.toString();
+		String finalString = setUpPageOrientation(txt.toString());
+		
+		return finalString;
 	}
 	
-
+	private String setUpPageOrientation(String txt) {
+        if(this.isLandscape) {
+            String orientation = "    <w:sectPr wsp:rsidR=\"00F04FB2\" wsp:rsidSect=\"00146B2A\">\n"
+                + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"
+                + "      <w:pgMar w:top=\"1800\" w:right=\"1440\" w:bottom=\"1800\" w:left=\"1440\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n"
+                + "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
+            txt = txt.replace("</w:body>", orientation + "\n</w:body>");  
+        }
+        return txt;
+	}
+	
+	public void setPageOrientationLandscape() {
+	    this.isLandscape = true;
+	}
+	
 	//### Getters and Setters
 	public IBody getBody() {
 		return this.body;

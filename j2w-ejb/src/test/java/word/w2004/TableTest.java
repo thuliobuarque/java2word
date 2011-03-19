@@ -56,14 +56,12 @@ public class TableTest extends Assert {
         Table tbl = new Table();
         tbl.addTableEle(TableEle.TH, "Name");
         assertEquals(0, TestUtils.regexCount(tbl.getContent(), "[{]tblHeader[}]"));
-        
-        System.out.println(tbl.getContent());
     }
     
     @Test
     public void testTableHeaderWITHRepeatHeader() {
         Table tbl = new Table();
-        tbl.setRepeatTableHeaderOnEveryPage(true);
+        tbl.setRepeatTableHeaderOnEveryPage();
         
         tbl.addTableEle(TableEle.TH, "Name");
         assertEquals(0, TestUtils.regexCount(tbl.getContent(), "[{]tblHeader[}]"));

@@ -79,10 +79,9 @@ public class Table implements IElement{
     /***
      * Pass 'true' if you want to repeat the table header when the table takes more than one page.
      * Default is false. 
-     * @param value
      */
-    public void setRepeatTableHeaderOnEveryPage(boolean value) {
-        this.isRepeatTableHeaderOnEveryPage  = value;
+    public void setRepeatTableHeaderOnEveryPage() {
+        this.isRepeatTableHeaderOnEveryPage = true;
     }
 
 	

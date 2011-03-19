@@ -33,4 +33,9 @@ public interface IDocument extends IHasElement {
 	 */
 	IFooter getFooter();
 
+	/**
+	 * Sets page orientation to Landscape. Default is Portrait
+	 */
+	void setPageOrientationLandscape();
+	
 }
