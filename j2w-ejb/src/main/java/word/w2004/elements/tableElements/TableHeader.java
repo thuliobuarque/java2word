@@ -17,7 +17,8 @@ public class TableHeader implements ITableItemStrategy{
 
 	public String getMiddle() {
 		String th =
-			"\n                <w:tc> "
+		    "\n                {tblHeader} "
+			+ "\n                <w:tc> "
 			+"\n                    <w:tcPr> "
 			+"\n                        <w:tcW w:w=\"4258\" w:type=\"dxa\"/> "
 			+"\n                        <w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"E0E0E0\"/> "

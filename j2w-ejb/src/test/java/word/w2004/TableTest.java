@@ -52,6 +52,27 @@ public class TableTest extends Assert {
     }
 
     @Test
+    public void testTableHeaderNoRepeat() {
+        Table tbl = new Table();
+        tbl.addTableEle(TableEle.TH, "Name");
+        assertEquals(0, TestUtils.regexCount(tbl.getContent(), "[{]tblHeader[}]"));
+        
+        System.out.println(tbl.getContent());
+    }
+    
+    @Test
+    public void testTableHeaderWITHRepeatHeader() {
+        Table tbl = new Table();
+        tbl.setRepeatTableHeaderOnEveryPage(true);
+        
+        tbl.addTableEle(TableEle.TH, "Name");
+        assertEquals(0, TestUtils.regexCount(tbl.getContent(), "[{]tblHeader[}]"));
+        assertEquals(2, TestUtils.regexCount(tbl.getContent(), "<*w:trPr>"));
+        assertEquals(1, TestUtils.regexCount(tbl.getContent(), "<w:tblHeader/>"));
+        
+    }
+    
+    @Test
     public void testTableDefinition() {
         TableDefinition tbldef = new TableDefinition();
         assertEquals(1, TestUtils.regexCount(tbldef.getTop(), "<*w:tbl>"));
@@ -153,11 +174,21 @@ public class TableTest extends Assert {
     public void testCreateEmptyCell() {
         Table tbl = new Table();
         tbl.addTableEle(TableEle.TD, "Leonardo", "");
-
+        
         assertEquals(1,
                 TestUtils.regexCount(tbl.getContent(), "<w:t>Leonardo</w:t>"));
-        assertEquals(1, TestUtils.regexCount(tbl.getContent(), "<w:t></w:t> "));
+        assertEquals(1, TestUtils.regexCount(tbl.getContent(), "<w:t></w:t> "));        
     }
+    
+//    @Test
+//    public void testTableHeader() {
+//        Table tbl = new Table();
+//        tbl.addTableEle(TableEle.TD, "Leonardo", "");
+//
+//        assertEquals(1,
+//                TestUtils.regexCount(tbl.getContent(), "<w:t>Leonardo</w:t>"));
+//        assertEquals(1, TestUtils.regexCount(tbl.getContent(), "<w:t></w:t> "));
+//    }
 
 
 }
