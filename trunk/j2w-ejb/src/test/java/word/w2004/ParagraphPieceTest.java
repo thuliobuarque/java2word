@@ -2,11 +2,13 @@ package word.w2004;
 
 import junit.framework.Assert;
 
+import org.ejb3unit.hibernate.validator.AssertTrue;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import word.api.interfaces.IElement;
 import word.utils.TestUtils;
+import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
 import word.w2004.style.Font;
 
@@ -56,9 +58,9 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(1, TestUtils.regexCount(par.getContent(),
                 "w:color w:val=\"008000\"/>")); // underline
         assertEquals(1, TestUtils.regexCount(par.getContent(),
-                "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
+                "<w:rFonts w:ascii=\"Courier Bold Italic\" w:h-ansi=\"Courier Bold Italic\"/>"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
-                "<wx:font wx:val=\"Courier\"/>"));
+                "<wx:font wx:val=\"Courier Bold Italic\"/>"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
                 "<w:sz w:val=\"(.*)\" />"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
@@ -318,6 +320,14 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+    }
+    
+    @Test
+    public void testEquivalentSmartFont() {
+        Paragraph p1 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().setFont(Font.COURIER).setBold(true).setItalic(true).create());
+        Paragraph p2 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create());
+        
+        assertTrue(p1.getContent().equals(p2.getContent()));
     }
     
 }

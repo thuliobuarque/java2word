@@ -259,9 +259,13 @@ public void testJava2wordAllInOne() {
     ParagraphPiece myParPieceRuby = ParagraphPiece.with("Ruby!!! ").withStyle().setBold(true).setItalic(true).create();
     ParagraphPiece myParPieceAgile = ParagraphPiece.with("I actually love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().setTextColor("008000").create();
 
-
     myDoc.addEle(Paragraph.withPieces(myParPieceJava, myParPieceRuby, myParPieceAgile).create());
 
+    myDoc.addEle(BreakLine.times(2).create());
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is a manual 'bold' and 'italic'").withStyle().setFont(Font.COURIER).setBold(true).setItalic(true).create()).create());
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is the SAME as the above line but with 'Smart' Bold/Italic ").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create()).create());
+    myDoc.addEle(BreakLine.times(2).create());
+    
     //font size
     myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
 
@@ -363,21 +367,22 @@ public void testJava2wordAllInOne() {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void testFonts() {
         IDocument myDoc = new Document2004();
         //whatever...
         
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.COURIER).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CALIBRI).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CAMBRIA).setBold(true).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD_ITALIC).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_ITALIC).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_ROUNDED_MT_BOLD).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_UNICODE_MS).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CALIBRI).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CAMBRIA).setBold(true).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD_ITALIC).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_ITALIC).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_ROUNDED_MT_BOLD).create()).create());
+//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_UNICODE_MS).create()).create());
         
         TestUtils.createLocalDoc(myDoc.getContent());
     }
