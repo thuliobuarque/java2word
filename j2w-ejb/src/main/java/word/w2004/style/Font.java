@@ -195,7 +195,7 @@ public enum Font {
     COURIER("Courier"), 
     COURIER_BOLD("Courier Bold"), 
     COURIER_ITALIC("Courier Italic"), 
-    COURIERBOLD_BOLD_ITALIC("Courier Bold Italic"),
+    COURIER_BOLD_ITALIC("Courier Bold Italic"),
     
     CAMBRIA("Cambria"), 
     CAMBRIA_BOLD("Cambria Bold"), 
