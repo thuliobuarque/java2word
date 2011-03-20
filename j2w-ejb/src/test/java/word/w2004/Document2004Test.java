@@ -26,7 +26,7 @@ import word.w2004.style.Color;
 import word.w2004.style.HeadingStyle;
 import word.w2004.style.HeadingStyle.Align;
 import word.w2004.style.ParagraphPieceStyle;
-import word.w2004.style.ParagraphPieceStyle.Font;
+import word.w2004.style.Font;
 
 /**
  * @author leonardo_correa
@@ -363,13 +363,22 @@ public void testJava2wordAllInOne() {
         // System.out.println( Utils.pretty(txt) );
     }
 
-
     @Ignore
     @Test
-    public void testTableHeaders() {
+    public void testFonts() {
         IDocument myDoc = new Document2004();
         //whatever...
-
+        
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.COURIER).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CALIBRI).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CAMBRIA).setBold(true).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD_ITALIC).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_ITALIC).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_ROUNDED_MT_BOLD).create()).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_UNICODE_MS).create()).create());
+        
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 

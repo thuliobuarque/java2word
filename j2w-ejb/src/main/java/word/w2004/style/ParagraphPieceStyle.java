@@ -2,7 +2,8 @@ package word.w2004.style;
 
 import word.api.interfaces.ISuperStylin;
 import word.w2004.elements.ParagraphPiece;
-
+import word.w2004.style.Font;
+///j2w-ejb/src/main/java/word/w2004/style/Font.java
 
 /**
  * @author anyone
@@ -17,19 +18,20 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 	private boolean underline = false;
 	private String textColor = "";
 	private Color color;
-	private Font font;
+	public  Font font;
 	private String fontSize = "";
 	
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		StringBuilder style = new StringBuilder("");
 
+		// 'doStyleFont' has to be before 'doStyleBold' and 'doStyleItalic' because of the 'smart bold/italic' based on font type. 
+		doStyleFont(style);
 		doStyleBold(style);
         doStyleItalic(style);
         doStyleUnderline(style);
         doStyleTextColorHexa(style);
         doStyleColorEnum(style);
-        doStyleFont(style);
         doStyleFontSize(style);
 
 		return doStyleReplacement(style, txt);
@@ -66,6 +68,16 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
 	}
 
 	private void doStyleFont(StringBuilder style) {
+	    //Smart Italic/Bold: This will make the font bold/italic according to this.font 
+	    if(this.font != null) { 
+	        if(this.font.toString().contains("BOLD")) {
+	            this.bold = true;
+	        }
+	        if(this.font.toString().contains("ITALIC")) {
+	            this.italic = true;
+	        }
+	    }
+	    
 	    if(this.font != null) {
 	        style.append("\n			<w:rFonts w:ascii=\"" + font.getValue() + "\" w:h-ansi=\"" + font.getValue() + "\"/>\n"); 
 	        style.append("\n			<wx:font wx:val=\"" + font.getValue() + "\"/>");
@@ -149,21 +161,5 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin{
         return this;
     }
 
-
-
-    //### Enums ###
-	public enum Font { 
-		COURIER("Courier"), CAMBRIA("Cambria"), TIMES_NEW_ROMAN("Times New Roman"), CALIBRI("Calibri");
-		
-		private String value;
-
-		Font(String value) {
-			this.value = value;
-		}
-
-		public String getValue() {
-			return value;
-		}
-	}
 	
 }

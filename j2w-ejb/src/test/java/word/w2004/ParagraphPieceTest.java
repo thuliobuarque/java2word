@@ -8,7 +8,7 @@ import org.junit.Test;
 import word.api.interfaces.IElement;
 import word.utils.TestUtils;
 import word.w2004.elements.ParagraphPiece;
-import word.w2004.style.ParagraphPieceStyle.Font;
+import word.w2004.style.Font;
 
 public class ParagraphPieceTest extends Assert {
 
@@ -245,4 +245,79 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
     }
 
+    @Test
+    public void testNOsmartFont() {
+        /***
+         * the font is "ARIAL_NARROW", so there should not be any bold tag in it.
+         */
+        
+        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW).create();
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+        assertEquals(1,
+                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
+        
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+    }
+    
+    @Test
+    public void testSmartFontBold() {
+        /***
+         * the font is "ARIAL_NARROW_BOLD", so there has to be a 'smart' bold tag in it.
+         * There should not be any 'italic' this time
+         */        
+        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create();
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+        assertEquals(1,
+                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
+        
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+    }
+    
+    @Test
+    public void testSmartFontItalic() {
+        /***
+         * the font is "ARIAL_NARROW_ITALIC", so there has to be a 'smart' Italic tag in it.
+         * There should not be any 'bold' this time
+         */        
+        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_ITALIC).create();
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+        assertEquals(1,
+                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+        
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+    }
+    
+    @Test
+    public void testSmartFontItalicAndBold() {
+        /***
+         * the font is "ARIAL_NARROW_ITALIC", so there has to be both 'smart' Italic and 'bold' tags in it.
+         */        
+        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_BOLD_ITALIC).create();
+
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+        assertEquals(1,
+                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+        
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
+
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+    }
+    
 }
