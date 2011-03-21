@@ -188,12 +188,12 @@ public class Document2004Test extends Assert {
         IDocument doc = new Document2004();
         assertEquals(0, TestUtils.regexCount(doc.getContent(), "landscape"));
     }
-    
+
     @Test
     public void testPageOrientationLandscape() {
         IDocument doc = new Document2004();
         doc.setPageOrientationLandscape();
-        
+
         assertEquals(1, TestUtils.regexCount(doc.getContent(), "landscape"));
     }
 
@@ -223,7 +223,7 @@ public void testJava2wordAllInOne() {
 
     IDocument myDoc = new Document2004();
     //myDoc.setPageOrientationLandscape();// default is Portrait be can be changed.
-    
+
     myDoc.addEle(BreakLine.times(1).create()); // this is one breakline
 
     //Headings
@@ -265,7 +265,7 @@ public void testJava2wordAllInOne() {
     myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is a manual 'bold' and 'italic'").withStyle().setFont(Font.COURIER).setBold(true).setItalic(true).create()).create());
     myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is the SAME as the above line but with 'Smart' Bold/Italic ").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create()).create());
     myDoc.addEle(BreakLine.times(2).create());
-    
+
     //font size
     myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
 
@@ -372,18 +372,11 @@ public void testJava2wordAllInOne() {
     public void testFonts() {
         IDocument myDoc = new Document2004();
         //whatever...
-        
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.COURIER).create()).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CALIBRI).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.CAMBRIA).setBold(true).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_BOLD_ITALIC).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_NARROW_ITALIC).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_ROUNDED_MT_BOLD).create()).create());
-//        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFont(Font.ARIAL_UNICODE_MS).create()).create());
-        
+
+        myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().setAlign(word.w2004.style.ParagraphStyle.Align.CENTER).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Zico|").create(), ParagraphPiece.with("Zico").withStyle().setBgColor("008000").create()).create());
+//        myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().set.create());
+
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 

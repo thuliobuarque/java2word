@@ -6,10 +6,10 @@ import word.w2004.style.Font;
 
 /**
  * @author anyone
- * 
+ *
  *         Use this class in order to apply specifics style to paragraph. Eg.:
  *         one word in bold, other in italic.
- * 
+ *
  */
 public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
 
@@ -20,6 +20,8 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     private Color color;
     public Font font;
     private String fontSize = "";
+    private String bgColor = "";
+
 
     @Override
     public String getNewContentWithStyle(String txt) {
@@ -34,36 +36,43 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         doStyleTextColorHexa(style);
         doStyleColorEnum(style);
         doStyleFontSize(style);
+        doStyleBgColor(style);
 
         return doStyleReplacement(style, txt);
     }
 
+    private void doStyleBgColor(StringBuilder style) {
+        if (!bgColor.equals("")) {
+            style.append("\n            <w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\""+ bgColor +"\" />\n");
+        }
+    }
+
     private void doStyleBold(StringBuilder style) {
-        if (this.bold) {
+        if (bold) {
             style.append("\n            	<w:b/>");
         }
     }
 
     private void doStyleItalic(StringBuilder style) {
-        if (this.italic) {
+        if (italic) {
             style.append("\n            	<w:i/>");
         }
     }
 
     private void doStyleUnderline(StringBuilder style) {
-        if (this.underline) {
+        if (underline) {
             style.append("\n			<w:u w:val=\"single\"/>");
         }
     }
 
     private void doStyleTextColorHexa(StringBuilder style) {
-        if (!this.textColor.equals("")) {
-            style.append("\n			<w:color w:val=\"" + this.textColor + "\"/>");
+        if (!textColor.equals("")) {
+            style.append("\n			<w:color w:val=\"" + textColor + "\"/>");
         }
     }
 
     private void doStyleColorEnum(StringBuilder style) {
-        if (this.color != null && !this.color.getValue().equals("")) {
+        if (color != null && !color.getValue().equals("")) {
             style.append("\n			<w:color w:val=\"" + color.getValue() + "\"/>");
         }
     }
@@ -72,37 +81,37 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         // Smart Italic/Bold: This will make the font bold/italic according to
         // this.font
         String fontName = "";
-        if (this.font != null) {
-            fontName = this.font.getValue();
+        if (font != null) {
+            fontName = font.getValue();
             if (fontName.contains("Bold")) {
-                this.bold = true;
+                bold = true;
             } else {
                 //if is manually 'bold', I also change the font name
-                if (this.bold) {
+                if (bold) {
                     fontName += " Bold";
                 }
             }
 
             if (fontName.contains("Italic")) {
-                this.italic = true;
+                italic = true;
             } else {
-                if (this.italic) {
+                if (italic) {
                     fontName += " Italic";
                 }
             }
         }
 
-        if (this.font != null) {
+        if (font != null) {
             style.append("\n			<w:rFonts w:ascii=\"" + fontName + "\" w:h-ansi=\"" + fontName + "\"/>\n");
             style.append("\n			<wx:font wx:val=\"" + fontName + "\"/>");
         }
     }
 
     private void doStyleFontSize(StringBuilder style) {
-        if (!"".equals(this.fontSize)) {
-            String ffsize = "\n               <w:sz w:val=\"" + this.fontSize
+        if (!"".equals(fontSize)) {
+            String ffsize = "\n               <w:sz w:val=\"" + fontSize
                     + "\" />\n";
-            ffsize += "\n               <w:sz-cs w:val=\"" + this.fontSize
+            ffsize += "\n               <w:sz-cs w:val=\"" + fontSize
                     + "\" />\n";
             style.append(ffsize);
         }
@@ -123,11 +132,11 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     // ### Getters and setters... ###
 
     /**
-     * 
+     *
      * This is the ParagraphPiece! I am using Covariant Return Type!!! to be
      * honest, I have never thought how to use and finally here we go!!! It will
      * give the chance to eliminate the necessity of type cast for elements.
-     * 
+     *
      */
     @Override
     public ParagraphPiece create() {
@@ -152,14 +161,28 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     /**
      * If you know the color code, just to straight to the point! Eg.: yellow:
      * FFFF00, black: 000000, red: FF0000, blue: 0000FF, green: 008000, etc...
-     * 
+     *
      * If you want, you can use the class Color.whatever_color.
-     * 
+     *
      * @param hexadecimal
      *            color code
      */
     public ParagraphPieceStyle setTextColor(String textColor) {
         this.textColor = textColor;
+        return this;
+    }
+
+    /**
+     * If you know the color code, just to straight to the point! Eg.: yellow:
+     * FFFF00, black: 000000, red: FF0000, blue: 0000FF, green: 008000, etc...
+     *
+     * If you want, you can use the class Color.whatever_color.
+     *
+     * @param hexadecimal
+     *            color code
+     */
+    public ParagraphPieceStyle setBgColor(String bgColor) {
+        this.bgColor = bgColor;
         return this;
     }
 
