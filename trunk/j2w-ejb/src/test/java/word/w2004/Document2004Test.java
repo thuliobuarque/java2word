@@ -367,7 +367,7 @@ public void testJava2wordAllInOne() {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    //@Ignore
+    @Ignore
     @Test
     public void testFonts() {
         IDocument myDoc = new Document2004();
