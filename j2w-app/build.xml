@@ -148,8 +148,6 @@
 
 	
 	<target name="create_version">
-		<echo>${date_time}</echo>
-		<echo>${root.dir}/../j2w-ejb/target/j2w-ejb-2.0.jar</echo>
 		<copy file="${root.dir}/../j2w-ejb/target/j2w-ejb-2.0.jar"
 			tofile="${root.dir}/../j2w-ejb/target/j2w-ejb-2.0_${date_time}.jar">
 	    </copy>
