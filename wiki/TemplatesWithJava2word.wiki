@@ -60,7 +60,7 @@ I will copy and past a code snippet from the class /j2w-ejb/src/test/java/word/w
 }}}
 
 
-The code above takes this [http://mytemplate template] and produces this result [http://result here.]
+The code above takes this [ReleaseNotesTemplate.doc template] and produces this result [templateResult.doc here.]
 
 
 the method *replacePh()* is very simple but important at the same time. It replaces but prints a warning message when can't find the place holder. If you see this "warning" messages it means that your template has got some "breakdown" text and you may have to manually fix your template by editing the template as XML.  
