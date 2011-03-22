@@ -42,7 +42,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleALL() {
         IElement par = ParagraphPiece.with("piece01").withStyle().setBold(true)
-                .setItalic(true).setUnderline(true).setFontSize("50")
+                .setItalic(true).setUnderline(true).setFontSize("24")
                 .setFont(Font.COURIER).setTextColor("008000").create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
@@ -64,7 +64,7 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(1, TestUtils.regexCount(par.getContent(),
                 "<w:sz w:val=\"(.*)\" />"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
-                "<w:sz-cs w:val=\"50\" />"));
+                "<w:sz-cs w:val=\"48\" />"));
     }
 
     @Test
