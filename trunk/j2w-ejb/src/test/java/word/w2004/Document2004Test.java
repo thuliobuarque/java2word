@@ -3,6 +3,7 @@ package word.w2004;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import junit.framework.Assert;
 
@@ -373,12 +374,16 @@ public void testJava2wordAllInOne() {
         IDocument myDoc = new Document2004();
         //whatever...
 
-        myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().setAlign(word.w2004.style.ParagraphStyle.Align.CENTER).create());
-        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("Zico|").create(), ParagraphPiece.with("Zico").withStyle().setBgColor("008000").create()).create());
-//        myDoc.addEle(Paragraph.with("Leonardo Pinho Correa").withStyle().set.create());
+        myDoc.addEle(Paragraph.withPieces(
+                    ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFontSize("32").create()
+                ).create());
 
+        //System.out.println(myDoc.getContent());
+        
         TestUtils.createLocalDoc(myDoc.getContent());
+        
     }
 
+    
 
 }
