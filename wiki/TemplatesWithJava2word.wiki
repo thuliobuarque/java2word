@@ -17,7 +17,7 @@ Don't use "ph_company_name" because MS Word breaks it down in many "runs" and yo
   * Save it as "Microsoft Word 2003 - XML"
 
 
-= Steps = 
+= Getting your hands dirty = 
 
 Now that you have your template, it is time to do the replacement.
 
