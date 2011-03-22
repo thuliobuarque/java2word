@@ -268,7 +268,7 @@ public void testJava2wordAllInOne() {
     myDoc.addEle(BreakLine.times(2).create());
 
     //font size
-    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 50.").withStyle().setFontSize("50").create() ));
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 24.").withStyle().setFontSize("24").create() ));
 
     //Document Header and Footer
     myDoc.addEle(BreakLine.times(2).create());
