@@ -4,10 +4,6 @@
     </description>
 	<!-- set global properties for this build -->
 	<property file="build.properties" />
-	<!--
-	<property name="jboss.dir" location="/Applications/jboss-4.2.3.GA/server/phages/deploy" />
-	<property name="root.dir" value="../phages-app" />
-	-->
 
 	<property name="jboss.dir" value="" />
 	<!--workaround when prop hasn't been set up -->
@@ -17,7 +13,6 @@
 	<property name="pom.file" value="pom.xml" />
 	<property name="ear.dist" location="../j2w-ear/target" />
 	<property name="ear.file" value="j2w-ear.ear" />
-	<property name="ds.dir" location="../phages-db/src/main/resources" />
 	<property name="ds" value="j2w-ds.xml" />
 	<property name="ear.exploded.dir" value="j2w-ear" />
 	<property name="war.filer" value="j2w-web.war" />
@@ -86,7 +81,6 @@
 	</target>
 	
 	<target name="cobertura">
-		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
 			<arg value="cobertura:cobertura" />
 		</exec>
@@ -123,6 +117,7 @@
 			<arg value="-DskipTests=false" />
 			<arg value="-Dbuild.env=dev" />
 		</exec>
+		<antcall target="create_version"></antcall>
 	</target>
 	
 	<target name="aaclean">
@@ -146,4 +141,19 @@
 		</copy>
 	</target>
 
+	  <tstamp>
+	      <format property="date_time" pattern="yyyyMMMyy"
+	              offset="-5" unit="hour"/>
+	  </tstamp>
+
+	
+	<target name="create_version">
+		<echo>${date_time}</echo>
+		<echo>${root.dir}/../j2w-ejb/target/j2w-ejb-2.0.jar</echo>
+		<copy file="${root.dir}/../j2w-ejb/target/j2w-ejb-2.0.jar"
+			tofile="${root.dir}/../j2w-ejb/target/j2w-ejb-2.0_${date_time}.jar">
+	    </copy>
+	</target>
+	
+	
 </project>
