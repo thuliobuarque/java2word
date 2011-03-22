@@ -1,0 +1,17 @@
+#labels Featured
+#This page shows how to use templates with Java2word.
+
+= Introduction =
+
+This page shows how to use templates with Java2word. Issue 26.
+
+= Steps =
+
+*  
+
+= Steps =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
