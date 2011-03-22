@@ -197,8 +197,8 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     }
 
     /***
-     * Pass '50' for something quite big. I am not sure if the unit is pixels or
-     * what... find out later. sorry about that.
+     * It should be the double of you would normally do in the MS Word. Eg.:
+     * Default fontsize is 12. If you want to do it via Java2word, specify 24. 
      */
     public ParagraphPieceStyle setFontSize(String fontSize) {
         this.fontSize = fontSize;
