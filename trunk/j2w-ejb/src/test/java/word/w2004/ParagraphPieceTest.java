@@ -2,8 +2,6 @@ package word.w2004;
 
 import junit.framework.Assert;
 
-import org.ejb3unit.hibernate.validator.AssertTrue;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import word.api.interfaces.IElement;
@@ -16,13 +14,13 @@ public class ParagraphPieceTest extends Assert {
 
     @Test
     public void sanityTest() {
-        IElement par = new ParagraphPiece("");
+        IElement par = ParagraphPiece.with("");
         assertEquals(par.getContent(), "");
     }
 
     @Test
     public void sanityTest01() {
-        IElement par = new ParagraphPiece(null);
+        IElement par = ParagraphPiece.with(null);
         assertEquals(par.getContent(), "");
     }
 
@@ -41,9 +39,9 @@ public class ParagraphPieceTest extends Assert {
 
     @Test
     public void testGetContentWithStyleALL() {
-        IElement par = ParagraphPiece.with("piece01").withStyle().setBold(true)
-                .setItalic(true).setUnderline(true).setFontSize("24")
-                .setFont(Font.COURIER).setTextColor("008000").create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().bold()
+                .italic().underline().fontSize("24")
+                .font(Font.COURIER).textColor("008000").create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
@@ -69,8 +67,7 @@ public class ParagraphPieceTest extends Assert {
 
     @Test
     public void testGetContentWithStyleBold() {
-        IElement par = ParagraphPiece.with("piece01").withStyle().setBold(true)
-                .setItalic(false).setUnderline(false).create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().bold().create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -99,8 +96,7 @@ public class ParagraphPieceTest extends Assert {
 
     @Test
     public void testGetContentWithStyleItalic() {
-        IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setItalic(true).create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().italic().create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -131,7 +127,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleUnderline() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setUnderline(true).create();
+                .underline().create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -162,7 +158,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleFont() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setFont(Font.COURIER).create();
+                .font(Font.COURIER).create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -192,8 +188,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleTextColor() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setItalic(false).setUnderline(false)
-                .setTextColor("008000").create();
+                .textColor("008000").create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -222,9 +217,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleFontSize() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setItalic(false)
-                .setUnderline(false)
-                .setFontSize("50").create();
+                .fontSize("24").create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -251,7 +244,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleBGcolor() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-        .setBgColor("FFFF00")
+        .bgColor("FFFF00")
         .create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
@@ -269,7 +262,7 @@ public class ParagraphPieceTest extends Assert {
          * the font is "ARIAL_NARROW", so there should not be any bold tag in it.
          */
 
-        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW).create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW).create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -288,7 +281,7 @@ public class ParagraphPieceTest extends Assert {
          * the font is "ARIAL_NARROW_BOLD", so there has to be a 'smart' bold tag in it.
          * There should not be any 'italic' this time
          */
-        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_BOLD).create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_BOLD).create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
@@ -306,7 +299,7 @@ public class ParagraphPieceTest extends Assert {
          * the font is "ARIAL_NARROW_ITALIC", so there has to be a 'smart' Italic tag in it.
          * There should not be any 'bold' this time
          */
-        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_ITALIC).create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_ITALIC).create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -324,7 +317,7 @@ public class ParagraphPieceTest extends Assert {
         /***
          * the font is "ARIAL_NARROW_ITALIC", so there has to be both 'smart' Italic and 'bold' tags in it.
          */
-        IElement par = ParagraphPiece.with("piece01").withStyle().setFont(Font.ARIAL_NARROW_BOLD_ITALIC).create();
+        IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_BOLD_ITALIC).create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -339,8 +332,8 @@ public class ParagraphPieceTest extends Assert {
 
     @Test
     public void testEquivalentSmartFont() {
-        Paragraph p1 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().setFont(Font.COURIER).setBold(true).setItalic(true).create());
-        Paragraph p2 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create());
+        Paragraph p1 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().font(Font.COURIER).bold().italic().create());
+        Paragraph p2 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().font(Font.COURIER_BOLD_ITALIC).create());
 
         assertTrue(p1.getContent().equals(p2.getContent()));
     }
