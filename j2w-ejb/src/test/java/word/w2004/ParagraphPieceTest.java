@@ -100,7 +100,7 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleItalic() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setBold(false).setItalic(true).create();
+                .setItalic(true).create();
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
         assertEquals(1,
@@ -192,7 +192,6 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleTextColor() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setBold(false)
                 .setItalic(false).setUnderline(false)
                 .setTextColor("008000").create();
 
@@ -223,7 +222,6 @@ public class ParagraphPieceTest extends Assert {
     @Test
     public void testGetContentWithStyleFontSize() {
         IElement par = ParagraphPiece.with("piece01").withStyle()
-                .setBold(false)
                 .setItalic(false)
                 .setUnderline(false)
                 .setFontSize("50").create();
