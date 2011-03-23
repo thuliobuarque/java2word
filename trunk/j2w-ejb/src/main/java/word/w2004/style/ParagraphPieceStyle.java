@@ -143,8 +143,15 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return (ParagraphPiece) super.create();
     }
 
+    @Deprecated
     public ParagraphPieceStyle setBold(boolean bold) {
-        this.bold = bold;
+        //this.bold = bold;
+        this.bold();
+        return this;
+    }
+
+    public ParagraphPieceStyle bold() {
+        bold = true;
         return this;
     }
 
@@ -186,6 +193,11 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return this;
     }
 
+    /***
+     * Set text color from the Enum @Color, case you don't know any hexa code color
+     * @param color
+     * @return
+     */
     public ParagraphPieceStyle setTextColor(Color color) {
         this.color = color;
         return this;

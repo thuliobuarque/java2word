@@ -9,6 +9,8 @@ import word.api.interfaces.IElement;
 import word.utils.TestUtils;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
+import word.w2004.elements.Paragraph.TabAlign;
+import word.w2004.style.Font;
 import word.w2004.style.ParagraphPieceStyle;
 import word.w2004.style.ParagraphStyle;
 import word.w2004.style.ParagraphStyle.Align;
@@ -149,6 +151,19 @@ public class ParagraphTest extends Assert {
         Paragraph p01 = Paragraph.withPieces(pieces);
 
         basicParagraphCheckings(p01, "111", null);
+    }
+
+    @Test
+    public void testTab(){
+        Paragraph p01 = Paragraph.withPieces(
+                ParagraphPiece.with("Bloc 1 Price :").withStyle().setFont(Font.CALIBRI).setFontSize(Integer.toString(2*11)).create(),
+                ParagraphPiece.with(" \t 3 200,00 $").withStyle().setFont(Font.CALIBRI).setFontSize(Integer.toString(2*11)).create()
+        ).addTab(TabAlign.RIGHT, 8931).create();
+
+        assertEquals(2, TestUtils.regexCount(p01.getContent(), "<w:pPr>"));
+        assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:tabs>"));
+        assertEquals(1, TestUtils.regexCount(p01.getContent(), "</w:tabs>"));
+        assertEquals(2, TestUtils.regexCount(p01.getContent(), "</w:pPr>"));
     }
 
     /***
