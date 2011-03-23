@@ -3,7 +3,6 @@ package word.w2004;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Date;
 
 import junit.framework.Assert;
 
@@ -23,19 +22,15 @@ import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
 import word.w2004.elements.Table;
 import word.w2004.elements.tableElements.TableEle;
-import word.w2004.style.Color;
+import word.w2004.style.Font;
 import word.w2004.style.HeadingStyle;
 import word.w2004.style.HeadingStyle.Align;
-import word.w2004.style.ParagraphPieceStyle;
-import word.w2004.style.Font;
 
 /**
  * @author leonardo_correa
  *
  */
 public class Document2004Test extends Assert {
-
-    //TODO: do tests with assert for document
 
     @Test
     public void sanityTest() {
@@ -134,38 +129,6 @@ public class Document2004Test extends Assert {
         myDoc.getBody().addEle(new Heading3("Heading 333"));
     }
 
-    @Test //TODO: make this useful with assertions
-    public void testBasicParagraphStyle() {
-        IDocument myDoc = new Document2004();
-
-        ParagraphPieceStyle style = new ParagraphPieceStyle();
-        style.setBold(true);
-        style.setItalic(true);
-
-        ParagraphPiece piece01 = new ParagraphPiece("222222");
-        ParagraphPiece piece02 = new ParagraphPiece("333333");
-
-        piece01.setStyle(style);
-
-        Paragraph p02 = new Paragraph(piece01, piece02);
-
-        myDoc.getBody().addEle(p02);
-    }
-
-    @Test //TODO: make this useful with assertions
-    public void testBasicParagraphStyleColor() {
-        IDocument myDoc = new Document2004();
-
-        ParagraphPiece piece01 = new ParagraphPiece("11111");
-        piece01.getStyle().setTextColor("FF0000");
-
-        ParagraphPiece piece02 = new ParagraphPiece("22222");
-        piece02.getStyle().setTextColor(Color.RED);
-
-        Paragraph p01 = new Paragraph(piece01, piece02);
-
-        myDoc.getBody().addEle(p01);
-    }
 
     @Test //TODO: make this useful with assertions
     public void testBasicHeadingFluent() {
@@ -256,19 +219,19 @@ public void testJava2wordAllInOne() {
 
     myDoc.addEle(Paragraph.withPieces(myParPiece01, myParPiece02, myParPiece03).create());
 
-    ParagraphPiece myParPieceJava = ParagraphPiece.with("I like Java and ").withStyle().setFont(Font.COURIER).create();
-    ParagraphPiece myParPieceRuby = ParagraphPiece.with("Ruby!!! ").withStyle().setBold(true).setItalic(true).create();
-    ParagraphPiece myParPieceAgile = ParagraphPiece.with("I actually love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().setTextColor("008000").create();
+    ParagraphPiece myParPieceJava = ParagraphPiece.with("I like Java and ").withStyle().font(Font.COURIER).create();
+    ParagraphPiece myParPieceRuby = ParagraphPiece.with("Ruby!!! ").withStyle().bold().italic().create();
+    ParagraphPiece myParPieceAgile = ParagraphPiece.with("I actually love Java, Ruby Agile, BDD, Cucumber, automation... ").withStyle().textColor("008000").create();
 
     myDoc.addEle(Paragraph.withPieces(myParPieceJava, myParPieceRuby, myParPieceAgile).create());
 
     myDoc.addEle(BreakLine.times(2).create());
-    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is a manual 'bold' and 'italic'").withStyle().setFont(Font.COURIER).setBold(true).setItalic(true).create()).create());
-    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is the SAME as the above line but with 'Smart' Bold/Italic ").withStyle().setFont(Font.COURIER_BOLD_ITALIC).create()).create());
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is a manual 'bold' and 'italic'").withStyle().font(Font.COURIER).bold().italic().create()).create());
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("This is the SAME as the above line but with 'Smart' Bold/Italic ").withStyle().font(Font.COURIER_BOLD_ITALIC).create()).create());
     myDoc.addEle(BreakLine.times(2).create());
 
     //font size
-    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 24.").withStyle().setFontSize("24").create() ));
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size").create(), ParagraphPiece.with("I am size 24.").withStyle().fontSize("24").create() ));
 
     //Document Header and Footer
     myDoc.addEle(BreakLine.times(2).create());
@@ -282,7 +245,7 @@ public void testJava2wordAllInOne() {
     myDoc.addEle(BreakLine.times(2).create());
     myDoc.addEle(Paragraph.with("you can also hide Header and Footer in the first Page. This is useful for when you have a cover page.: 'myDoc.getHeader().setHideHeaderAndFooterFirstPage(true)' ").create());
 
-    myDoc.getHeader().addEle(Paragraph.withPieces(ParagraphPiece.with("I am in the"), ParagraphPiece.with(" Header ").withStyle().setBold(true).create(), ParagraphPiece.with("of all pages")).create());
+    myDoc.getHeader().addEle(Paragraph.withPieces(ParagraphPiece.with("I am in the"), ParagraphPiece.with(" Header ").withStyle().bold().create(), ParagraphPiece.with("of all pages")).create());
 
     myDoc.getFooter().addEle(Paragraph.with("I am in the Footer of all pages").create());
 
@@ -304,7 +267,7 @@ public void testJava2wordAllInOne() {
     myDoc.addEle(Paragraph.with("You can always be creative mixing up images inside other IElements. Eg.: Paragraphs, Tables, etc.").create());
 
     myDoc.addEle(
-            new Paragraph("This document inside the paragraph, coming from '/src/test/resources/dtpick.gif': "
+            Paragraph.with("This document inside the paragraph, coming from '/src/test/resources/dtpick.gif': "
                     + Image.from_FULL_LOCAL_PATHL(Utils.getAppRoot()
                             + "/src/test/resources/dtpick.gif").getContent()));
 
@@ -338,8 +301,8 @@ public void testJava2wordAllInOne() {
 
     myDoc.addEle(BreakLine.times(1).create());
 
-    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("* Zico was mid-fieldfer and managed to score all those fucking goals!").withStyle().setItalic(true).create()).create());
-    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("* Leonardo Correa's goals (me) include futsal, soccer, friendly games, training games, so on... (but not playstation)").withStyle().setItalic(true).create()).create());
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("* Zico was mid-fieldfer and managed to score all those fucking goals!").withStyle().italic().create()).create());
+    myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("* Leonardo Correa's goals (me) include futsal, soccer, friendly games, training games, so on... (but not playstation)").withStyle().italic().create()).create());
 
 
     //PageBreaks
@@ -375,7 +338,7 @@ public void testJava2wordAllInOne() {
         //whatever...
 
         myDoc.addEle(Paragraph.withPieces(
-                    ParagraphPiece.with("Leonardo Pinho Correa").withStyle().setFontSize("32").create()
+                    ParagraphPiece.with("Leonardo Pinho Correa").withStyle().fontSize("32").create()
                 ).create());
 
         //System.out.println(myDoc.getContent());

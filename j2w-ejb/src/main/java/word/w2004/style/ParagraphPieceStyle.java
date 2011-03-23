@@ -129,6 +129,7 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return txt;
     }
 
+    
     // ### Getters and setters... ###
 
     /**
@@ -149,19 +150,35 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         this.bold();
         return this;
     }
-
+    
+    /**
+     * Set the text to Bold
+     * @return
+     */
     public ParagraphPieceStyle bold() {
-        bold = true;
+        this.bold = true;
         return this;
     }
 
+    @Deprecated
     public ParagraphPieceStyle setItalic(boolean italic) {
         this.italic = italic;
         return this;
     }
+    
+    public ParagraphPieceStyle italic() {
+        this.italic = true;
+        return this;
+    }
 
+    @Deprecated
     public ParagraphPieceStyle setUnderline(boolean underline) {
         this.underline = underline;
+        return this;
+    }
+    
+    public ParagraphPieceStyle underline() {
+        this.underline = true;
         return this;
     }
 
@@ -174,6 +191,12 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
      * @param hexadecimal
      *            color code
      */
+    public ParagraphPieceStyle textColor(String textColor) {
+        this.textColor = textColor;
+        return this;
+    }
+    
+    @Deprecated
     public ParagraphPieceStyle setTextColor(String textColor) {
         this.textColor = textColor;
         return this;
@@ -188,6 +211,12 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
      * @param hexadecimal
      *            color code
      */
+    public ParagraphPieceStyle bgColor(String bgColor) {
+        this.bgColor = bgColor;
+        return this;
+    }
+    
+    @Deprecated
     public ParagraphPieceStyle setBgColor(String bgColor) {
         this.bgColor = bgColor;
         return this;
@@ -198,12 +227,24 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
      * @param color
      * @return
      */
+    public ParagraphPieceStyle textColor(Color color) {
+        this.color = color;
+        return this;
+    }
+    
+    @Deprecated
     public ParagraphPieceStyle setTextColor(Color color) {
         this.color = color;
         return this;
     }
 
+    @Deprecated
     public ParagraphPieceStyle setFont(Font font) {
+        this.font = font;
+        return this;
+    }
+    
+    public ParagraphPieceStyle font(Font font) {
         this.font = font;
         return this;
     }
@@ -211,6 +252,12 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     /***
      * Specify the font size the same way you see on MW Word.
      */
+    public ParagraphPieceStyle fontSize(String fontSize) {
+        this.fontSize = Integer.parseInt(fontSize) * 2 + "" ;
+        return this;
+    }
+    
+    @Deprecated
     public ParagraphPieceStyle setFontSize(String fontSize) {
         this.fontSize = Integer.parseInt(fontSize) * 2 + "" ;
         return this;

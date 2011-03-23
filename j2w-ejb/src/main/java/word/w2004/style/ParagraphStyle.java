@@ -76,12 +76,29 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
      * @param hexadecimal
      *            color code
      */
+    public ParagraphStyle bgColor(String bgColor) {
+        this.bgColor = bgColor;
+        return this;
+    }
+    
+    @Deprecated
     public ParagraphStyle setBgColor(String bgColor) {
         this.bgColor = bgColor;
         return this;
     }
 
+    @Deprecated
     public ParagraphStyle setAlign(Align align) {
+        this.align = align;
+        return this;
+    }
+    
+    /**
+     * Sets align for the whole paragraph
+     * @param align
+     * @return
+     */
+    public ParagraphStyle align(Align align) {
         this.align = align;
         return this;
     }

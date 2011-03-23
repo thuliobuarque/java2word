@@ -32,13 +32,14 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
      *
      * String for a simple Paragraph. Assuming that you don't want to apply style on part of this text.
      */
+    @Deprecated
     public Paragraph(String value) {
         if(value == null || "".equals(value)){
             return;
         }
-            ParagraphPiece piece = new ParagraphPiece(value);
-            pieces = new ParagraphPiece[1];
-            pieces[0] = piece;
+        ParagraphPiece piece = ParagraphPiece.with(value);
+        pieces = new ParagraphPiece[1];
+        pieces[0] = piece;
     }
 
     /**
@@ -96,10 +97,11 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
 
 
     //## Getters and Setters
-
+    @Deprecated
     public ParagraphStyle getStyle() {
         return style;
     }
+    @Deprecated
     public void setStyle(ParagraphStyle style) {
         this.style = style;
     }
@@ -110,8 +112,21 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
         return style;
     }
 
+    /**
+     * created a Paragraph with a simple @ParagraphPiece inside
+     * @param value 
+     * @return
+     */
     public static Paragraph with(String value) {
-        return new Paragraph(value);
+        //if(value == null || "".equals(value)){
+            //return null;
+        //}
+        Paragraph par = new Paragraph();
+        ParagraphPiece piece = ParagraphPiece.with(value);
+        par.pieces = new ParagraphPiece[1];
+        par.pieces[0] = piece;
+        return par;
+        //return new Paragraph(value);
     }
 
     public static Paragraph withPieces(ParagraphPiece ... pieces) {

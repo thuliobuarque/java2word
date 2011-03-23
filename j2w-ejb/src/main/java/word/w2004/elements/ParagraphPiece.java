@@ -32,11 +32,15 @@ public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>,
 	+"\n		</w:r>";
 
 	//Constructor
+	@Deprecated //to be removed
 	public ParagraphPiece(String value) {
-		this.value = value;
+	    this.value = value;
 	}
 	
-	@Override
+	public ParagraphPiece() {
+    }
+
+    @Override
 	public String getContent() {
 		if("".equals(this.value) || this.value == null){ // null is very unusual. That the reason null comparison is after empty verification. I am not sure if we use ApacheUtils we can achieve the same  
 			return "";
@@ -49,9 +53,11 @@ public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>,
 	}
 	
 	//### Gettets and Setters
+	@Deprecated //to be removed
 	public ParagraphPieceStyle getStyle() {
 		return style;
 	}
+	@Deprecated //to be removed
 	public void setStyle(ParagraphPieceStyle style) {
 		this.style = style;
 	}
@@ -63,7 +69,10 @@ public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>,
 	}
 
 	public static ParagraphPiece with(String value) {
-		return new ParagraphPiece(value);
+	       ParagraphPiece par = new ParagraphPiece();
+	        par.value = value;
+	        return par;
+		//return new ParagraphPiece(value);
 	}
 	
 	@Override
