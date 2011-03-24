@@ -9,7 +9,7 @@ import word.api.interfaces.IFluentElement;
  * <code>
  * new BreakLine(3)
  * </code>
- * This will insert 3 Breaklines. 
+ * This will insert 3 Breaklines.
  * FOR A MATTER OR EXERCICE, THIS CLASS FOLLOWS ALL THOSE CRASY CHECKSTYLE GUIDELINES.
  */
 public class BreakLine implements IElement, IFluentElement<BreakLine> {
@@ -27,7 +27,7 @@ public class BreakLine implements IElement, IFluentElement<BreakLine> {
      * @param res string to be added content
      */
     private void applyBreakLineTimes(final StringBuilder res) {
-        for (int i = 0; i < this.times; i++) {
+        for (int i = 0; i < times; i++) {
             res.append("\n<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>");
         }
     }
