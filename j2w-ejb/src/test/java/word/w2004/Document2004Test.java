@@ -23,7 +23,6 @@ import word.w2004.elements.ParagraphPiece;
 import word.w2004.elements.Table;
 import word.w2004.elements.tableElements.TableEle;
 import word.w2004.style.Font;
-import word.w2004.style.HeadingStyle;
 import word.w2004.style.HeadingStyle.Align;
 
 /**
@@ -114,39 +113,6 @@ public class Document2004Test extends Assert {
         assertEquals(1, TestUtils.regexCount(myDoc.getFooter().getContent(), "</w:ftr>"));
     }
 
-    @Test //TODO: make this useful with assertions
-    public void testBasicHeadingStyle() {
-        IDocument myDoc = new Document2004();
-        Heading1 h1 = new Heading1("Heading 111");
-        HeadingStyle headingStyle = new HeadingStyle();
-        headingStyle.setAlign(HeadingStyle.Align.CENTER);
-        headingStyle.setItalic(true);
-
-        h1.setStyle(headingStyle);
-        myDoc.getBody().addEle(h1);
-
-        myDoc.getBody().addEle(new Heading2("Heading 222"));
-        myDoc.getBody().addEle(new Heading3("Heading 333"));
-    }
-
-
-    @Test //TODO: make this useful with assertions
-    public void testBasicHeadingFluent() {
-        IDocument doc = new Document2004();
-        Heading1 h1 = (Heading1) Heading1.with("h111").withStyle()
-                .setBold(true).setItalic(true)
-                .setAlign(HeadingStyle.Align.CENTER).create();
-
-        Heading2 h2 = (Heading2) Heading2.with("h222").withStyle()
-                .setBold(true).setItalic(true).create();
-
-        doc.getBody().addEle(h1);
-        doc.getBody().addEle(h2);
-        doc.getBody().addEle(
-                Heading1.with("h3333").withStyle().setBold(true)
-                        .setItalic(true).create()); // no cast...
-    }
-
     @Test
     public void testPageOrientationDefault() {
         IDocument doc = new Document2004();
@@ -204,9 +170,9 @@ public void testJava2wordAllInOne() {
 
     myDoc.addEle(Heading1.with("Heading01 without styling").create());
     myDoc.addEle(Heading2.with("Heading02 with styling").withStyle()
-            .setAlign(Align.CENTER).setItalic(true).create());
-    myDoc.addEle(Heading3.with("Heading03").withStyle().setBold(true)
-            .setAlign(Align.RIGHT).create());
+            .align(Align.CENTER).italic().create());
+    myDoc.addEle(Heading3.with("Heading03").withStyle().bold()
+            .align(Align.RIGHT).create());
 
     //Paragraph and ParagrapPiece
     myDoc.addEle(Heading2.with("===== Paragraph and ParagrapPiece ======").create());
@@ -342,11 +308,11 @@ public void testJava2wordAllInOne() {
                 ).create());
 
         //System.out.println(myDoc.getContent());
-        
+
         TestUtils.createLocalDoc(myDoc.getContent());
-        
+
     }
 
-    
+
 
 }
