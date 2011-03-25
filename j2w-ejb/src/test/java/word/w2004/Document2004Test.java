@@ -304,10 +304,10 @@ public void testJava2wordAllInOne() {
         //whatever...
 
         myDoc.addEle(Paragraph.withPieces(
-                    ParagraphPiece.with("Leonardo Pinho Correa").withStyle().fontSize("32").create()
+                    ParagraphPiece.with("Leonardo Pinho Correaxxx - L’Université de Nantes").create()
                 ).create());
 
-        //System.out.println(myDoc.getContent());
+        System.out.println(myDoc.getContent());
 
         TestUtils.createLocalDoc(myDoc.getContent());
 
