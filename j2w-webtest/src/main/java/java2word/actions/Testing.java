@@ -9,43 +9,45 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class Testing extends ActionSupport implements ServletResponseAware {
 
-	public String execute() throws Exception {
+    public String execute() throws Exception {
 //		System.out.println("### About to generate Word doc...");
 
 //		System.out.println("XML is: \n" + this.xml + "\n");
 
-		if (!StringUtils.isEmpty(xml)) {
-			servletResponse.setContentType("application/msword");
-			servletResponse.setHeader("Content-disposition",
-					"inline;filename=wordDoc.doc");
 
-			PrintWriter writer = servletResponse.getWriter();
-			writer.println(xml);
-			writer.flush(); 
+        //'UTF-8', 'ISO-8859-1' or nothing? up to you...
+        if (!StringUtils.isEmpty(xml)) {
+            servletResponse.setContentType("application/msword; charset=UTF-8");
+            servletResponse.setHeader("Content-disposition",
+                    "inline;filename=wordDoc.doc");
+
+            PrintWriter writer = servletResponse.getWriter();
+            writer.println(xml);
+            writer.flush();
 //		System.out.println("### Doc generated...");
-			return null; 
-		}else{
-			System.out.println("Error: Empty XML field!");
-		}
+            return null;
+        }else{
+            System.out.println("Error: Empty XML field!");
+        }
 
-		return SUCCESS;
-	}
+        return SUCCESS;
+    }
 
-	// ### Getters and setters
-	private String xml;
-	private HttpServletResponse servletResponse;
+    // ### Getters and setters
+    private String xml;
+    private HttpServletResponse servletResponse;
 
-	public String getXml() {
-		return xml;
-	}
+    public String getXml() {
+        return xml;
+    }
 
-	public void setXml(String xml) {
-		this.xml = xml;
-	}
+    public void setXml(String xml) {
+        this.xml = xml;
+    }
 
-	@Override
-	public void setServletResponse(HttpServletResponse servletResponse) {
-		this.servletResponse = servletResponse;
-	}
+    @Override
+    public void setServletResponse(HttpServletResponse servletResponse) {
+        this.servletResponse = servletResponse;
+    }
 
 }
