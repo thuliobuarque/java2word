@@ -2,23 +2,29 @@
 This document gives you the guidelines how to implement a new element/component.
 =How to Implement a New Element/Component=
 
-= Introduction =
+<br><br>
+<font size='4'>Table of Contents</font>
+----
+<wiki:toc max_depth="4" />
+<br><br>
+
+=Introduction=
 
 This document gives you the guidelines how to implement a new element/component for the Java2Word project.
 
 _Consider this only a simple demonstration how to implement something new in this framework._
 
 
-= Details =
+=The new element=
 
 Imagine you want to use one component and this component does not exist yet. A good example could be the "Lists", which hasn't been done yet (27-Mar-2011). But for this exercise we will use "Paragraph". 
 
 Lets define steps how to implement this "Paragraph"(or any other) component.
 
-==If you are not a  "committer" in this project or submit the code by attaching the changed classes to the issue==
+If you are not a  "committer" in this project or submit the code by attaching the changed classes to the issue
 
 
-==Set up your Development Environment==
+=Set up your Development Environment=
 
   * Check out those projects *j2w-ejb* and optionally *j2w-webtest*
   * In the j2w-ejb directory, run: *"mvn clean install"*
@@ -30,7 +36,7 @@ If you use eclipse, run "mvn eclipse:eclipse" in order to import the project to 
 Optionally, after a successful build, you can take a look at your .m2 folder and you should be able to see the generated jar in : ~/.m2/repository/java2word/j2w-ejb/1.0/j2w-ejb-1.0.jar 
 
 
-== Code development ==
+=Implementation of the new element=
 
 Now you will see that there is no mystery behind *Java2word* library. 
 
@@ -161,8 +167,10 @@ You have two options now
 
 I use option 2 most times but option 1 is quite useful when you are creating a new element. 
 
-  * Important thing
-Normally at work we don't have time to write the best code. We have to delivery regardless of the quality. Other thing at works is we always have to use old or obsolete stack of technology. 
+
+=Important thing in Java2word=
+
+Normally at work we don't have time to write the best code. We have to delivery regardless of the code quality. Other thing at works is we always have to use old or obsolete stack of technology. 
 
 *Java2word is where I can use whatever I fucking want, however I fucking want!*
 
@@ -170,7 +178,7 @@ There is no pressure or dead line to meet. We can try to use the latest and the 
 
 
 
-  * Code Metrics 
+=Code Metrics=
  Take a look at the ANT file or run "ant -p" to see the list of tasks. I add the build.xml to my eclipse and run it in one click.
 
     * *Cobertura*: Coverage test should be almost 100%
@@ -179,14 +187,14 @@ There is no pressure or dead line to meet. We can try to use the latest and the 
     * *Checkstyle*: I don't care too much about this one.
 
 
-* Develpment patterns in Java2word
+=Develpment patterns in Java2word=
     * don't use any deprecated method in the API.
-    * always create code examples or unit tests using fluent API.
-    * look at other elements to have an idea about the pattern in the project
-    * unit tests, cyclomatic complexity matter here!
-    * do the document generation and see if it is all right. Don't rely only in unit tests.
-    * Add javadoc to new methods (or existing methods). 
-
+    *always create code examples or unit tests using fluent API.
+    *look at other elements to have an idea about the pattern in the project
+    *unit tests, cyclomatic complexity matter here!
+    *do the document generation and see if it is all right. Don't rely only in unit tests.
+    *Add javadoc to new methods (or existing methods). 
+    *always write style code in a separate class. *ParagraphStyle.java* would be the one here. Test the paragraph content and style in the class *ParagraphTest*, by write unit test against *Paragraph.java* element. This way you show other devs how to use the element.
 
 
 
