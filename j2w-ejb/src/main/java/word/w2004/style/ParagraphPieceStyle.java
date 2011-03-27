@@ -22,6 +22,18 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     private String fontSize = "";
     private String bgColor = "";
 
+    private boolean caps = false;
+    private boolean doubleStrike = false;
+    private boolean emboss = false;
+    private boolean imprint = false;
+    private boolean outline = false;
+    private boolean shadow = false;
+    private boolean smallCaps = false;
+    private boolean strike = false;
+    private boolean subscript = false;
+    private boolean superscript = false;
+    private boolean vanish = false;
+
 
     @Override
     public String getNewContentWithStyle(String txt) {
@@ -38,7 +50,85 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         doStyleFontSize(style);
         doStyleBgColor(style);
 
+        doStyleSubscript(style);
+        doStyleSuperscript(style);
+        doStyleStrike(style);
+        doStyleCaps(style);
+        doStyleSmallCaps(style);
+        doStyleDoubleStrike(style);
+        doStyleEmboss(style);
+        doStyleImprint(style);
+        doStyleOutline(style);
+        doStyleShadow(style);
+        doStyleVanish(style);
+        
         return doStyleReplacement(style, txt);
+    }
+
+    private void doStyleVanish(StringBuilder style) {
+        if (this.vanish){
+            style.append("\n            <w:vanish/>");
+        }
+    }
+
+    private void doStyleSmallCaps(StringBuilder style) {
+        if (this.smallCaps){
+            style.append("\n            <w:smallCaps/>");
+        }
+    }
+
+    private void doStyleShadow(StringBuilder style) {
+        if (this.shadow){
+            style.append("\n            <w:shadow/>");
+        }
+    }
+
+    private void doStyleOutline(StringBuilder style) {
+        if (this.outline){
+            style.append("\n            <w:outline/>");
+        }
+    }
+
+    private void doStyleImprint(StringBuilder style) {
+        if (this.imprint){
+            style.append("\n            <w:imprint/>");
+        }
+    }
+
+    private void doStyleEmboss(StringBuilder style) {
+        if (this.emboss){
+            style.append("\n            <w:emboss/>");
+        }
+    }
+
+    private void doStyleDoubleStrike(StringBuilder style) {
+        if (this.doubleStrike){
+            style.append("\n            <w:dstrike/>");
+        }
+    }
+
+    private void doStyleCaps(StringBuilder style) {
+        if (this.caps){
+            style.append("\n            <w:caps/>");
+        }
+    }
+
+    private void doStyleStrike(StringBuilder style) {
+        if (this.strike){
+            style.append("\n            <w:strike/>");
+        }
+    }
+
+    private void doStyleSuperscript(StringBuilder style) {
+        if (this.superscript){
+            style.append("\n            <w:vertAlign w:val=\"superscript\"/>");
+        }
+    }
+
+    private void doStyleSubscript(StringBuilder style) {
+        if (this.subscript) {
+            style.append("\n            <w:vertAlign w:val=\"subscript\"/>");
+        }
     }
 
     private void doStyleBgColor(StringBuilder style) {
@@ -262,5 +352,65 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         this.fontSize = Integer.parseInt(fontSize) * 2 + "" ;
         return this;
     }
+
+    /**
+     * It makes the value Capital case
+     * @return
+     */
+    public ParagraphPieceStyle caps() {
+        this.caps = true;
+        return this;
+    }
+    public ParagraphPieceStyle doubleStrike() {
+        this.doubleStrike = true;
+        return this;
+    }
+    public ParagraphPieceStyle emboss() {
+        this.emboss = true;
+        return this;
+    }
+    public ParagraphPieceStyle imprint() {
+        this.imprint = true;
+        return this;
+    }
+    public ParagraphPieceStyle outline() {
+        this.outline = true;
+        return this;
+    }
+    public ParagraphPieceStyle shadow() {
+        this.shadow = true;
+        return this;
+    }
+    
+    /**
+     * It makes capital case but with middle letters a bit smaller the the first one in the word
+     * @return
+     */
+    public ParagraphPieceStyle smallCaps() {
+        this.smallCaps = true;
+        return this;
+    }
+    public ParagraphPieceStyle strike() {
+        this.strike = true;
+        return this;
+    }
+    public ParagraphPieceStyle subscript() {
+        this.subscript = true;
+        return this;
+    }
+    public ParagraphPieceStyle superscript() {
+        this.superscript = true;
+        return this;
+    }
+    
+    /**
+     * It makes the text hidden or doesn't show it.  
+     * @return
+     */
+    public ParagraphPieceStyle vanish() {
+        this.vanish = true;
+        return this;
+    }
+    
 
 }

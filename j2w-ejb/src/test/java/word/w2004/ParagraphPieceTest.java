@@ -37,17 +37,21 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<*w:rPr>"));
     }
 
+    private void doBasicChecking(IElement par,  String value) {
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>" + value + "</w:t>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+    }
+    
     @Test
     public void testGetContentWithStyleALL() {
         IElement par = ParagraphPiece.with("piece01").withStyle().bold()
                 .italic().underline().fontSize("24")
                 .font(Font.COURIER).textColor("008000").create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+        doBasicChecking(par, "piece01");
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -69,12 +73,7 @@ public class ParagraphPieceTest extends Assert {
     public void testGetContentWithStyleBold() {
         IElement par = ParagraphPiece.with("piece01").withStyle().bold().create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+        doBasicChecking(par, "piece01");
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
@@ -98,12 +97,7 @@ public class ParagraphPieceTest extends Assert {
     public void testGetContentWithStyleItalic() {
         IElement par = ParagraphPiece.with("piece01").withStyle().italic().create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
@@ -129,13 +123,7 @@ public class ParagraphPieceTest extends Assert {
         IElement par = ParagraphPiece.with("piece01").withStyle()
                 .underline().create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
-
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -160,13 +148,7 @@ public class ParagraphPieceTest extends Assert {
         IElement par = ParagraphPiece.with("piece01").withStyle()
                 .font(Font.COURIER).create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
-
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -190,13 +172,7 @@ public class ParagraphPieceTest extends Assert {
         IElement par = ParagraphPiece.with("piece01").withStyle()
                 .textColor("008000").create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
-
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -219,13 +195,7 @@ public class ParagraphPieceTest extends Assert {
         IElement par = ParagraphPiece.with("piece01").withStyle()
                 .fontSize("24").create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
-
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -247,11 +217,7 @@ public class ParagraphPieceTest extends Assert {
         .bgColor("FFFF00")
         .create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:rPr>"));
+        doBasicChecking(par, "piece01");
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "FFFF00")); //Background Color
     }
@@ -264,11 +230,7 @@ public class ParagraphPieceTest extends Assert {
 
         IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW).create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
 
@@ -283,11 +245,7 @@ public class ParagraphPieceTest extends Assert {
          */
         IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_BOLD).create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-
+        doBasicChecking(par, "piece01");
 
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -301,12 +259,7 @@ public class ParagraphPieceTest extends Assert {
          */
         IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_ITALIC).create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-
+        doBasicChecking(par, "piece01");
 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
@@ -319,13 +272,8 @@ public class ParagraphPieceTest extends Assert {
          */
         IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_BOLD_ITALIC).create();
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
-        assertEquals(1,
-                TestUtils.regexCount(par.getContent(), "<w:t>piece01</w:t>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:rPr>"));
-
-
+        doBasicChecking(par, "piece01");
+        
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
     }
@@ -337,5 +285,84 @@ public class ParagraphPieceTest extends Assert {
 
         assertTrue(p1.getContent().equals(p2.getContent()));
     }
+    
+    
+    @Test
+    public void testSubscript() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().subscript().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:vertAlign w:val=\"subscript\"/>"));
+    }
+    
+    @Test
+    public void testSuperscript() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().superscript().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:vertAlign w:val=\"superscript\"/>"));
+    }
+    
+    @Test
+    public void testCaps() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().caps().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:caps/>"));
+    }
+    
+    @Test
+    public void testDoubleStrike() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().doubleStrike().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:dstrike/>"));
+    }
+    
+    @Test
+    public void testStrike() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().strike().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:strike/>"));
+    }
+    
+    @Test
+    public void testEmboss() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().emboss().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:emboss/>"));
+    }
+    
+    @Test
+    public void testImprint() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().imprint().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:imprint/>"));
+    }
+    
+    @Test
+    public void testOutline() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().outline().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:outline/>"));
+    }
+    
+    @Test
+    public void testShadow() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().shadow().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:shadow/>"));
+    }
+
+    @Test
+    public void testSmallCaps() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().smallCaps().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:smallCaps/>"));
+    }
+    
+    @Test
+    public void testVanish() {
+        IElement par = ParagraphPiece.with("piece01").withStyle().vanish().create();
+        doBasicChecking(par, "piece01");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:vanish/>"));
+    }
+    
 
 }

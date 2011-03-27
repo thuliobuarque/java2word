@@ -7,12 +7,9 @@ import word.api.interfaces.IFooter;
 import word.api.interfaces.IHeader;
 
 /**
- * 
+ * This is the main class in this API. It represents the MS Word document.
  * @author leonardo_correa
- *	W2004 W2004 W2004 W2004 W2004 W2004 W2004 W2004 	
- *	W2004 W2004 W2004 W2004 W2004 W2004 W2004 W2004
- *	W2004 W2004 W2004 W2004 W2004 W2004 W2004 W2004  
- *
+ * 
  */
 public class Document2004 implements IDocument, IElement{
 
