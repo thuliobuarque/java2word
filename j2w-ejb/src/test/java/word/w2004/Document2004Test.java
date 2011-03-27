@@ -454,7 +454,7 @@ public class Document2004Test extends Assert {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    //@Ignore
+    @Ignore
     @Test
     public void testFonts() {
         IDocument myDoc = new Document2004();
