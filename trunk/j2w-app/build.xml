@@ -142,7 +142,7 @@
 	</target>
 
 	  <tstamp>
-	      <format property="date_time" pattern="yyyyMMMyy"
+	      <format property="date_time" pattern="yyyyMMMdd"
 	              offset="-5" unit="hour"/>
 	  </tstamp>
 
