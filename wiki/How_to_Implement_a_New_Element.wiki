@@ -6,9 +6,8 @@ This document gives you the guidelines how to implement a new element/component.
 
 This document gives you the guidelines how to implement a new element/component for the Java2Word project.
 
-_For this java2word library, "Paragraph" is not an Element - it is Style. Consider this only a simple demonstration how to implement something in this framework.
+_Consider this only a simple demonstration how to implement something new in this framework._
 
-_
 
 = Details =
 
