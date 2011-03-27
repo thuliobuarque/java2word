@@ -22,8 +22,7 @@ public class Document2004 implements IDocument, IElement{
 	private IBody body = new Body2004();
 	private boolean isLandscape = false;
     
-
-
+	//Document properties <o:DocumentProperties>
     private String title = "Java2word title";
 	private String subject = "Created by Java2word library";  
 	private String keywords = "java2word, word document";
@@ -33,48 +32,6 @@ public class Document2004 implements IDocument, IElement{
 	private String lastAuthor = "Leonardo Correa";
 	private String manager = "Leonardo Correa";
 	private String company = "Java2word, coding for fun!";  	
-	
-	
-	public Document2004 title(String title) {
-	    this.title = title;
-	    return this;
-	}
-	public Document2004 subject(String subject) {
-	    this.subject = subject;
-	    return this;
-	}
-    public Document2004 keywords(String keywords) {
-        this.keywords = keywords;
-        return this;
-    }
-    public Document2004 description(String description) {
-        this.description = description;
-        return this;
-    }
-    public Document2004 category(String category) {
-        this.category = category;
-        return this;
-    }
-    public Document2004 author(String author) {
-        this.author = author;
-        return this;
-    }
-    public Document2004 lastAuthor(String lastAuthor) {
-        this.lastAuthor = lastAuthor;
-        return this;
-    }
-    public Document2004 manager(String manager) {
-        this.manager = manager;
-        return this;
-    }
-    public Document2004 company(String company) {
-        this.company = company;
-        return this;
-    }
-
-    
-	
-	
 	
 	
 	public String getUri() {
@@ -113,6 +70,10 @@ public class Document2004 implements IDocument, IElement{
 		return finalString;
 	}
 	
+	/**
+	 * Returns the Document head that contains: DocumentProperties, fonts and styles
+	 * @return 
+	 */
 	private Object getDocumentHead() {
 	    String docHead = DocumentHead;
 	    
@@ -171,13 +132,48 @@ public class Document2004 implements IDocument, IElement{
 	public void addEle(String str) {
 		this.getBody().addEle(str);
 	}
-
 	
 	@Override
 	public String toString() {	 
 	    return this.getContent();
 	}
 	
+    public Document2004 title(String title) {
+        this.title = title;
+        return this;
+    }
+    public Document2004 subject(String subject) {
+        this.subject = subject;
+        return this;
+    }
+    public Document2004 keywords(String keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+    public Document2004 description(String description) {
+        this.description = description;
+        return this;
+    }
+    public Document2004 category(String category) {
+        this.category = category;
+        return this;
+    }
+    public Document2004 author(String author) {
+        this.author = author;
+        return this;
+    }
+    public Document2004 lastAuthor(String lastAuthor) {
+        this.lastAuthor = lastAuthor;
+        return this;
+    }
+    public Document2004 manager(String manager) {
+        this.manager = manager;
+        return this;
+    }
+    public Document2004 company(String company) {
+        this.company = company;
+        return this;
+    }	
 	
 	//######### Constants, variables #######
 	
