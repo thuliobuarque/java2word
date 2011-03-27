@@ -131,27 +131,55 @@ Time to create your *Unit Tests* (or TDD, up to you).
 }}}
   
 
-  Not finished yet, you need to know if your new element really works in a real Microsoft Word document.
-
-  * In your unit test, create a Document2004
-  * Add one paragraph with some bold text. Eg.: 
+  Not finished yet, you need to know if your new element really works in a real Microsoft Word document. Create another dummy and temporary test in Document2004Test.java. Eg.:
 
 {{{
-   IDocument myDoc = new Document2004();
-   myDoc.getBody().addEle( new Paragraph2004("Leonardo" + new Bold2004("Correa")) );
+    @Test
+    public void testParagraph() {
+        IDocument myDoc = new Document2004();
+        myDoc.addEle(Paragraph.with("Leonardo").create()) );
+        
+    }
 }}}
 
-  * Print out (just for a while) the *myDoc.getContent()*, copy the result to your clip board.
+You have two options now
+
+  * Option 1) j2w-webtest
+    * Print out the content of the document: System.out.println(myDoc.getContent()); 
+    * Copy this value to clip board
+    * Deploy j2w-webtest in your tomcat
+    * access the url localhost:8080/j2w-webtest
+    * paste the content and click in "get Word Document"
+    * Open the file and see if makes sense.
 
 
-  * Go to: http://localhost:8080/j2w (which is part of your development environment) and paste in the textarea.
- 
-  * Click in the button to download, save the *whatever.doc* anywhere in your local machine.
+  * Option 2) Generate Document (don't need j2w-webtest at all)
+    * in your unit test, add the method: TestUtils.createLocalDoc(myDoc.getContent());
 
-  * Open the document with Microsoft Word 2003+ and see your bold text!
+    * This should create the document in yout Desktop (just change the default directory to your machine). 
+    * Open the file and see if makes sense.
+
+I use option 2 most times but option 1 is quite useful when you are creating a new element. 
+
+  * Important thing
+Normally at work we don't have time to write the best code. We have to delivery regardless of the quality. Other thing at works is we always have to use old or obsolete stack of technology. 
+
+*Java2word is where I can use whatever I fucking want, however I fucking want!*
+
+There is no pressure or dead line to meet. We can try to use the latest and the best of everything.
 
 
-_Remember to run the *"Code Metrics"* task in Ant and see the *Cobertura* report. Your code should have at least 90% test coverage. Please refer to *"Code quality*, guidelines" Section in the main page of this project_
+
+  * Code Metrics 
+ Take a look at the ANT file or run "ant -p" to see the list of tasks. I add the build.xml to my eclipse and run it in one click.
+
+    * *Cobertura*: Coverage test should be almost 100%
+    * *Cyclomatic Complexity*: You can see that all methods are small. The highest CC was 7. I don't recomend anything higher than 7 in this API.
+    * *PMD, CPD, Findbugs*: you should occasionally have a look if there is any issue.
+    * *Checkstyle*: I don't care too much about this one.
+
+
+
 
 This was just a demonstration how to create a new element in this API. I haven't implemented this yet.  
 
