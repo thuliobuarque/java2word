@@ -222,7 +222,7 @@ public class Document2004Test extends Assert {
         assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
     }
 
-    @Ignore
+    //@Ignore
     // ignored by default just to not create files in your system or break the
     // build...
     @Test
@@ -300,13 +300,30 @@ public class Document2004Test extends Assert {
                                 .with("This is the SAME as the above line but with 'Smart' Bold/Italic ")
                                 .withStyle().font(Font.COURIER_BOLD_ITALIC)
                                 .create()).create());
-        myDoc.addEle(BreakLine.times(2).create());
+        myDoc.addEle(BreakLine.times(1).create());
 
         // font size
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("No size")
                 .create(), ParagraphPiece.with("I am size 24.").withStyle()
                 .fontSize("24").create()));
 
+        //ParagraphPiece and other format/styles
+        myDoc.addEle(BreakLine.times(1).create());
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("New ParagraphPiece styles have been implemented. Here they are:").withStyle().fontSize("14").create()));
+        
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Subscript").withStyle().subscript().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Superscript").withStyle().superscript().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Strike").withStyle().strike().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Caps").withStyle().caps().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("SmallCaps").withStyle().smallCaps().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("DoubleStrike").withStyle().doubleStrike().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Emboss").withStyle().emboss().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Imprint").withStyle().imprint().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Outline").withStyle().outline().create()));
+        myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Shadow").withStyle().shadow().create()));
+        myDoc.addEle(BreakLine.times(2).create());
+        
+        
         // Document Header and Footer
         myDoc.addEle(BreakLine.times(2).create());
         myDoc.addEle(Heading2.with("===== Document Header and Footer ======")
@@ -437,7 +454,7 @@ public class Document2004Test extends Assert {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void testFonts() {
         IDocument myDoc = new Document2004();
@@ -445,11 +462,27 @@ public class Document2004Test extends Assert {
 
         myDoc.addEle(Paragraph.withPieces(
                 ParagraphPiece.with(
-                        "Leonardo Pinho Correaxxx - L’Université de Nantes")
+                "Normal: ").create(),
+                ParagraphPiece.with(
+                        "Leonardo Pinho Correa")
+                        .withStyle().caps()
                         .create()).create());
 
         System.out.println(myDoc.getContent());
-
+        /*
+        doStyleSubscript(style);
+        doStyleSuperscript(style);
+        doStyleStrike(style);
+        doStyleCaps(style);
+        doStyleSmallCaps(style);
+        doStyleDoubleStrike(style);
+        doStyleEmboss(style);
+        doStyleImprint(style);
+        doStyleOutline(style);
+        doStyleShadow(style);
+        doStyleVanish(style);
+        */
+        
         TestUtils.createLocalDoc(myDoc.getContent());
 
     }
