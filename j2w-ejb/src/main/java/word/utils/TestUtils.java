@@ -1,10 +1,15 @@
 package word.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.sun.org.apache.xpath.internal.operations.Equals;
 
 public class TestUtils {
 
@@ -23,8 +28,32 @@ public class TestUtils {
 		return total;
 	}
 	
-    public static void createLocalDoc(String myDoc) {
-        File fileObj = new File("/home/leonardo/Desktop/Java2word_allInOne.doc");
+	public static void createLocalDoc(String myDoc) {
+	    createLocalDocument(myDoc, "Java2word_allInOne.doc");
+	}
+	
+	public static void createLocalDoc(String myDoc, String fileName) {
+	    if("".equals(fileName) || fileName == null) {
+	        fileName = "Java2word_allInOne.doc";
+	    }
+	    createLocalDocument(myDoc, fileName);
+	}
+	
+    public static void createLocalDocument(String myDoc, String fileName) {
+        //Property prop = new Property("");
+        Properties prop = new Properties();
+        String tmpDocs = "";
+        try {            
+            prop.load(new FileInputStream("build.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        tmpDocs = (String) prop.get("tmp.docs.dir");
+        
+        //System.out.println(tmpDocs);
+        //"/home/leonardo/Desktop/Java2word_allInOne.doc"
+        
+        File fileObj = new File(tmpDocs + "/" + fileName);
 
         PrintWriter writer = null;
         try {
