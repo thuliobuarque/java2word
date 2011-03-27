@@ -454,7 +454,7 @@ public class Document2004Test extends Assert {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void testFonts() {
         IDocument myDoc = new Document2004();
@@ -468,7 +468,7 @@ public class Document2004Test extends Assert {
                         .withStyle().caps()
                         .create()).create());
 
-        System.out.println(myDoc.getContent());
+        //System.out.println(myDoc.getContent());
         /*
         doStyleSubscript(style);
         doStyleSuperscript(style);

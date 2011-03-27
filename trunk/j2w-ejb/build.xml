@@ -5,9 +5,9 @@
 	<!-- set global properties for this build -->
 	<property file="build.properties" />
 
-	<property name="jboss.dir" value="" />
+	<property name="tmp.docs.dir" value="" />
 	<!--workaround when prop hasn't been set up -->
-	<property name="jboss.dir" value="${jboss.dir}" />
+	<property name="tmp.docs.dir" value="${tmp.docs.dir}" />
 	<property name="root.dir" value="${root.dir}" />
 
 	<property name="pom.file" value="pom.xml" />
@@ -33,13 +33,13 @@
 			</condition>
 		</fail>
 
-		<!--
-		<fail message="ERROR: I could NOT find the property 'jboss.dir' in the build.properties!" taskname="BAD_jbossdir">
+		
+		<fail message="ERROR: I could NOT find the property 'tmp.docs.dir' in the build.properties!" taskname="BAD_tmp.docs.dir">
 			<condition>
-				<equals arg1="${jboss.dir}" arg2="" />
+				<equals arg1="${tmp.docs.dir}" arg2="" />
 			</condition>
 		</fail>
-		-->
+		
 		<echo>### Configuration looks good... well done man!</echo>
 	</target>
 

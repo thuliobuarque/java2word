@@ -1,19 +1,9 @@
 # Copy this file into build.properties and customize it
 # Don't forget to ignore your new build.properties when you commit any code 
 
-#### jboss.dir: it is the deploy folder
-#### root.dir: name of the main project. App is the main and compiles the other ones
 
-#ATENTION: This property is no longer needed because there is no deployment anymore...
-#:TODO: change this property name to app.deploy.dir: it can be jBoss(jboss_homeA/server/default/deploy) or Tomcat(tomcat_home/webapps)
-#jboss.dir=/home/leonardo/aajava/
-jboss.dir=/Applications/jboss-4.2.3.GA/server/default/deploy
-
-#deprecated
-root.dir=../j2w-app
-
-
- 
+# for unit tests. No slash at the end
+tmp.docs=/home/leonardo/Desktop 
 
 # If for any reason you see this message (linux only...): 
 # Cannot run program "mvn": java.io.IOException
