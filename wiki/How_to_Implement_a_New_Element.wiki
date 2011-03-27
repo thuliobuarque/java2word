@@ -154,9 +154,10 @@ You have two options now
 
 
   * Option 2) Generate Document (don't need j2w-webtest at all)
-    * in your unit test, add the method: TestUtils.createLocalDoc(myDoc.getContent());
-
-    * This should create the document in yout Desktop (just change the default directory to your machine). 
+    * in your unit test, add the method: *TestUtils.createLocalDoc(myDoc.getContent());*
+    * Copy the file *build.properties.EXAMPLE* to *build.properties*. Add it to SVN ignore list
+    * change the property "tmp.docs.dir" to any directory in your machine (Desktop or whatever)
+    * This should create the document in your Desktop
     * Open the file and see if makes sense.
 
 I use option 2 most times but option 1 is quite useful when you are creating a new element. 
@@ -179,9 +180,14 @@ There is no pressure or dead line to meet. We can try to use the latest and the 
     * *Checkstyle*: I don't care too much about this one.
 
 
+* Develpment patterns in Java2word
+    * don't use any deprecated method in the API.
+    * always create code examples or unit tests using fluent API.
+    * look at other elements to have an idea about the pattern in the project
+    * unit tests, cyclomatic complexity matter here!
+    * do the document generation and see if it is all right. Don't rely only in unit tests.
+    * Add javadoc to new methods (or existing methods). 
 
-
-This was just a demonstration how to create a new element in this API. I haven't implemented this yet.  
 
 
 
