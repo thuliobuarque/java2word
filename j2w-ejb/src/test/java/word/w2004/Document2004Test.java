@@ -222,7 +222,7 @@ public class Document2004Test extends Assert {
         assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
     }
 
-    //@Ignore
+    @Ignore
     // ignored by default just to not create files in your system or break the
     // build...
     @Test
@@ -454,7 +454,7 @@ public class Document2004Test extends Assert {
         // System.out.println( Utils.pretty(txt) );
     }
 
-    //@Ignore
+    @Ignore
     @Test
     public void testFonts() {
         IDocument myDoc = new Document2004();
