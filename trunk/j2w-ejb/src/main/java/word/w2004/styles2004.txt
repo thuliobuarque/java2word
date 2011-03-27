@@ -1,3 +1,7 @@
+# I think no one is using this...
+#TODO: to be removed
+#Deprecated
+
     <o:DocumentProperties>
         <o:Author>Leonardo Correa</o:Author>
         <o:LastAuthor>Leonardo Correa</o:LastAuthor>
