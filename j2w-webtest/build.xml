@@ -13,9 +13,12 @@
   <property name="war.file" value="j2w-webtest" />
   <property name="war.exploded.dir" value="j2w-webtest" />
 
+  <property name="mvn_full_path" value="" />
+  <property name="mvn_full_path" value="${mvn_full_path}" />
+
   <target name="build">
     <echo>${root.dir}/${pom.file}</echo>
-    <exec executable="mvn">
+    <exec executable="${mvn_full_path}mvn">
       <arg value="clean" />
       <arg value="install" />
       <arg value="-DskipTests=false" />
