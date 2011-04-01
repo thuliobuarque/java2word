@@ -43,21 +43,21 @@ public class Utils_Test extends Assert {
         assertEquals(1, TestUtils.regexCount(res, "FileNotFoundException"));
     }
 
-    @Test
-    public void prettyTest01() {
-        String str = Utils.pretty("<leo><nada></nada></leo>");
-        assertTrue(str.contains("<leo>\n    <nada/>"));
-        assertEquals(2, TestUtils.regexCount(str, "<*leo>"));
-        assertEquals(1, TestUtils.regexCount(str, "<nada/>"));
-    }
+//    @Test
+//    public void prettyTest01() {
+//        String str = Utils.pretty("<leo><nada></nada></leo>");
+//        assertTrue(str.contains("<leo>\n    <nada/>"));
+//        assertEquals(2, TestUtils.regexCount(str, "<*leo>"));
+//        assertEquals(1, TestUtils.regexCount(str, "<nada/>"));
+//    }
 
-    @Test(expected = RuntimeException.class)
-    public void prettyTestException() {
-        String crap = "<leo><nada></leo>";
-
-        @SuppressWarnings("unused")
-        String str = Utils.pretty(crap);
-        assertEquals(crap, crap); // the same crap...
-    }
+//    @Test(expected = RuntimeException.class)
+//    public void prettyTestException() {
+//        String crap = "<leo><nada></leo>";
+//
+//        @SuppressWarnings("unused")
+//        String str = Utils.pretty(crap);
+//        assertEquals(crap, crap); // the same crap...
+//    }
 
 }
