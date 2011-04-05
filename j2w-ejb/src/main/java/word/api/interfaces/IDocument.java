@@ -1,12 +1,13 @@
 package word.api.interfaces;
 
 import word.w2004.Document2004;
+import word.w2004.Document2004.Encoding;
 
 /**
  * The main interface for documents MS Word 2004+.
- * 
+ *
  * @author leonardo
- * 
+ *
  */
 public interface IDocument extends IHasElement {
 
@@ -90,5 +91,11 @@ public interface IDocument extends IHasElement {
      */
     public Document2004 company(String company);
 
-    
+    /**
+     * @param encoding The encoding you want to use in your document. UTF-8 or ISO8859-1, according to the Enum @Encoding
+     * @return
+     */
+    public Document2004 encoding(Encoding encoding);
+
+
 }

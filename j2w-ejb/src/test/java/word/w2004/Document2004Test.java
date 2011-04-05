@@ -12,6 +12,7 @@ import org.junit.Test;
 import word.api.interfaces.IDocument;
 import word.utils.TestUtils;
 import word.utils.Utils;
+import word.w2004.Document2004.Encoding;
 import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
@@ -27,7 +28,7 @@ import word.w2004.style.HeadingStyle.Align;
 
 /**
  * @author leonardo_correa
- * 
+ *
  */
 public class Document2004Test extends Assert {
 
@@ -58,6 +59,26 @@ public class Document2004Test extends Assert {
 
         assertEquals("Uri is not as expected: ", expected, myDoc.getUri());
     }
+
+    @Test
+    public void testDefaultEncodingUTF() {
+        IDocument myDoc = new Document2004();
+        assertEquals(1, TestUtils.regexCount(myDoc.getContent(), "encoding=\"UTF-8\""));
+
+        IDocument myDoc02 = new Document2004();
+        myDoc02.encoding(Encoding.UTF_8);
+        assertEquals(1, TestUtils.regexCount(myDoc02.getContent(), "encoding=\"UTF-8\""));
+    }
+
+    @Test
+    public void testDefaultEncodingISO8859_1() {
+        IDocument myDoc = new Document2004();
+        myDoc.encoding(Encoding.ISO8859_1);
+
+        System.out.println(myDoc.getContent());
+        assertEquals(1, TestUtils.regexCount(myDoc.getContent(), "encoding=\"ISO8859-1\""));
+    }
+
 
     @Test
     public void testDocHeadWithDefaults() {
@@ -310,7 +331,7 @@ public class Document2004Test extends Assert {
         //ParagraphPiece and other format/styles
         myDoc.addEle(BreakLine.times(1).create());
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("New ParagraphPiece styles have been implemented. Here they are:").withStyle().fontSize("14").create()));
-        
+
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Subscript").withStyle().subscript().create()));
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Superscript").withStyle().superscript().create()));
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Strike").withStyle().strike().create()));
@@ -322,8 +343,8 @@ public class Document2004Test extends Assert {
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Outline").withStyle().outline().create()));
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Shadow").withStyle().shadow().create()));
         myDoc.addEle(BreakLine.times(2).create());
-        
-        
+
+
         // Document Header and Footer
         myDoc.addEle(BreakLine.times(2).create());
         myDoc.addEle(Heading2.with("===== Document Header and Footer ======")
@@ -482,7 +503,7 @@ public class Document2004Test extends Assert {
         doStyleShadow(style);
         doStyleVanish(style);
         */
-        
+
         TestUtils.createLocalDoc(myDoc.getContent());
 
     }
