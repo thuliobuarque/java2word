@@ -75,7 +75,6 @@ public class Document2004Test extends Assert {
         IDocument myDoc = new Document2004();
         myDoc.encoding(Encoding.ISO8859_1);
 
-        System.out.println(myDoc.getContent());
         assertEquals(1, TestUtils.regexCount(myDoc.getContent(), "encoding=\"ISO8859-1\""));
     }
 
