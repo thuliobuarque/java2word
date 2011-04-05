@@ -258,8 +258,9 @@ public class Document2004Test extends Assert {
         }
 
         IDocument myDoc = new Document2004();
-        // myDoc.setPageOrientationLandscape();// default is Portrait be can be
-        // changed.
+        // myDoc.setPageOrientationLandscape();
+        // default is Portrait be can be changed.
+        myDoc.encoding(Encoding.UTF_8); //or ISO8859-1. Default is UTF-8
 
         myDoc.addEle(BreakLine.times(1).create()); // this is one breakline
 
