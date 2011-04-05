@@ -9,155 +9,177 @@ import word.api.interfaces.IHeader;
 /**
  * This is the main class in this API. It represents the MS Word document.
  * @author leonardo_correa
- * 
+ *
  */
 public class Document2004 implements IDocument, IElement{
 
     private boolean hasBeenCalledBefore = false; // if getContent has already been called, I cached the result for future invocations
-    
-	private StringBuilder txt = new StringBuilder();
-	private IBody body = new Body2004();
-	private boolean isLandscape = false;
-    
-	//Document properties <o:DocumentProperties>
+
+    private StringBuilder txt = new StringBuilder();
+    private IBody body = new Body2004();
+    private boolean isLandscape = false;
+
+    //Document properties <o:DocumentProperties>
     private String title = "Java2word title";
-	private String subject = "Created by Java2word library";  
-	private String keywords = "java2word, word document";
-	private String description = "";    
-	private String category = "";            
-	private String author = "Leonardo Correa";
-	private String lastAuthor = "Leonardo Correa";
-	private String manager = "Leonardo Correa";
-	private String company = "Java2word, coding for fun!";  	
-	
+    private String subject = "Created by Java2word library";
+    private String keywords = "java2word, word document";
+    private String description = "";
+    private String category = "";
+    private String author = "Leonardo Correa";
+    private String lastAuthor = "Leonardo Correa";
+    private String manager = "Leonardo Correa";
+    private String company = "Java2word, coding for fun!";
 
-	public String getContent() {
-		if(hasBeenCalledBefore ){
-			return txt.toString();	
-		}else{
-			hasBeenCalledBefore = true;
-		}
-		txt.append(this.getUri());
-		txt.append(getDocumentHead());
+    private Encoding encoding = Encoding.UTF_8;
 
-		txt.append(this.getBody().getContent());
-		
-		txt.append("\n</w:wordDocument>");
-		
-		String finalString = setUpPageOrientation(txt.toString());
-		
-		return finalString;
-	}
-	
-	/**
-	 * Returns the Document head that contains: DocumentProperties, fonts and styles
-	 * @return 
-	 */
-	private Object getDocumentHead() {
-	    String docHead = DocumentHead;
-	    
-	    // replace properties place holder
-	    docHead = docHead.replace("{title}", title);
-	    docHead = docHead.replace("{subject}", subject);
-	    docHead = docHead.replace("{keywords}", keywords);
-	    docHead = docHead.replace("{description}", description);
-	    docHead = docHead.replace("{category}", category);
-	    docHead = docHead.replace("{author}", author);
-	    docHead = docHead.replace("{lastAuthor}", lastAuthor);
-	    docHead = docHead.replace("{manager}", manager);
-	    docHead = docHead.replace("{company}", company);
-	    
+    @Override
+    public String getContent() {
+        if(hasBeenCalledBefore ){
+            return txt.toString();
+        }else{
+            hasBeenCalledBefore = true;
+        }
+        txt.append(this.getUri());
+        txt.append(getDocumentHead());
+
+        txt.append(this.getBody().getContent());
+
+        txt.append("\n</w:wordDocument>");
+
+        String finalString = setUpPageOrientation(txt.toString());
+
+        return finalString;
+    }
+
+    /**
+     * Returns the Document head that contains: DocumentProperties, fonts and styles
+     * @return
+     */
+    private Object getDocumentHead() {
+        String docHead = DocumentHead;
+
+        // replace properties place holder
+        docHead = docHead.replace("{title}", title);
+        docHead = docHead.replace("{subject}", subject);
+        docHead = docHead.replace("{keywords}", keywords);
+        docHead = docHead.replace("{description}", description);
+        docHead = docHead.replace("{category}", category);
+        docHead = docHead.replace("{author}", author);
+        docHead = docHead.replace("{lastAuthor}", lastAuthor);
+        docHead = docHead.replace("{manager}", manager);
+        docHead = docHead.replace("{company}", company);
+
         return docHead;
     }
 
     private String setUpPageOrientation(String txt) {
-        if(this.isLandscape) {
+        if(isLandscape) {
             String orientation = "    <w:sectPr wsp:rsidR=\"00F04FB2\" wsp:rsidSect=\"00146B2A\">\n"
                 + "      <w:pgSz w:w=\"16834\" w:h=\"11904\" w:orient=\"landscape\"/>\n"
                 + "      <w:pgMar w:top=\"1800\" w:right=\"1440\" w:bottom=\"1800\" w:left=\"1440\" w:header=\"708\" w:footer=\"708\" w:gutter=\"0\"/>\n"
                 + "      <w:cols w:space=\"708\"/>\n" + "    </w:sectPr>";
-            txt = txt.replace("</w:body>", orientation + "\n</w:body>");  
+            txt = txt.replace("</w:body>", orientation + "\n</w:body>");
         }
         return txt;
-	}
-	
-	public void setPageOrientationLandscape() {
-	    this.isLandscape = true;
-	}
-	
-	//### Getters and Setters
-	public IBody getBody() {
-		return this.body;
-	}
-	public IFooter getFooter() {//forward it to the body
-		return this.getBody().getFooter();
-	}
-	public IHeader getHeader() {
-		return this.getBody().getHeader(); //forward it to the body
-	}
+    }
 
-	/**
-	 * This is an alias to 'getBody().addEle' 
-	 */
-	@Override
-	public void addEle(IElement e) {
-		this.getBody().addEle(e);
-	}
+    @Override
+    public void setPageOrientationLandscape() {
+        isLandscape = true;
+    }
 
-	/**
-	 * This is an alias to 'getBody().addEle' 
-	 */
-	@Override
-	public void addEle(String str) {
-		this.getBody().addEle(str);
-	}
-	
-	@Override
-	public String toString() {	 
-	    return this.getContent();
-	}
-	
+    //### Getters and Setters
+    @Override
+    public IBody getBody() {
+        return body;
+    }
+    @Override
+    public IFooter getFooter() {//forward it to the body
+        return this.getBody().getFooter();
+    }
+    @Override
+    public IHeader getHeader() {
+        return this.getBody().getHeader(); //forward it to the body
+    }
+
+    /**
+     * This is an alias to 'getBody().addEle'
+     */
+    @Override
+    public void addEle(IElement e) {
+        this.getBody().addEle(e);
+    }
+
+    /**
+     * This is an alias to 'getBody().addEle'
+     */
+    @Override
+    public void addEle(String str) {
+        this.getBody().addEle(str);
+    }
+
+    @Override
+    public String toString() {
+        return this.getContent();
+    }
+
+    @Override
     public Document2004 title(String title) {
         this.title = title;
         return this;
     }
+    @Override
     public Document2004 subject(String subject) {
         this.subject = subject;
         return this;
     }
+    @Override
     public Document2004 keywords(String keywords) {
         this.keywords = keywords;
         return this;
     }
+    @Override
     public Document2004 description(String description) {
         this.description = description;
         return this;
     }
+    @Override
     public Document2004 category(String category) {
         this.category = category;
         return this;
     }
+    @Override
     public Document2004 author(String author) {
         this.author = author;
         return this;
     }
+    @Override
     public Document2004 lastAuthor(String lastAuthor) {
         this.lastAuthor = lastAuthor;
         return this;
     }
+    @Override
     public Document2004 manager(String manager) {
         this.manager = manager;
         return this;
     }
+    @Override
     public Document2004 company(String company) {
         this.company = company;
         return this;
-    }	
-	
-	//######### Constants, variables #######
+    }
 
+    @Override
+    public Document2004 encoding(Encoding encoding) {
+        this.encoding = encoding;
+        return this;
+    }
+
+    //######### Constants, variables #######
+
+    @Override
     public String getUri() {
-        String uri = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> "
+        String uri = "<?xml version=\"1.0\" encoding=\"" + encoding.getValue() + "\" standalone=\"yes\"?> "
             + "<?mso-application progid=\"Word.Document\"?> "
             + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
             + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
@@ -173,18 +195,18 @@ public class Document2004 implements IDocument, IElement{
             + " <w:ignoreSubtree w:val=\"http://schemas.microsoft.com/office/word/2003/wordml/sp2\" /> ";
         return uri;
     }
-    
-    public static final String DocumentHead = 
+
+    public static final String DocumentHead =
         "    <o:DocumentProperties> "
       + "        <o:Title>{title}</o:Title> \n"
-      + "        <o:Subject>{subject}</o:Subject> \n"   
+      + "        <o:Subject>{subject}</o:Subject> \n"
       + "        <o:Keywords>{keywords}</o:Keywords> \n"
-      + "        <o:Description>{description}</o:Description> \n"    
-      + "        <o:Category>{category}</o:Category> \n"            
+      + "        <o:Description>{description}</o:Description> \n"
+      + "        <o:Category>{category}</o:Category> \n"
       + "        <o:Author>{author}</o:Author> "
       + "        <o:LastAuthor>{lastAuthor}</o:LastAuthor> "
       + "        <o:Manager>{manager}</o:Manager> \n"
-      + "        <o:Company>{company}</o:Company> \n"         
+      + "        <o:Company>{company}</o:Company> \n"
       + "        <o:Revision>1</o:Revision> "
       + "        <o:TotalTime>1</o:TotalTime> "
       + "        <o:Created>2010-07-16T07:18:00Z</o:Created> "
@@ -192,7 +214,7 @@ public class Document2004 implements IDocument, IElement{
       + "        <o:Pages>1</o:Pages> "
       + "        <o:Words>0</o:Words> "
       + "        <o:Characters>0</o:Characters> "
-      + "        <o:Bytes>1</o:Bytes> \n"         
+      + "        <o:Bytes>1</o:Bytes> \n"
       + "        <o:Lines>1</o:Lines> "
       + "        <o:Paragraphs>1</o:Paragraphs> "
       + "        <o:CharactersWithSpaces>0</o:CharactersWithSpaces> "
@@ -506,12 +528,12 @@ public class Document2004 implements IDocument, IElement{
       + "                <w:lang w:val=\"EN-AU\"/> "
       + "            </w:rPr> "
       + "        </w:style> "
-      
+
       //HEADER_N_FOOTER_STYLE
       +"        <w:style w:type=\"list\" w:default=\"on\" w:styleId=\"NoList\"> "
       +"            <w:name w:val=\"No List\"/> "
-      +"        </w:style> "      
-      
+      +"        </w:style> "
+
       + "        <w:style w:type=\"paragraph\" w:styleId=\"Header\"> "
       +"            <w:name w:val=\"header\"/> "
       +"            <wx:uiName wx:val=\"Header\"/> "
@@ -569,8 +591,8 @@ public class Document2004 implements IDocument, IElement{
       +"            <wx:uiName wx:val=\"Page Number\"/> "
       +"            <w:basedOn w:val=\"DefaultParagraphFont\"/> "
       +"            <w:rsid w:val=\"009F65CC\"/> "
-      +"        </w:style> "      
-      
+      +"        </w:style> "
+
       + "    </w:styles> "
       + "    <w:docPr> "
       + "        <w:view w:val=\"print\"/> "
@@ -602,7 +624,21 @@ public class Document2004 implements IDocument, IElement{
       + "        </wsp:rsids> "
       + "    </w:docPr> ";
 
-	
-	
-	
+
+    public enum Encoding{
+        UTF_8("UTF-8"), ISO8859_1("ISO8859-1");
+
+        private String value;
+
+        Encoding(String value){
+            this.value = value;
+        }
+
+        public String getValue(){
+            return value;
+        }
+
+    };
+
+
 }
