@@ -34,7 +34,7 @@ public class Utils_Test extends Assert {
     @Test
     public void readFileTest() {
         String res = Utils.readFile(Utils.getAppRoot() + "/src/test/resources/resources.properties");
-        assertEquals(1, TestUtils.regexCount(res, "reports.servlet.datasource.lookup"));
+        assertEquals(1, TestUtils.regexCount(res, "this is a regex test"));
     }
 
     @Test(expected = RuntimeException.class)
