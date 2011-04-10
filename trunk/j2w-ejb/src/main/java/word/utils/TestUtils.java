@@ -9,8 +9,6 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sun.org.apache.xpath.internal.operations.Equals;
-
 public class TestUtils {
 
 	public static int regexCount(String text, String regex){
