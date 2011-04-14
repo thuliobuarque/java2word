@@ -97,5 +97,12 @@ public interface IDocument extends IHasElement {
      */
     public Document2004 encoding(Encoding encoding);
 
+    /**
+     * It gives a chance to set up your own encoding by passing the final string ready to go.
+     * @param encoding
+     * @return
+     */
+    public Document2004 encoding(String encoding);
+
 
 }

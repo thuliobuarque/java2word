@@ -67,6 +67,7 @@ public class Document2004Test extends Assert {
 
         IDocument myDoc02 = new Document2004();
         myDoc02.encoding(Encoding.UTF_8);
+        
         assertEquals(1, TestUtils.regexCount(myDoc02.getContent(), "encoding=\"UTF-8\""));
     }
 
@@ -74,8 +75,16 @@ public class Document2004Test extends Assert {
     public void testDefaultEncodingISO8859_1() {
         IDocument myDoc = new Document2004();
         myDoc.encoding(Encoding.ISO8859_1);
-
+        
         assertEquals(1, TestUtils.regexCount(myDoc.getContent(), "encoding=\"ISO8859-1\""));
+    }
+    
+    @Test
+    public void testDefaultEncodingAsString() {
+        IDocument myDoc = new Document2004();
+        myDoc.encoding("windows-1251");
+
+        assertEquals(1, TestUtils.regexCount(myDoc.getContent(), "encoding=\"windows-1251\""));
     }
 
 
