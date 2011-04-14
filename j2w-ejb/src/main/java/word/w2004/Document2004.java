@@ -30,7 +30,7 @@ public class Document2004 implements IDocument, IElement{
     private String manager = "Leonardo Correa";
     private String company = "Java2word, coding for fun!";
 
-    private Encoding encoding = Encoding.UTF_8;
+    private String encoding = Encoding.UTF_8.getValue();
 
     @Override
     public String getContent() {
@@ -171,6 +171,12 @@ public class Document2004 implements IDocument, IElement{
 
     @Override
     public Document2004 encoding(Encoding encoding) {
+        this.encoding = encoding.getValue();
+        return this;
+    }
+    
+    @Override
+    public Document2004 encoding(String encoding) {
         this.encoding = encoding;
         return this;
     }
@@ -179,7 +185,7 @@ public class Document2004 implements IDocument, IElement{
 
     @Override
     public String getUri() {
-        String uri = "<?xml version=\"1.0\" encoding=\"" + encoding.getValue() + "\" standalone=\"yes\"?> "
+        String uri = "<?xml version=\"1.0\" encoding=\"" + this.encoding + "\" standalone=\"yes\"?> "
             + "<?mso-application progid=\"Word.Document\"?> "
             + "<w:wordDocument xmlns:aml=\"http://schemas.microsoft.com/aml/2001/core\" "
             + " xmlns:dt=\"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882\" xmlns:mo=\"http://schemas.microsoft.com/office/mac/office/2008/main\" "
@@ -626,7 +632,12 @@ public class Document2004 implements IDocument, IElement{
 
 
     public enum Encoding{
-        UTF_8("UTF-8"), ISO8859_1("ISO8859-1");
+        UTF_8("UTF-8"), 
+        ISO8859_1("ISO8859-1"),
+        /**
+         * This is suitable for cirrylic text
+         */
+        WINDOWS_1251("windows-1251");
 
         private String value;
 
