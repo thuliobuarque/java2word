@@ -136,8 +136,24 @@ public class ParagraphTest extends Assert {
     public void testFluentPiece(){
         ParagraphPiece pieces = ParagraphPiece.with("111");
         Paragraph p01 = Paragraph.withPieces(pieces);
-
+        
         basicParagraphCheckings(p01, "111", null);
+    }
+    
+    @Test
+    public void testBidiNoValue(){
+        ParagraphPiece pieces = ParagraphPiece.with("111");
+        Paragraph p01 = Paragraph.withPieces(pieces);
+        basicParagraphCheckings(p01, "111", null);
+        assertEquals(0, TestUtils.regexCount(p01.getContent(), "<w:lang w:bidi=\".*\" />"));
+    }
+    
+    @Test
+    public void testBidi(){
+        ParagraphPiece pieces = ParagraphPiece.with("111");
+        Paragraph p01 = (Paragraph) Paragraph.withPieces(pieces).withStyle().bidi("HE").create();        
+        basicParagraphCheckings(p01, "111", null);
+        assertEquals(1, TestUtils.regexCount(p01.getContent(), "<w:lang w:bidi=\"HE\" />"));
     }
 
     @Test

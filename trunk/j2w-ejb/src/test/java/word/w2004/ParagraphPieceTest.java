@@ -364,5 +364,23 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:vanish/>"));
     }
     
+    
+    @Test
+    public void testBidiNoValue(){
+        ParagraphPiece par = ParagraphPiece.with("111");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:r>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:t>111</w:t>"));
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "</w:r>"));
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:lang w:bidi=\".*\" />"));
+    }
+    
+    @Test
+    public void testBidi(){
+        ParagraphPiece par = ParagraphPiece.with("111").withStyle().bidi("HE").create();
+        doBasicChecking(par, "111");
+        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:lang w:bidi=\".*\" />"));
+        
+    }
+    
 
 }
