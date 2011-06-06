@@ -14,6 +14,7 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
 
     private Align align = Align.LEFT;
     private String bgColor = "";
+    private String bidi = "";
 
     public enum Align {
         CENTER("center"), LEFT("left"), RIGHT("right"), JUSTIFIED("both");
@@ -35,10 +36,15 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
         //There will be always align 'Left' by default
         doStyleAlignment(style);
         doStyleBgColor(style);
-
+        doStyleBidi(style);
+        
         return doStyleReplacement(style, txt);
     }
 
+
+    private void doStyleBidi(StringBuilder style) {
+        if (!this.bidi.equals("")) style.append("<w:lang w:bidi=\"" + this.bidi + "\" />");
+    }
 
     private void doStyleAlignment(StringBuilder style) {
         style.append("  <w:jc w:val=\"" + align.getValue()+ "\"/> \n    " + "       {styleText}\n   ");
@@ -102,5 +108,14 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
         this.align = align;
         return this;
     }
+    
+    /**
+     * Use this to specify special characters. Eg.: Hebreus, use HE
+     * @param style
+     */
+    public ParagraphStyle bidi(String bidi) {
+        this.bidi = bidi;
+        return this;
+    }    
 
 }

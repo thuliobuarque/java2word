@@ -33,6 +33,7 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
     private boolean subscript = false;
     private boolean superscript = false;
     private boolean vanish = false;
+    private String bidi = "";
 
 
     @Override
@@ -61,6 +62,8 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         doStyleOutline(style);
         doStyleShadow(style);
         doStyleVanish(style);
+        
+        doStyleBidi(style);
         
         return doStyleReplacement(style, txt);
     }
@@ -219,6 +222,9 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return txt;
     }
 
+    private void doStyleBidi(StringBuilder style) {
+        if (!this.bidi.equals("")) style.append("<w:lang w:bidi=\"" + this.bidi + "\" />");
+    }    
     
     // ### Getters and setters... ###
 
@@ -411,6 +417,14 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         this.vanish = true;
         return this;
     }
-    
+
+    /**
+     * Use this to specify special characters. Eg.: Hebreus, use HE
+     * @param style
+     */
+    public ParagraphPieceStyle bidi(String bidi) {
+        this.bidi = bidi;
+        return this;
+    }
 
 }
