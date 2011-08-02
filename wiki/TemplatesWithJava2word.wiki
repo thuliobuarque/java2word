@@ -21,7 +21,7 @@ Don't use "ph_company_name" because MS Word breaks it down in many "runs" and yo
 
 Now that you have your template, it is time to do the replacement.
 
-I will copy and past a code snippet from the class /j2w-ejb/src/test/java/word/w2004/template/TemplateTest.java:  
+I will copy and past a code snippet from the class /java2word/src/test/java/word/w2004/template/TemplateTest.java:  
 
 {{{
     @Test
