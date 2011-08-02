@@ -240,13 +240,6 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return (ParagraphPiece) super.create();
     }
 
-    @Deprecated
-    public ParagraphPieceStyle setBold(boolean bold) {
-        //this.bold = bold;
-        this.bold();
-        return this;
-    }
-    
     /**
      * Set the text to Bold
      * @return
@@ -256,23 +249,11 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return this;
     }
 
-    @Deprecated
-    public ParagraphPieceStyle setItalic(boolean italic) {
-        this.italic = italic;
-        return this;
-    }
-    
     public ParagraphPieceStyle italic() {
         this.italic = true;
         return this;
     }
 
-    @Deprecated
-    public ParagraphPieceStyle setUnderline(boolean underline) {
-        this.underline = underline;
-        return this;
-    }
-    
     public ParagraphPieceStyle underline() {
         this.underline = true;
         return this;
@@ -292,12 +273,6 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return this;
     }
     
-    @Deprecated
-    public ParagraphPieceStyle setTextColor(String textColor) {
-        this.textColor = textColor;
-        return this;
-    }
-
     /**
      * If you know the color code, just to straight to the point! Eg.: yellow:
      * FFFF00, black: 000000, red: FF0000, blue: 0000FF, green: 008000, etc...
@@ -312,12 +287,6 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return this;
     }
     
-    @Deprecated
-    public ParagraphPieceStyle setBgColor(String bgColor) {
-        this.bgColor = bgColor;
-        return this;
-    }
-
     /***
      * Set text color from the Enum @Color, case you don't know any hexa code color
      * @param color
@@ -325,18 +294,6 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
      */
     public ParagraphPieceStyle textColor(Color color) {
         this.color = color;
-        return this;
-    }
-    
-    @Deprecated
-    public ParagraphPieceStyle setTextColor(Color color) {
-        this.color = color;
-        return this;
-    }
-
-    @Deprecated
-    public ParagraphPieceStyle setFont(Font font) {
-        this.font = font;
         return this;
     }
     
@@ -353,12 +310,6 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         return this;
     }
     
-    @Deprecated
-    public ParagraphPieceStyle setFontSize(String fontSize) {
-        this.fontSize = Integer.parseInt(fontSize) * 2 + "" ;
-        return this;
-    }
-
     /**
      * It makes the value Capital case
      * @return

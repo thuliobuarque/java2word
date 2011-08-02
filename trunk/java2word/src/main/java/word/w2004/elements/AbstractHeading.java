@@ -5,15 +5,10 @@ import word.api.interfaces.IFluentElementStylable;
 import word.w2004.style.HeadingStyle;
 
 /**
- *
  * @author leonardo
- *
  * @param <E>
- *
  * Heading is utilized to organize documents the same way you do for web pages.
- *
  * You can use Heading1 to 3.
- *
  */
 public abstract class AbstractHeading<E> implements IElement,  IFluentElementStylable<E>{
 
@@ -56,18 +51,8 @@ public abstract class AbstractHeading<E> implements IElement,  IFluentElementSty
 
 
     // #### Getters and setters ####
-
     public String getTemplate() {
         return this.template.replace("{heading}", this.headingType);
-    }
-
-    @Deprecated
-    public HeadingStyle getStyle() {
-        return style;
-    }
-    @Deprecated
-    public void setStyle(HeadingStyle style) {
-        this.style = style;
     }
 
     //Implements the stylable and the heading classes reuse it

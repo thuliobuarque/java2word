@@ -31,13 +31,7 @@ public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>,
 	+"\n			<w:t>{value}</w:t>"
 	+"\n		</w:r>";
 
-	//Constructor
-	@Deprecated //to be removed
-	public ParagraphPiece(String value) {
-	    this.value = value;
-	}
-	
-	public ParagraphPiece() {
+	private ParagraphPiece() {
     }
 
     @Override
@@ -53,15 +47,6 @@ public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>,
 	}
 	
 	//### Gettets and Setters
-	@Deprecated //to be removed
-	public ParagraphPieceStyle getStyle() {
-		return style;
-	}
-	@Deprecated //to be removed
-	public void setStyle(ParagraphPieceStyle style) {
-		this.style = style;
-	}
-
 	@Override
 	public ParagraphPieceStyle withStyle() {
 		this.style.setElement(this);
@@ -69,9 +54,9 @@ public class ParagraphPiece implements IElement, IFluentElement<ParagraphPiece>,
 	}
 
 	public static ParagraphPiece with(String value) {
-	       ParagraphPiece par = new ParagraphPiece();
-	        par.value = value;
-	        return par;
+	    ParagraphPiece par = new ParagraphPiece();
+	    par.value = value;
+	    return par;
 		//return new ParagraphPiece(value);
 	}
 	

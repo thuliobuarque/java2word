@@ -144,8 +144,8 @@
 
 	
 	<target name="create_version">
-		<copy file="target/j2w-ejb-2.0.jar"
-			tofile="target/j2w-ejb-2.0_${date_time}.jar">
+		<copy file="target/java2word-3.0.jar"
+			tofile="target/java2word-3.0_${date_time}.jar">
 	    </copy>
 	</target>
 	

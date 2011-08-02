@@ -29,9 +29,8 @@ public class Image implements IImage, IFluentElement<Image> {
     private String height = ""; // to be able to set this to override default
                                 // size
     BufferedImage bufferedImage;
-
-    @Deprecated //Make it private later on
-    public Image(String path, ImageLocation imageLocation) {
+   
+    private Image(String path, ImageLocation imageLocation) {
         this.path = path;
         try {
             if (imageLocation.equals(ImageLocation.FULL_LOCAL_PATH)) {
