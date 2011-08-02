@@ -78,6 +78,13 @@ public class ParagraphTest extends Assert {
     }
 
     @Test
+    public void testParagraphIndentStyle() {
+        Paragraph p01 = (Paragraph) Paragraph.with("111").withStyle().indent(ParagraphStyle.Indent.ONE).create();
+        assertEquals(1, TestUtils.regexCount(p01.getContent(), "w:left=\"540\""));
+    }
+
+
+    @Test
     public void testPiecesOneWithStyle() {
         ParagraphPiece piece01 = ParagraphPiece.with("Piece01").withStyle().bold().italic().underline().create();
         Paragraph p01 = new Paragraph(piece01);
