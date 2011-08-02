@@ -5,15 +5,15 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <app.version>2.0</app.version>
+    <app.version>3.0</app.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>java2word</groupId>
-  <artifactId>j2w-ejb</artifactId>
+  <artifactId>java2word</artifactId>
   <version>${app.version}</version>
   <packaging>jar</packaging>
-  <name>j2w - EJB</name>
+  <name>Java2Word</name>
 
 
   <build>
