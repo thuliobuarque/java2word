@@ -13,6 +13,7 @@ import word.api.interfaces.ISuperStylin;
 public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
 
     private Align align = Align.LEFT;
+    private Indent indent = Indent.ZERO;
     private String bgColor = "";
     private String bidi = "";
 
@@ -29,12 +30,27 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
         }
     }
 
+    // Indent from the Left by some margin
+    public enum Indent {
+      ZERO(0), ONE(1), TWO(2), THREE(3);
+      private Integer value;
+
+      Indent(Integer times) {
+          this.value = 540 * times;
+      }
+
+      public String getValue() {
+        return Integer.toString(value);
+      }
+    }
+
     @Override
     public String getNewContentWithStyle(String txt) {
         StringBuilder style = new StringBuilder("");
 
         //There will be always align 'Left' by default
         doStyleAlignment(style);
+        doStyleIndent(style);
         doStyleBgColor(style);
         doStyleBidi(style);
         
@@ -48,6 +64,10 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
 
     private void doStyleAlignment(StringBuilder style) {
         style.append("  <w:jc w:val=\"" + align.getValue()+ "\"/> \n    " + "       {styleText}\n   ");
+    }
+
+    private void doStyleIndent(StringBuilder style) {
+        style.append("  <w:ind w:left=\"" + indent.getValue() + "\"/>\n    " + "       {styleText}\n   ");
     }
 
     private void doStyleBgColor(StringBuilder style) {
@@ -96,7 +116,18 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
         this.align = align;
         return this;
     }
-    
+
+    /**
+     * Sets indent for the whole paragraph
+     * @param Indent
+     * @return
+     */
+
+    public ParagraphStyle indent(Indent indent) {
+        this.indent = indent;
+        return this;
+    }
+
     /**
      * Use this to specify special characters. Eg.: Hebreus, use HE
      * @param style
