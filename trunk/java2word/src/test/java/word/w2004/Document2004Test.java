@@ -23,6 +23,7 @@ import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
 import word.w2004.elements.Table;
 import word.w2004.elements.tableElements.TableEle;
+import word.w2004.elements.HyperLink;
 import word.w2004.style.Font;
 import word.w2004.style.HeadingStyle.Align;
 
@@ -457,6 +458,11 @@ public class Document2004Test extends Assert {
                                 .with("* Leonardo Correa's goals (me) include futsal, soccer, friendly games, training games, so on... (but not playstation)")
                                 .withStyle().italic().create()).create());
 
+        // HyperLink
+        myDoc.addEle(BreakLine.times(1).create());
+
+        myDoc.addEle(HyperLink.with("http://ffffound.com", "FFFFound!").create());
+
         // PageBreaks
         myDoc.addEle(Heading2.with("===== PageBreak ======").create());
         myDoc.addEle(Paragraph.with("There is a PAGE BREAK after this line:")
@@ -465,10 +471,19 @@ public class Document2004Test extends Assert {
         myDoc.addEle(Paragraph.with("There is a PAGE BREAK before this line:")
                 .create());
 
+
+
         String myWord = myDoc.getContent();
 
         writer.println(myWord);
         writer.close();
+    }
+
+    @Test
+    public void testHyperlink() {
+        IDocument myDoc = new Document2004();
+        myDoc.addEle(HyperLink.with("http://ffffound.com", "FFFFound!").create());
+        TestUtils.createLocalDoc(myDoc.getContent());
     }
 
     @Ignore
