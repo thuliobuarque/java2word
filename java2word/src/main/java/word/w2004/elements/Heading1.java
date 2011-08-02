@@ -6,8 +6,7 @@ import word.w2004.style.HeadingStyle;
 public class Heading1 extends AbstractHeading<HeadingStyle> implements IFluentElement<Heading1> { // implements IFluentElementStylable<HeadingStyle>
 
     //Constructor
-    @Deprecated // Make it private - dont remove the constructor!
-    public Heading1(String value){
+    private Heading1(String value){
         super("Heading1", value);
     }
 

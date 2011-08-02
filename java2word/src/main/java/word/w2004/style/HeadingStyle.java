@@ -70,11 +70,6 @@ public class HeadingStyle extends AbstractStyle implements ISuperStylin{
 
 
     //### Getters  setters... ###
-    @Deprecated
-    public HeadingStyle setAlign(Align align) {
-        this.align = align;
-        return this;
-    }
 
     /**
      * Heading alignment
@@ -86,24 +81,12 @@ public class HeadingStyle extends AbstractStyle implements ISuperStylin{
         return this;
     }
 
-    @Deprecated
-    public HeadingStyle setBold(boolean bold) {
-        this.bold = bold;
-        return this;
-    }
-
     /**
      * Set Heading font to bold
      * @return fluent @HeadingStyle
      */
     public HeadingStyle bold() {
         bold = true;
-        return this;
-    }
-
-    @Deprecated
-    public HeadingStyle setItalic(boolean italic) {
-        this.italic = italic;
         return this;
     }
 

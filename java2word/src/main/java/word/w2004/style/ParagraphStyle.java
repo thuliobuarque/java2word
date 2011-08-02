@@ -87,18 +87,6 @@ public class ParagraphStyle extends AbstractStyle implements ISuperStylin{
         return this;
     }
     
-    @Deprecated
-    public ParagraphStyle setBgColor(String bgColor) {
-        this.bgColor = bgColor;
-        return this;
-    }
-
-    @Deprecated
-    public ParagraphStyle setAlign(Align align) {
-        this.align = align;
-        return this;
-    }
-    
     /**
      * Sets align for the whole paragraph
      * @param align

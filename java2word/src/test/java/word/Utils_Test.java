@@ -28,7 +28,7 @@ public class Utils_Test extends Assert {
     public void getAppRootTest() {
         Utils utils = new Utils();
         assertNotNull(utils);
-        assertTrue(Utils.getAppRoot().contains("/j2w-ejb"));
+        assertTrue(Utils.getAppRoot().contains("/java2word"));
     }
 
     @Test

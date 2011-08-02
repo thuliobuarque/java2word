@@ -25,23 +25,9 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
     private ParagraphStyle style = new ParagraphStyle();
     private List<Tab> tabs = new ArrayList<Tab>();
 
-    //Constructor
-    /**
-     *
-     * @param value
-     *
-     * String for a simple Paragraph. Assuming that you don't want to apply style on part of this text.
-     */
-    @Deprecated
-    public Paragraph(String value) {
-        if(value == null || "".equals(value)){
-            return;
-        }
-        ParagraphPiece piece = ParagraphPiece.with(value);
-        pieces = new ParagraphPiece[1];
-        pieces[0] = piece;
+    private Paragraph() {        
     }
-
+    
     /**
      *
      * @param pieces
@@ -97,15 +83,6 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
 
 
     //## Getters and Setters
-    @Deprecated
-    public ParagraphStyle getStyle() {
-        return style;
-    }
-    @Deprecated
-    public void setStyle(ParagraphStyle style) {
-        this.style = style;
-    }
-
     @Override
     public ParagraphStyle withStyle() {
         style.setElement(this);
