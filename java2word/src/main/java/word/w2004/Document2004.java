@@ -534,7 +534,16 @@ public class Document2004 implements IDocument, IElement{
       + "                <w:lang w:val=\"EN-AU\"/> "
       + "            </w:rPr> "
       + "        </w:style> "
-
+      //Hyperlink Style
+      + "        <w:style w:type=\"character\" w:styleId=\"Hyperlink\">j"
+      + "            <w:name w:val=\"Hyperlink\"/> "
+      + "            <w:basedOn w:val=\"DefaultParagraphFont\"/> "
+      + "            <w:rsid w:val=\"00A30FBB\"/> "
+      + "            <w:rPr> "
+      + "                <w:color w:val=\"0000FF\"/> "
+      + "                <w:u w:val=\"single\"/> "
+      + "            </w:rPr> "
+      + "        </w:style> "
       //HEADER_N_FOOTER_STYLE
       +"        <w:style w:type=\"list\" w:default=\"on\" w:styleId=\"NoList\"> "
       +"            <w:name w:val=\"No List\"/> "
