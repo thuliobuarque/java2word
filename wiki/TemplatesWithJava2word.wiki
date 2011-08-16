@@ -59,7 +59,7 @@ I will copy and past a code snippet from the class /java2word/src/test/java/word
     }
 
     /***
-     * Does the Place Holder replacement but LOGS when can not find place holder.
+     * Does the Place Holder replacement but LOGS when can not find place holder. This method is here to show how you could eventually replace placeholders. It is not in the library.
      * @param base Base String that contains the big XML with all placeholders
      * @param placeHolder the actual place holder
      * @param value value to take place
