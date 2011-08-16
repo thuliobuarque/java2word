@@ -57,6 +57,23 @@ I will copy and past a code snippet from the class /java2word/src/test/java/word
         
         TestUtils.createLocalDoc(xmlTemplate);        
     }
+
+    /***
+     * Does the Place Holder replacement but LOGS when can not find place holder.
+     * @param base Base String that contains the big XML with all placeholders
+     * @param placeHolder the actual place holder
+     * @param value value to take place
+     * @return the new string with place holder replaced
+     */
+    private String replacePh(String base, String placeHolder, String value) {
+        if(!base.contains(placeHolder)) {
+            //don't want to use log now because I want to keep it simple...
+            System.out.println("### WARN: couldn't find the place holder: " + placeHolder);
+            return base;
+        }        
+        return base.replace(placeHolder, value);
+    }
+
 }}}
 
 
