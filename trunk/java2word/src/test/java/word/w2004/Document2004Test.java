@@ -450,7 +450,7 @@ public class Document2004Test extends Assert {
         myDoc.addEle(Paragraph
                 .withPieces(
                         ParagraphPiece
-                                .with("* Zico was mid-fieldfer and managed to score all those fucking goals!")
+                                .with("* Zico was a mid-fieldfer and managed to score all those fucking goals!")
                                 .withStyle().italic().create()).create());
         myDoc.addEle(Paragraph
                 .withPieces(
