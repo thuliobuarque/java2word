@@ -18,7 +18,7 @@ import word.w2004.elements.tableElements.TableEle;
  */
 public class TemplateTest extends Assert {
 
-    //@Ignore //just to not break the build for other devs...
+    @Ignore //just to not break the build for other devs...
     @Test
     public void testTemplate() {
         String xmlTemplate = Utils.readFile("src/test/resources/ReleaseNotesTemplate.doc");

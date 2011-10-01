@@ -4,11 +4,14 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import word.api.interfaces.IElement;
+import word.api.interfaces.IFluentElement;
+import word.api.interfaces.ISuperStylin;
 import word.utils.TestUtils;
 import word.w2004.elements.BreakLine;
 
 public class BreakLineTest extends Assert {
-
+    
     @Test
     public void testBreakDefaultTest() {
         BreakLine br = new BreakLine();
@@ -19,6 +22,7 @@ public class BreakLineTest extends Assert {
                 .regexCount(br.getContent(),
                         "(<w:p wsp:rsidR=\"008979E8\" wsp:rsidRDefault=\"008979E8\"/>)");
         assertEquals(1, tot);
+        
     }
 
     @Test
@@ -58,4 +62,10 @@ public class BreakLineTest extends Assert {
                 4);
     }
 
+    
+    static { 
+        new BreakLine().create();
+        BreakLine.times(1).create();  
+    } 
+    
 }

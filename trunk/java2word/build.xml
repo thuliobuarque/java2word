@@ -43,7 +43,7 @@
 		<echo>### Configuration looks good... well done man!</echo>
 	</target>
 
-	<target name="code_metrics_all" depends="basic_checkings">
+	<target name="code_metrics_all" depends="basic_checkings" description="it runs: cobertura, javancss, pmd, cpd, findbugs, javadoc">
 		<echo>${root.dir}/${pom.file}</echo>
 		<exec executable="${mvn_full_path}mvn">
 			<arg value="clean" />

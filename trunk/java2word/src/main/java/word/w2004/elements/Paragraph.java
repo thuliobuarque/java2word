@@ -61,24 +61,25 @@ public class Paragraph implements IElement, IFluentElement<Paragraph>, IFluentEl
         if("".equals(sb.toString())){ //if there is no content in the pieces, there is no return - just empty string.
             return "";
         }else{
+            txt = doAddTabs(txt);
+
             //For convention, it should be the last thing before returning the xml content.
             txt = style.getNewContentWithStyle(txt);
-
-
-            String addTab = "";
-            if (tabs != null && !tabs.isEmpty()) {
-                addTab = "  <w:pPr>" + "\n    <w:tabs>";
-                for(Tab tab : tabs) {
-                    addTab += "\n        <w:tab w:val=\""+tab.getAlign().getValue()+"\" w:pos=\""+tab.getPosition() + "\" />";
-                }
-                addTab += "\n    </w:tabs>" + "\n </w:pPr>";
-            }
-            txt = txt.replace("{tabs}", addTab);
-
-
-
             return txt.replace("{value}", sb.toString());
         }
+    }
+
+    private String doAddTabs(String txt) {
+        String addTab = "";
+        if (tabs != null && !tabs.isEmpty()) {
+            addTab = "  <w:pPr>" + "\n    <w:tabs>";
+            for(Tab tab : tabs) {
+                addTab += "\n        <w:tab w:val=\""+tab.getAlign().getValue()+"\" w:pos=\""+tab.getPosition() + "\" />";
+            }
+            addTab += "\n    </w:tabs>" + "\n </w:pPr>";
+        }
+        txt = txt.replace("{tabs}", addTab);
+        return txt;
     }
 
 
