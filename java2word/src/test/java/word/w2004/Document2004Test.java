@@ -346,7 +346,9 @@ public class Document2004Test extends Assert {
         myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("The Style is: ").create(), ParagraphPiece.with("Shadow").withStyle().shadow().create()));
         myDoc.addEle(BreakLine.times(2).create());
 
+        myDoc.addEle(Paragraph.with("Remember to scape special characters like empsersand &amp;").create());  
 
+        
         // Document Header and Footer
         myDoc.addEle(BreakLine.times(2).create());
         myDoc.addEle(Heading2.with("===== Document Header and Footer ======")
@@ -473,9 +475,10 @@ public class Document2004Test extends Assert {
 
 
         String myWord = myDoc.getContent();
-
+        
         TestUtils.createLocalDoc(myDoc.getContent());
+        
     }
-
+    
 
 }
