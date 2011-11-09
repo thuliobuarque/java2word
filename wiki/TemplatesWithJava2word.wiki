@@ -1,9 +1,9 @@
 #labels Featured
-#This page shows how to use templates with Java2word.
+#This page shows how to use templates with Java2word - BETA.
 
 = Introduction =
 
-This page shows how to use templates with Java2word. Issue 26.
+This page shows how to use templates with Java2word. Issue 26. Java2word template solution is an experiment. Some people reported that worked well, others said it didn't work. Feel free anyone to try and fix it up case you find out something new.
 
 
 == Creating the Template ==
