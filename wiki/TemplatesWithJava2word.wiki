@@ -83,7 +83,7 @@ The code above takes this [http://code.google.com/p/java2word/downloads/detail?n
 
 the method *replacePh()* is very simple but important at the same time. It replaces but prints a warning message when can't find the place holder. If you see this "warning" messages it means that your template has got some "breakdown" text and you may have to manually fix your template by editing the template as XML.  
 
-Also see the comment about the workaround. Table can comfortably be inside a paragraph. But you can not have one '<w:t>' inside other. What I do is remove the whole element and replace with many paragraphs.
+Also see the comment about the workaround. Table can comfortably be inside a paragraph. But you can not have one `<w:t>` inside other. What I do is remove the whole element and replace with many paragraphs.
 
 *This is is obviously a huge workaround but this API is already a workaround itself.... hehehehe  - it doesn't bother me at all... this is the "jeitinho brasileiro"*      
 
@@ -108,7 +108,7 @@ First I tried to use a place holder like this: {ph_version}. But the problem was
             </w:p>
 }}}
 
-I don't know why MS word is doing this, making impossible to replace the place holder properly. So *when you create your template MAKE SURE ALL PLACE HOLDERS ARE IN THE SAME SEQUENCE - NOT BREAK DOWN IN "RUNS"(<w:r>)*
+I don't know why MS word is doing this, making impossible to replace the place holder properly. So *when you create your template MAKE SURE ALL PLACE HOLDERS ARE IN THE SAME SEQUENCE - NOT BREAK DOWN IN "RUNS"(`<w:r>`)*
 
 
 
