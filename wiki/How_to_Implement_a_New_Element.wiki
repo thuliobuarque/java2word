@@ -31,7 +31,7 @@ If you are not a  "committer" in this project or submit the code by attaching th
   
 This is it! Simple like that!
 
-_Remember: If you are under a proxy, locate your settings.xml and edit the proxy details._
+_Remember: If you are under a proxy, locate your settings.xml and edit the proxy details. Regardless of proxy configuration, after importing the project to eclipse, edit the eclipse environment variable M2_REPO to ~/.m2/repository_
 
 If you use eclipse, run "mvn eclipse:eclipse" in order to import the project to it.
   
