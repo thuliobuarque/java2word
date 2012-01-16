@@ -29,7 +29,7 @@ public class ImageUtilsTest extends Assert{
 
     @Test(expected = IOException.class)
     public void exceptionTest() throws IOException{
-        URL url = new URL("http://localhost:8080/ExampleStruts/img/bullshit.gif");
+        URL url = new URL("bullshit.gif");
 
         @SuppressWarnings("unused")
         BufferedImage bufferedImage = ImageIO.read(url);
