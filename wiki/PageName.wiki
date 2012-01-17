@@ -88,7 +88,7 @@ Then when you open the the document on MS Word, it shows a square rather than "Ã
 }}}
 
 
-= Where did &#237; come from = 
+= Where the f#$% did &#237; come from = 
 
 In the list http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references, get the column "Unicode Code Point", get the decimal value. Then add "&#" at the beginning and ";" at the end. MS Word knows what to do with this representation (issue 70).
 
