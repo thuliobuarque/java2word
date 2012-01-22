@@ -27,6 +27,7 @@ If you are not a  "committer" in this project or submit the code by attaching th
 =Set up your Development Environment=
 
   * Check out those projects *java2word* and optionally *j2w-webtest*
+  * Copy the file build.properties.EXAMPLE to build.properties. 
   * In the java2word directory, run: *"mvn clean install"*
   
 This is it! Simple like that!
