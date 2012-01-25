@@ -1,6 +1,10 @@
 #labels Featured
 Encoding Tips and Tricks
 
+Please refer to the new location: http://java2word.blogspot.com/p/encoding-tips-and-tricks.html
+
+<wiki:comment>
+
 = Introduction =
 
 Considering the huge number of amigos Latinos using Java2word, as well people from all over the world with different languages, this page will document all knowledge regarding to encoding issues that we have had in this projects.
@@ -96,3 +100,6 @@ In the list http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_r
 =Related Issues = 
 issue 70
 issue 76
+
+
+</wiki:comment>
