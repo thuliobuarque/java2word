@@ -1,4 +1,14 @@
 #labels Featured
+
+Please refer to the new location: http://java2word.blogspot.com/p/ms-word-templates-with-java2word.html
+
+cheers
+
+Leonardo
+
+
+<wiki:comment>
+
 #This page shows how to use templates with Java2word - BETA.
 
 = Introduction =
@@ -123,3 +133,6 @@ thanks for using Java2word.
 cheers
 
 Leonardo
+
+
+</wiki:comment>
