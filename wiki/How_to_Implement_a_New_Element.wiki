@@ -1,4 +1,12 @@
 #labels Featured,Phase-Implementation
+
+Please refer to the new location: http://java2word.blogspot.com/p/how-to-implement-new-java2word-element.html
+
+cheers
+
+Leonardo 
+
+<wiki:comment>
 This document gives you the guidelines how to implement a new element/component.
 =How to Implement a New Element/Component=
 
@@ -206,3 +214,4 @@ There is no pressure or dead line to meet. We can try to use the latest and the 
 
 Leonardo Correa
  
+</wiki:comment>
