@@ -42,6 +42,26 @@ public class Utils_Test extends Assert {
         String res = Utils.readFile(Utils.getAppRoot() + "/src/test/resources/not_a_file");
         assertEquals(1, TestUtils.regexCount(res, "FileNotFoundException"));
     }
+    
+    @Test 
+    public void testReplaceSpecialCharactersMultiples(){
+    	String original = "íxxxíxxx";    	
+ 
+    	//assertEquals("U+00ED;xxxU+00ED;xxx", Utils.replaceSpecialCharacters(original)); 
+    }
+    
+    @Test 
+    public void testReplaceSpecialCharactersAll(){
+    	String original = "Índio, ";    	
+    	assertEquals("&#205;ndio, ", Utils.replaceSpecialCharacters(original));
+    	
+    	original = "Á, É, Í, Ó, Ú";    	
+    	assertEquals("&#193;, &#201;, &#205;, &#211;, &#218;", Utils.replaceSpecialCharacters(original));
+    	
+    	original = "á, é, í, ó, ú";    	
+    	assertEquals("&#225;, &#233;, &#237;, &#243;, &#250;", Utils.replaceSpecialCharacters(original)); 
+    }
+
 
 //    @Test
 //    public void prettyTest01() {
