@@ -76,8 +76,8 @@ public class Table implements IElement{
         return res;
     }
 
-    /***
-     * Pass 'true' if you want to repeat the table header when the table takes more than one page.
+    /*** 
+     * if you want to repeat the table header when the table takes more than one page.
      * Default is false. 
      */
     public void setRepeatTableHeaderOnEveryPage() {
