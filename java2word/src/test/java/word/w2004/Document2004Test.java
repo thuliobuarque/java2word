@@ -252,7 +252,7 @@ public class Document2004Test extends Assert {
         assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
     }
 
-    @Ignore
+    //@Ignore 
     // ignored by default just to not create files in your system or break the
     // build...
     @Test
@@ -477,8 +477,18 @@ public class Document2004Test extends Assert {
         String myWord = myDoc.getContent();
         
         TestUtils.createLocalDoc(myDoc.getContent());
-        
     }
     
+    @Test
+    public void testTst() {
+        IDocument myDoc = new Document2004();
+        
+        myDoc.addEle(Paragraph.with("&#60; aaa &amp; &#165;").create());
+        
+        String myWord = myDoc.getContent();
+
+        TestUtils.createLocalDoc(myDoc.getContent());
+    }
+
 
 }
