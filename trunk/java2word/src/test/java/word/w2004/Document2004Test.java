@@ -252,7 +252,7 @@ public class Document2004Test extends Assert {
         assertTrue(myDoc.getBody().getContent().contains("</w:body>"));
     }
 
-    //@Ignore 
+    @Ignore 
     // ignored by default just to not create files in your system or break the
     // build...
     @Test
@@ -479,14 +479,29 @@ public class Document2004Test extends Assert {
         TestUtils.createLocalDoc(myDoc.getContent());
     }
     
+    @Ignore 
     @Test
     public void testTst() {
         IDocument myDoc = new Document2004();
         
         myDoc.addEle(Paragraph.with("&#60; aaa &amp; &#165;").create());
         
+        
+        Table tbl = new Table();
+        tbl.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
+        tbl.setRepeatTableHeaderOnEveryPage();
+        Paragraph p1 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("111.111,11").withStyle().bold().create()).create() ;
+        Paragraph p2 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("222.222,22").withStyle().bold().create()).create();
+        //Paragraph p2 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("222.222,22").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create();
+        tbl.addTableEle(TableEle.TD, 
+                p1, 
+                p2,
+                null
+                );
+        myDoc.addEle(tbl);
+        
         String myWord = myDoc.getContent();
-
+;
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 
