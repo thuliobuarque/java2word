@@ -1,12 +1,17 @@
 
 
-============= Version 3.1 - 31-Jan-2012  =============
+============= Version 3.1 - 01-Feb-2012  =============
 
-Minor release 
+Minor release. Applied patch for Identation and hiperlinks by whoahbot, Added some comments on methods, work in progress for special characters in Utils.java.
 
-    Issue 70: Created a method on Utils.class called replaceSpecialCharacters. This is under experiments.
-    Issue 82: Alternative for those who want to use paragraphs in table.   
-
+    - Issue 70: Created a method on Utils.class called replaceSpecialCharacters. This is under experiments.
+    - Issue 82: Alternative for those who want to use paragraphs in table. 
+              Now you can NOT pass null to a table cell, which doens't make sense anyway. You have to pass "".
+      
+    - Issue 46:   Adding indentation
+    - Issue 45:   Adding hyperlinks to the document  
+    
+    - Removed all deprecated methods
 
 Upgrade steps:
     - download this version or checkout the latest code and build your own jar file.

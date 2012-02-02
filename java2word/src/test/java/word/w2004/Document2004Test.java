@@ -253,8 +253,7 @@ public class Document2004Test extends Assert {
     }
 
     @Ignore 
-    // ignored by default just to not create files in your system or break the
-    // build...
+    // ignored by default just to not create files in your system or break the build...
     @Test
     public void testJava2wordAllInOne() {
 
@@ -498,10 +497,15 @@ public class Document2004Test extends Assert {
                 p2,
                 null
                 );
-        myDoc.addEle(tbl);
+        //myDoc.addEle(tbl);
         
-        String myWord = myDoc.getContent();
-;
+        Table tbl03 = new Table();
+        Paragraph p3 = Paragraph.with("").create();
+        Paragraph p4 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("Flamengo").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create();
+        tbl03.addTableEle(TableEle.TD, p4);
+        
+        myDoc.addEle(tbl03);
+        
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 
