@@ -502,7 +502,9 @@ public class Document2004Test extends Assert {
         Table tbl03 = new Table();
         Paragraph p3 = Paragraph.with("").create();
         Paragraph p4 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("Flamengo").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create();
+        Paragraph p5 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("Flamengo").withStyle().bold().create()).withStyle().create();
         tbl03.addTableEle(TableEle.TD, p4);
+        tbl03.addTableEle(TableEle.TD, p5.getContent().replaceAll("<w:r","><w:pPr><w:bidi/></w:pPr><w:r"));
         
         myDoc.addEle(tbl03);
         
