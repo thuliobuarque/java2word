@@ -38,67 +38,37 @@ public class Table implements IElement {
     }
 
     
-    private String getMyMiddle() {
-        String td =
-            "                <w:tc> "
-            +"\n                    <w:tcPr> "
-                        +"\n                        <w:tcW w:w=\"4258\" w:type=\"dxa\"/> "
-            +"\n                    </w:tcPr> "
-            +"\n                    {value} "
-            +"\n                </w:tc> "               
-            ;
-        return td;
-    }
-    
+    /*
+     *  Use this method when you need to apply style to the cell.
+     *  You have to provide the Paragraph with any format you wish to apply. 
+     * */
     public void addTableEle(TableEle tableEle, Paragraph... cols) {
         if(cols != null && cols.length > 0){
             StringBuilder th = new StringBuilder("");
             ITableItemStrategy item = TableFactoryMethod.getInstance().getTableItem(tableEle);
+
+            processMiddleForParagraph(th, item, cols);
             
-            for (int i = 0; i < cols.length; i++) {         
-                //### commented in order to render the cell regardless of null or empty string
-                if(cols[i] != null){ 
-                    th.append("\n" + this.getMyMiddle().replace("{value}", cols[i].getContent()));
-                } else {
-                    //th.append("\n" + this.getMyMiddle().replace("{value}", ""));
-                    th.append("\n" + item.getMiddle().replace("{value}", "" )); 
-                    
-                }
-            }
-            
-            if(!"".equals(th.toString())){
-                th.insert(0, item.getTop());
-                th.append(item.getBottom());
-            }
-            
-            String finalResult = setUpRepeatTableHeaderOnEveryPage(th);
-            txt.append(finalResult);//final result appended
+            joinTopMiddleBottom(th, item);
         }    
     }
 
+    /*
+     *  Use this method when you simply need a String without any format and style. 
+     *  The string will be wrapped by a Paragraph element.  
+     * */
     public void addTableEle(TableEle tableEle, String... cols) {
         if (cols != null && cols.length > 0) {
             StringBuilder th = new StringBuilder("");
-
-            ITableItemStrategy item = TableFactoryMethod.getInstance()
-                    .getTableItem(tableEle);
+            ITableItemStrategy item = TableFactoryMethod.getInstance().getTableItem(tableEle);
 
             for (int i = 0; i < cols.length; i++) {
-                // ### commented in order to render the cell regardless of null
-                // or empty string
-                // if(!"".equals(cols[i])){
+                //if(!"".equals(cols[i])){
                 th.append("\n" + item.getMiddle().replace("{value}", cols[i]));
-                // }
+                //}
             }
 
-            if (!"".equals(th.toString())) {
-                th.insert(0, item.getTop());
-                th.append(item.getBottom());
-            }
-
-            String finalResult = setUpRepeatTableHeaderOnEveryPage(th);
-
-            txt.append(finalResult);// final result appended
+            joinTopMiddleBottom(th, item);
         }
     }
 
@@ -129,4 +99,40 @@ public class Table implements IElement {
         this.isRepeatTableHeaderOnEveryPage = true;
     }
 
+    /*** 
+     * This is for situation where you pass the Paragraph so template can't have one
+     * */
+	private void processMiddleForParagraph(StringBuilder th,
+			ITableItemStrategy item, Paragraph... cols) {
+		String templateWithoutParagraph =
+		        "                <w:tc> "
+		        +"\n                    <w:tcPr> "
+		                    +"\n                        <w:tcW w:w=\"4258\" w:type=\"dxa\"/> "
+		        +"\n                    </w:tcPr> "
+		        +"\n                    {value} "
+		        +"\n                </w:tc> "               
+		        ;
+		for (int i = 0; i < cols.length; i++) {         
+		    if(cols[i] != null && cols[i].getContent() != ""){ 
+		        th.append("\n" + templateWithoutParagraph.replace("{value}", cols[i].getContent()));
+		    } else {
+		    	//th.append("\n" + this.getMyMiddle().replace("{value}", ""));
+		        th.append("\n" + item.getMiddle().replace("{value}", Paragraph.with("").create().getContent() )); 
+		    }
+		}
+	}
+	
+    /***
+     *  It puts together top, middle and bottom and updates the final String object. 
+     **/
+	private void joinTopMiddleBottom(StringBuilder th, ITableItemStrategy item) {
+		if(!"".equals(th.toString())){
+		    th.insert(0, item.getTop());
+		    th.append(item.getBottom());
+		}
+		
+		String finalResult = setUpRepeatTableHeaderOnEveryPage(th);
+		txt.append(finalResult);//final result appended
+	}
+    
 }

@@ -10,6 +10,3 @@ public interface ITableItemStrategy{
 	public String getMiddle();
 	public String getBottom();
 }
-
-
-
