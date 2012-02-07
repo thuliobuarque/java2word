@@ -79,7 +79,7 @@ public class Utils {
 //		cont = cont.replace("î", "&#238;");
 //		cont = cont.replace("ï", "&#239;");
 		
-		System.out.println("#### fuck 02 ####");
+		System.out.println("#### FFF 02 ####");
 		System.out.println(myDoc.getContent());
 		return myDoc.getContent().replace("í", "&#237;");
 	}
