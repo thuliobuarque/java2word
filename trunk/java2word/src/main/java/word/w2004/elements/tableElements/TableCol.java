@@ -5,7 +5,10 @@ package word.w2004.elements.tableElements;
 /**
  * @author leonardo_correa
  * 
- * Concrete strategy
+ * Concrete strategy. 
+ * 
+ * THIS CLASS SHOULD ACTUALLY BE CALLED TableRow. 
+ * 
  */
 public class TableCol implements ITableItemStrategy{
 	
