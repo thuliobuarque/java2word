@@ -483,31 +483,34 @@ public class Document2004Test extends Assert {
     public void testTst() {
         IDocument myDoc = new Document2004();
         
-        myDoc.addEle(Paragraph.with("&#60; aaa &amp; &#165;").create());
+        Table tbl04 = new Table();
+        tbl04.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
+        tbl04.setRepeatTableHeaderOnEveryPage();
+
+        tbl04.addTableEle(TableEle.TD, "* Arthur Friedenreich", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "Pele", "1281", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "Romario", "1002", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "Tulio Maravilha", "956", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "** Zico", "815", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "Roberto Dinamite", "748", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "Di Stéfano", "715", "Argentina");
+        tbl04.addTableEle(TableEle.TD, "Puskas", "689", "Hungary");
+        tbl04.addTableEle(TableEle.TD, "Flávio", "591", "Brazil");
+        tbl04.addTableEle(TableEle.TD, "James McGory", "550", "Scotland");
+        tbl04.addTableEle(TableEle.TD, "*** Leonardo Correa", "299", "Brazil/Australia");
+        tbl04.addTableEle(TableEle.TD, "Maradona", "258", "Argentina");
+
+        tbl04.addTableEle(TableEle.TF, "Total", "1,100,000.00", Paragraph.withPieces(
+        			ParagraphPiece.with("BOLD").withStyle().bold().create(),
+        			ParagraphPiece.with("Italic").withStyle().italic().create()        			
+        		).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create().getContent());
+        myDoc.addEle(tbl04);
         
+        //myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("BOLD").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create());
         
-        Table tbl = new Table();
-        tbl.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
-        tbl.setRepeatTableHeaderOnEveryPage();
-        Paragraph p1 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("111.111,11").withStyle().bold().create()).create() ;
-        Paragraph p2 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("222.222,22").withStyle().bold().create()).create();
-        //Paragraph p2 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("222.222,22").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create();
-        tbl.addTableEle(TableEle.TD, 
-                p1, 
-                p2,
-                null
-                );
-        //myDoc.addEle(tbl);
-        
-        Table tbl03 = new Table();
-        Paragraph p3 = Paragraph.with("").create();
-        Paragraph p4 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("Flamengo").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create();
-        Paragraph p5 = (Paragraph) Paragraph.withPieces(ParagraphPiece.with("Flamengo").withStyle().bold().create()).withStyle().create();
-        tbl03.addTableEle(TableEle.TD, p4);
-        tbl03.addTableEle(TableEle.TD, p5.getContent().replaceAll("<w:r","><w:pPr><w:bidi/></w:pPr><w:r"));
-        
-        myDoc.addEle(tbl03);
-        
+
+        System.out.println(myDoc.getContent());
+
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 
