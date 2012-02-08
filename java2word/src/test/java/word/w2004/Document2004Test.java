@@ -22,6 +22,7 @@ import word.w2004.elements.PageBreak;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.ParagraphPiece;
 import word.w2004.elements.Table;
+import word.w2004.elements.TableV2;
 import word.w2004.elements.tableElements.TableEle;
 import word.w2004.elements.HyperLink;
 import word.w2004.style.Font;
@@ -514,5 +515,34 @@ public class Document2004Test extends Assert {
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 
+    @Test
+    public void testTableFabio() {
+        IDocument myDoc = new Document2004();
+        br.gov.pi.tce.word.Table tbl = new br.gov.pi.tce.word.Table(1, 2);
+        tbl.addRow();
+        
+        myDoc.addEle(tbl.getContent());
+        
+        
+        TestUtils.createLocalDoc(myDoc.getContent());
+    }
+    
+    @Ignore
+    @Test
+    public void testTableV2() {
+        IDocument myDoc = new Document2004();
+        TableV2 tbl = new TableV2();
+        //tbl.showHeaderonEveryPage();
+        tbl.addRow("Pele", "1281");//.withStyle();
+        tbl.addRow(Paragraph.with("Paragraph 01"), Paragraph.with("Paragraph 02"));
+        //tbl.addRow("Pele", "1281", "Brazil").withStyle();
+        //tbl.addRow(TableCell.with("Pele").withStyle().bold(), "1281", "Brazil");
+        //tbl.addRow(TableCell.with("line has merge").collSpan(2).withStyle().bold(), "Brazil");
+        //tbl.addRow("Style applied to the whole line", "", "").withStyle().bold();
+        //tbl.addRow(Paragraph.with("Paragraph 01").create(), "", "" ).withStyle().bold();
+        
+        myDoc.addEle(tbl.getContent());
+        TestUtils.createLocalDoc(myDoc.getContent());
+    }
 
 }
