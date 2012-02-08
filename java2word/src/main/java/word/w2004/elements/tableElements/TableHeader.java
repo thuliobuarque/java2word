@@ -11,10 +11,10 @@ package word.w2004.elements.tableElements;
  */
 public class TableHeader implements ITableItemStrategy{
 
-	public String getBottom() {
-		return "\n		</w:tr>";
+	public String getTop() {
+		return "\n		<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">";
 	}
-
+	
 	public String getMiddle() {
 		String th =
 		    "\n                {tblHeader} "
@@ -41,8 +41,8 @@ public class TableHeader implements ITableItemStrategy{
 		return th;
 	}
 
-	public String getTop() {
-		return "\n		<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">";
+	public String getBottom() {
+		return "\n		</w:tr>";
 	}
 	
 }
