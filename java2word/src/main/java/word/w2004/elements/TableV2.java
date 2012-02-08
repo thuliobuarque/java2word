@@ -2,6 +2,8 @@ package word.w2004.elements;
 
 import word.api.interfaces.IElement;
 import word.w2004.elements.tableElements.TableEle;
+import word.w2004.elements.tableElements.TableRow;
+import word.w2004.style.HeadingStyle;
 
 /**
  * @author leonardo_correa
@@ -15,43 +17,56 @@ public class TableV2 implements IElement {
         if ("".equals(txt.toString())) {
             return "";
         }
-        //here it goes
-        
+        // here it goes
+
         return txt.toString();
+    }
+
+    public TableRow addRow(Object... cols) {
+        txt.append("init row");
+        
+        for (int i = 0; i < cols.length; i++) {            
+            if (cols[i] instanceof String) {
+                //new Par
+            } else if (cols[i] instanceof IElement) {
+                //cols[i].getContent();
+            } else {
+                throw new IllegalArgumentException(
+                        "Parameter can only be String of IElement.");
+            }
+        }
+
+        txt.append("end row");
+        //replace Styles placeHolders
+        
+        return null;
     }
 
     /*
      * 
-  
-    - Top or TableDefinition is the same
-    - just realized that TableRow is always the same. Ou seja, nao precisara dizer TableEle.TD ou TableEle.TH.
-    - sera possivel applicar style a cell ou linha inteira. 
-    - sera possivel fazer tudo na mesma linha com Fluent Interfaces.
-    - collSpan ou gredSpan e mais relacionado a celula do que Style. Por isso nao esta no Style.
-    - sera possivel passar String ou voce mandar seu Paragraph, que   
-    
-    # Desired    
-    tbl.showHeaderonEveryPage();
-    tbl.addRow("Pele", "1281", "Brazil").withStyle();
-    tbl.addRow(Cell.with("Pele").withStyle().bold(), "1281", "Brazil");
-    tbl.addRow(Cell.with("line has merge").collSpan(2).withStyle().bold(), "Brazil");
-    tbl.addRow("Style applied to the whole line", "", "").withStyle().bold();
-    tbl.addRow(Paragraph.with("Paragraph 01").create(), "", "" ).withStyle().bold();
-    
-    
-					<w:tcPr> 
-                        <w:tcW w:w="4258" w:type="dxa"/> 
-                         <w:gridSpan w:val="2"/>
-                    </w:tcPr> 
-    
-    				<w:tcPr> 
-                        <w:tcW w:w="4258" w:type="dxa"/> 
-                        <w:shd w:val="clear" w:color="auto" w:fill="00FFFF"/>
-                    </w:tcPr> 
-    
-    
-    */
-    
-    
-    
+     * 
+     * - Top or TableDefinition is the same - just realized that TableRow is
+     * always the same. Ou seja, nao precisara dizer TableEle.TD ou TableEle.TH.
+     * - sera possivel applicar style a cell ou linha inteira. - sera possivel
+     * fazer tudo na mesma linha com Fluent Interfaces. - collSpan ou gredSpan e
+     * mais relacionado a celula do que Style. Por isso nao esta no Style. -
+     * sera possivel passar String ou voce mandar seu Paragraph, que
+     * 
+     * # Desired tbl.showHeaderonEveryPage(); tbl.addRow("Pele", "1281",
+     * "Brazil").withStyle(); tbl.addRow(Cell.with("Pele").withStyle().bold(),
+     * "1281", "Brazil");
+     * tbl.addRow(Cell.with("line has merge").collSpan(2).withStyle().bold(),
+     * "Brazil"); tbl.addRow("Style applied to the whole line", "",
+     * "").withStyle().bold();
+     * tbl.addRow(Paragraph.with("Paragraph 01").create(), "", ""
+     * ).withStyle().bold();
+     * 
+     * 
+     * <w:tcPr> <w:tcW w:w="4258" w:type="dxa"/> <w:gridSpan w:val="2"/>
+     * </w:tcPr>
+     * 
+     * <w:tcPr> <w:tcW w:w="4258" w:type="dxa"/> <w:shd w:val="clear"
+     * w:color="auto" w:fill="00FFFF"/> </w:tcPr>
+     */
+
 }
