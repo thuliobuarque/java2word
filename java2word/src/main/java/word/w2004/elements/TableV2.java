@@ -1,9 +1,8 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
-import word.w2004.elements.tableElements.TableEle;
-import word.w2004.elements.tableElements.TableRow;
-import word.w2004.style.HeadingStyle;
+import word.w2004.elements.tableElements.TableCell;
+import word.w2004.elements.tableElements.TableRowV2;
 
 /**
  * @author leonardo_correa
@@ -11,37 +10,55 @@ import word.w2004.style.HeadingStyle;
  */
 public class TableV2 implements IElement {
 
-    StringBuilder txt = new StringBuilder("");
+    private StringBuilder txt = new StringBuilder("");
 
     public String getContent() {
         if ("".equals(txt.toString())) {
             return "";
         }
         // here it goes
+        txt.insert(0, tableTop);
+        txt.append("\n" + tableBottom);
+        
+        //apply style
 
         return txt.toString();
     }
 
-    public TableRow addRow(Object... cols) {
-        txt.append("init row");
+    public TableRowV2 addRow(Object... cols) {
         
-        for (int i = 0; i < cols.length; i++) {            
-            if (cols[i] instanceof String) {
-                //new Par
-            } else if (cols[i] instanceof IElement) {
-                //cols[i].getContent();
-            } else {
-                throw new IllegalArgumentException(
-                        "Parameter can only be String of IElement.");
-            }
-        }
+        TableRowV2 tableRow = new TableRowV2(cols);
+        txt.append(tableRow.getContent());
 
-        txt.append("end row");
-        //replace Styles placeHolders
-        
-        return null;
+        //replace Styles placeHolders for ROW, if necessary
+        //txt.append(TableRowV2.getMiddle());
+
+        return tableRow;
     }
 
+    //private String tableTop = "\n		<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">";
+	String tableTop = 
+			 "\n	<w:tbl> "
+			+"\n            <w:tblPr> "
+			+"\n                <w:tblW w:w=\"0\" w:type=\"auto\"/> "
+			+"\n                <w:tblBorders> "
+			+"\n                    <w:top w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
+			+"\n                    <w:left w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
+			+"\n                    <w:bottom w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
+			+"\n                    <w:right w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
+			+"\n                    <w:insideH w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
+			+"\n                    <w:insideV w:val=\"single\" w:sz=\"4\" wx:bdrwidth=\"10\" w:space=\"0\" w:color=\"000000\"/> "
+			+"\n                </w:tblBorders> "
+			+"\n                <w:tblLook w:val=\"00BF\"/> "
+			+"\n            </w:tblPr> "
+			+"\n            <w:tblGrid> "
+			+"\n                <w:gridCol w:w=\"4258\"/> "
+			+"\n                <w:gridCol w:w=\"4258\"/> "
+			+"\n            </w:tblGrid> "
+			;
+	
+    private String tableBottom = "\n	</w:tbl>";
+    
     /*
      * 
      * 
@@ -67,6 +84,32 @@ public class TableV2 implements IElement {
      * 
      * <w:tcPr> <w:tcW w:w="4258" w:type="dxa"/> <w:shd w:val="clear"
      * w:color="auto" w:fill="00FFFF"/> </w:tcPr>
+     * 
+
+	<w:tr wsp:rsidR="00505659" wsp:rsidRPr="00505659">
+                <w:tc> 
+                    <w:tcPr> 
+                        <w:tcW w:w="4258" w:type="dxa"/> 
+                         <w:gridSpan w:val="2"/>
+                    </w:tcPr> 
+                    <w:p wsp:rsidR="00505659" wsp:rsidRPr="00505659" wsp:rsidRDefault="00505659"> 
+                        <w:r wsp:rsidRPr="00505659"> 
+                            <w:t>* Arthur Friedenreich</w:t> 
+                        </w:r> 
+                    </w:p> 
+                </w:tc> 
+                <w:tc> 
+                    <w:tcPr> 
+                        <w:tcW w:w="4258" w:type="dxa"/> 
+                    </w:tcPr> 
+                    <w:p wsp:rsidR="00505659" wsp:rsidRPr="00505659" wsp:rsidRDefault="00505659"> 
+                        <w:r wsp:rsidRPr="00505659"> 
+                            <w:t>Brazil</w:t> 
+                        </w:r> 
+                    </w:p> 
+                </w:tc> 
+	</w:tr>
+
      */
 
 }
