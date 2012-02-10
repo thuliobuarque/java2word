@@ -1,7 +1,6 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
-import word.w2004.elements.tableElements.TableCell;
 import word.w2004.elements.tableElements.TableRowV2;
 
 /**
@@ -25,18 +24,18 @@ public class TableV2 implements IElement {
         return txt.toString();
     }
 
-    public TableRowV2 addRow(Object... cols) {
-        
-        TableRowV2 tableRow = new TableRowV2(cols);
-        txt.append(tableRow.getContent());
+    public TableRowV2 addRow(TableRowV2 row) {
+        //the row will have cells
+    	
+    	//TableRowV2 tableRow = new TableRowV2();    	
+        txt.append(row.getContent());
 
         //replace Styles placeHolders for ROW, if necessary
         //txt.append(TableRowV2.getMiddle());
 
-        return tableRow;
+        return row;
     }
 
-    //private String tableTop = "\n		<w:tr wsp:rsidR=\"00505659\" wsp:rsidRPr=\"004374EC\" wsp:rsidTr=\"004374EC\">";
 	String tableTop = 
 			 "\n	<w:tbl> "
 			+"\n            <w:tblPr> "

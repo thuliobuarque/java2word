@@ -8,16 +8,20 @@ public class TableCellStyle implements ISuperStylin{
 	private IElement element;
 	StringBuilder style = new StringBuilder("");
 	
-	private boolean bold = false;
+	private String bgColor = "";
+	private int gridSpan = 0;
 	
 	@Override
 	public String getNewContentWithStyle(String txt) {
-		style.append("<w:tcPr>");
 		
-		//do all styles
-		doStyleBold(style);
+		doStyleBgColor(style);
+		doStyleGridSpan(style);
 		
-		style.append("</w:tcPr>");
+		if(!"".equals(style.toString())){
+			style.insert(0, "<w:tcPr>");
+			style.append("</w:tcPr>\n");			
+		}
+		
 		return txt.replace("{styleCellPh}", style);
 	}
 
@@ -31,21 +35,33 @@ public class TableCellStyle implements ISuperStylin{
 		return this.element;
 	}
 
-	//### Useful external methods ###
-    /**
-     * Set the text to Bold
-     * @return
-     */
-    public TableCellStyle bold() {
-        this.bold = true;
-        return this;
-    }	
+	//### Useful external methods ############################
+    public TableCellStyle bgColor(String bgColor) {
+		this.bgColor = bgColor;
+		return this;
+	}
+    /*
+     * 2 means: it will merge this cell with the second one. 
+     * 3 means: it will merge this cell with the second AND the third ones. 
+     * 
+     * */
+    public TableCellStyle gridSpan(int gridSpan) {
+    	this.gridSpan = gridSpan;
+    	return this;
+    }
+    
+    
+	//### Chunk of code ######################################
+    private void doStyleBgColor(StringBuilder style) {
+    	if (!"".equals(bgColor)) {
+    		style.append("\n            	<w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"" + this.bgColor + "\"/>\n");
+    	}
+    }
 	
-	//### Chunk of code ###
-    private void doStyleBold(StringBuilder style) {
-        if (bold ) {
-            style.append("\n            	<w:b/>");
-        }
+    private void doStyleGridSpan(StringBuilder style) {
+    	if (gridSpan > 0) {
+    		style.append("\n            	<w:gridSpan w:val=\"" + this.gridSpan + "\"/>");
+    	}
     }
     
 }

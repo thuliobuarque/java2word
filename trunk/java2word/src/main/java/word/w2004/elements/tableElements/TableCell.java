@@ -9,46 +9,54 @@ public class TableCell implements IElement, IFluentElement<TableCell>, IFluentEl
 	
 	StringBuilder txt = new StringBuilder("");
 	private TableCellStyle style = new TableCellStyle();
+	private boolean hasBeenCalledBefore = false; 
 	
     @Override
     public String getContent() {
-    	System.out.println("TableCell, getContent");
+    	System.out.println("### TableCell.getContent");
+//        if (hasBeenCalledBefore) {
+//            return txt.toString();
+//        } else {
+//            hasBeenCalledBefore = true;
+//        }
     	
     	String withStyle = style.getNewContentWithStyle(txt.toString());
+    	System.out.println("@@@ withStyle: " + withStyle);
         return withStyle;
-        //return txt.toString();
     }
     
-    /* So you have to use Fluent Interface to create it */
+    /* 
+     * Private Contructor, so you have to use Fluent Interface to create it 
+     * */
     private TableCell() {
     }
     
     private TableCell(Object cell) {		
-    	System.out.println("TableCell, for " + cell);
     	
-		
-        if (cell instanceof String) { //new Par        	
-        	//txt.append("\n		<w:tc>\n");
-        	txt.append("\n		<w:tc>\n{styleCellPh}");
+        if (cell instanceof String) { //new Par
+        	txt.append("\n		<w:tc>\n		{styleCellPh}");
         	txt.append(Paragraph.with(cell.toString()).create().getContent());
         	txt.append("\n		</w:tc>");    	
         } else if (cell instanceof IElement) {
-            
-        	//cols[i].getContent();
+
         	if(cell instanceof TableCell){ 
         		//simple do a getContent because object is already a TableCell
-        		System.out.println("((IElement) cell).getContent(): " + ((IElement) cell).getContent());
+        		txt.append("\n		<w:tc>\n		{styleCellPh}");
+        		txt.append(((TableCell) cell).txt.toString()); //it is a Paragraph at this moment
         		
-        		txt.append(((IElement) cell).getContent());
+        		txt.append("\n		</w:tc>");  
         	}else{
-        		//if it is NOT a TableCell instance, we wrap in one of it
-        		//txt.append(new TableCell.with(cols[i].getContent()) );
+        		//Paragraph for example...
+        		//apply parent styles
+        		//((Paragraph) cell).withStyle().
+            	txt.append( ((IElement) cell).getContent() );
         	}
         	
         } else {
             throw new IllegalArgumentException(
                     "Parameter can only be String of IElement. You gave me: " + cell.getClass().toString());
         }
+        
         
     }
 
@@ -57,10 +65,19 @@ public class TableCell implements IElement, IFluentElement<TableCell>, IFluentEl
 		return this;
 	}
 	
-	
 	public static TableCell with(Object cell) {
-		TableCell tableCell = new TableCell(cell);
-		return tableCell;
+		
+		if(cell instanceof TableCell){
+			//it is already TableCell so no need to create another instance
+			//it is a Paragraph at this moment. It needs Column Top and Bottom    		
+			((TableCell) cell).txt.insert(0, "\n		<w:tc>\n		{styleCellPh}");    		
+			((TableCell) cell).txt.append("\n		</w:tc>"); 
+			
+			return (TableCell) cell; 
+		}else{
+			TableCell tableCell = new TableCell(cell);
+			return tableCell;
+		}
 	}
 
 	@Override

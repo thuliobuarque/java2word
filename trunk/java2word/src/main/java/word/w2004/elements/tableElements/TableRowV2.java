@@ -1,45 +1,38 @@
 package word.w2004.elements.tableElements;
 
 import word.api.interfaces.IElement;
-import word.api.interfaces.IFluentElement;
 import word.api.interfaces.IFluentElementStylable;
-import word.api.interfaces.ISuperStylin;
 
-public class TableRowV2 implements IElement, IFluentElementStylable<TableRowV2>{
+public class TableRowV2 implements IElement, IFluentElementStylable<TableRowStyle>{
 
 	private StringBuilder txt = new StringBuilder("");
+	private TableRowStyle style = new TableRowStyle();
 	
 	public TableRowV2(Object[] cols) {
-		System.out.println("TableRowV2, init");
-		
-        txt.append("\n	<w:tr>");
+        txt.append("\n	<w:tr>{styleRowPh}");
 
         for (int i = 0; i < cols.length; i++) {            
         	//TableCell knows how to do the rest.
-        	System.out.println("about to do cell: " + i);
-        	
         	txt.append( TableCell.with(cols[i]).create().getContent() );
         }
 		
         txt.append("\n	</w:tr>");
-        
-        System.out.println("TableRowV2, end");
 	}
 
 	@Override
-	public TableRowV2 withStyle() {
-		//TODO
-		
-		//style.setElement(this);
-        //return style;
-		return null;
+	public TableRowStyle withStyle() {
+		style.setElement(this);
+        return style;
 	}
 
 	@Override
 	public String getContent() {
-		System.out.println("TableRowV2, getContent");
-		
-		return txt.toString();
+		String withStyle = style.getNewContentWithStyle(txt.toString());
+		return withStyle;
+	}
+
+	public static TableRowV2 with(Object ... colls) {		
+		return new TableRowV2(colls);
 	}
 
 }
