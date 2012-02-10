@@ -550,7 +550,8 @@ public class Document2004Test extends Assert {
         
         
         //tbl.addRow( TableRowV2.with("Style applied to the whole line") ); 
-        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 Style 02").create()) ).withStyle().bold().create() );
+        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 Style 02").create()), "x" ).withStyle().bold().create() );
+        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 Style 03").create()).withStyle().gridSpan(2).create() ).withStyle().bold().create() );
         //tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.withPieces( ParagraphPiece.with("Paragraph 03").withStyle().bold().create() ).create()).withStyle().bgColor("00FFFF").create()  ));
         
         System.out.println(tbl.getContent());
