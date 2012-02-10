@@ -1,5 +1,6 @@
 package word.w2004;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -25,6 +26,7 @@ import word.w2004.elements.Table;
 import word.w2004.elements.TableV2;
 import word.w2004.elements.tableElements.TableCell;
 import word.w2004.elements.tableElements.TableEle;
+import word.w2004.elements.tableElements.TableRowV2;
 import word.w2004.elements.HyperLink;
 import word.w2004.style.Font;
 import word.w2004.style.HeadingStyle.Align;
@@ -524,7 +526,6 @@ public class Document2004Test extends Assert {
         
         myDoc.addEle(tbl.getContent());
         
-        
         TestUtils.createLocalDoc(myDoc.getContent());
     }
     
@@ -537,13 +538,25 @@ public class Document2004Test extends Assert {
         //tbl.addRow("Pele", "1281");//.withStyle();
         //tbl.addRow(Paragraph.with("Paragraph 01"), Paragraph.with("Paragraph 02"));
         //tbl.addRow("Pele", "1281", "Brazil").withStyle();
-        tbl.addRow(TableCell.with("Leonardo").withStyle().bold().create());
+        	//tbl.addRow(TableCell.with("Leonardo").withStyle().bgColor("E0E0E0").create(), "200");
+        	//tbl.addRow(TableCell.with("This is merged with the second cell").withStyle().gridSpan(2).create() );
+        
+        //tbl.addRow("Style applied to the whole line").withStyle().bold().create() ); //
+        
+        
         //tbl.addRow(TableCell.with("Leonardo").withStyle().bold().create(), "200");
         //tbl.addRow(TableCell.with("line has merge").collSpan(2).withStyle().bold(), "Brazil");
-        //tbl.addRow("Style applied to the whole line", "", "").withStyle().bold();
         //tbl.addRow(Paragraph.with("Paragraph 01").create(), "", "" ).withStyle().bold();
         
+        
+        //tbl.addRow( TableRowV2.with("Style applied to the whole line") ); 
+        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 Style 02").create()) ).withStyle().bold().create() );
+        //tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.withPieces( ParagraphPiece.with("Paragraph 03").withStyle().bold().create() ).create()).withStyle().bgColor("00FFFF").create()  ));
+        
         System.out.println(tbl.getContent());
+        
+        
+        //System.out.println(TableRowV2.with("Style applied to the whole line").withStyle().bold().create().getContent());
         
         myDoc.addEle(tbl.getContent());
         TestUtils.createLocalDoc(myDoc.getContent());
