@@ -34,12 +34,12 @@ public class TableRowStyle implements ISuperStylin{
 
 	
 	@Override
-	public TableRowV2 create() {
+	public TableRow create() {
 		/**
 		 *  This is Covariant Return if you wanna know. No many people use it because the need is pretty rare. 
 		 *  I am returning a subtype of the IElement when overriding the method.  
 		 */
-		return (TableRowV2) this.element;
+		return (TableRow) this.element;
 	}
 
 	
