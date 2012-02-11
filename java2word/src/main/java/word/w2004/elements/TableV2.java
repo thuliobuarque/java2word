@@ -1,7 +1,7 @@
 package word.w2004.elements;
 
 import word.api.interfaces.IElement;
-import word.w2004.elements.tableElements.TableRowV2;
+import word.w2004.elements.tableElements.TableRow;
 
 /**
  * @author leonardo_correa
@@ -34,7 +34,7 @@ public class TableV2 implements IElement {
      * @param row
      * @return
      */
-    public TableRowV2 addRow(TableRowV2 row) {
+    public TableRow addRow(TableRow row) {
         //the row will have cells. The Row knows how to do the rest...
         txt.append(row.getContent());
         return row;
