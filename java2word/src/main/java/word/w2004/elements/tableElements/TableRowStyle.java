@@ -10,12 +10,14 @@ public class TableRowStyle implements ISuperStylin{
 	
 	private boolean bold = false;
 	private String bgColor = "";
+	private boolean repeatTableHeaderOnEveryPage = false;
 	
 	@Override
 	public String getNewContentWithStyle(String txt) {
 		
 		txt = doStyleBold(style, txt);
 		doStyleBgColor(style);
+		doStyleRepeatTableHeader(style);
 		
 		if(!"".equals(style.toString())){
 			style.insert(0, "\n<w:trPr>");
@@ -43,34 +45,55 @@ public class TableRowStyle implements ISuperStylin{
 	
 	//### Useful external methods ############################
     /**
-     * Set the text to Bold
+     * (Experiment, beta) Set the text to Bold to the whole line.
+     * It actually cascades the bold to every Paragraph RUN. This is under test and trying to find a better solution.
+     * Apparently is only possible to apply bold and other format to Paragraph RUNs. 
      * @return
      */
-    public TableRowStyle bold() {
-    	//TODO: This doesn't work so trying to apply style to all paragraphs
-    	
-        this.bold = true;
+	public TableRowStyle bold() {
+	    //TODO: This doesn't work so trying to apply style to all paragraphs runs
+	    this.bold = true;
+	    return this;
+	}
+	
+	/**
+	 * Table will show this on every page. It is very useful when you are building reports.
+	 * @return
+	 */
+    public TableRowStyle repeatTableHeaderOnEveryPage() {
+        this.repeatTableHeaderOnEveryPage = true;
         return this;
     }
     
+    /**
+     * It Sets up the background color for the cell.
+     * */
     public TableRowStyle bgColor(String bgColor) {
 		this.bgColor = bgColor;
 		return this;
 	}
     
 	
-	//### Chunk of code ######################################
+	//### Chunk of code bellow ######################################
+    
     private String doStyleBold(StringBuilder style, String txt) { //bold can only be applied to "run|rPr" not "pPr" 
+        //hardcode applying style to the Paragraph
         if (bold ) {
             //style.append("\n            	<w:b/>");
-            txt = txt.replace("<w:r>", "<w:r>\n	<w:rPr>\n            	<w:b/>\n	</w:rPr>\n"); //hardcode aplying style to the Paragraph
+            txt = txt.replace("<w:r>", "<w:r>\n	<w:rPr>\n            	<w:b/>\n	</w:rPr>\n"); 
         }
         return txt;
     }
 
     private void doStyleBgColor(StringBuilder style) {
-    	if (!"".equals(bgColor)) {
-    		style.append("\n            	<w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"" + this.bgColor + "\"/>\n");
+        if (!"".equals(bgColor)) {
+            style.append("\n            	<w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"" + this.bgColor + "\"/>\n");
+        }
+    }
+    
+    private void doStyleRepeatTableHeader(StringBuilder style) {
+    	if (repeatTableHeaderOnEveryPage) {
+    		style.append("\n            	<w:tblHeader/>\n");
     	}
     }
 	

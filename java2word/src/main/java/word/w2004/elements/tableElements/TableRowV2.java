@@ -7,16 +7,18 @@ public class TableRowV2 implements IElement, IFluentElementStylable<TableRowStyl
 
 	private StringBuilder txt = new StringBuilder("");
 	private TableRowStyle style = new TableRowStyle();
+	private final String tableRowTop = "\n <w:tr>{styleRowPh}";
+	private final String tableRowBottom = "\n  </w:tr>";
 	
 	public TableRowV2(Object[] cols) {
-        txt.append("\n	<w:tr>{styleRowPh}");
+        txt.append(tableRowTop);
 
         for (int i = 0; i < cols.length; i++) {            
         	//TableCell knows how to do the rest.
         	txt.append( TableCell.with(cols[i]).create().getContent() );
         }
 		
-        txt.append("\n	</w:tr>");
+        txt.append(tableRowBottom);
 	}
 
 	@Override

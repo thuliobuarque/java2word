@@ -534,32 +534,35 @@ public class Document2004Test extends Assert {
     public void testTableV2() {
         IDocument myDoc = new Document2004();
         TableV2 tbl = new TableV2();
-        //tbl.showHeaderonEveryPage();
-        //tbl.addRow("Pele", "1281");//.withStyle();
-        //tbl.addRow(Paragraph.with("Paragraph 01"), Paragraph.with("Paragraph 02"));
-        //tbl.addRow("Pele", "1281", "Brazil").withStyle();
-        	//tbl.addRow(TableCell.with("Leonardo").withStyle().bgColor("E0E0E0").create(), "200");
-        	//tbl.addRow(TableCell.with("This is merged with the second cell").withStyle().gridSpan(2).create() );
         
-        //tbl.addRow("Style applied to the whole line").withStyle().bold().create() ); //
+        tbl.addRow( TableRowV2.with("Table Header in all Pages", "Usefull for reports").withStyle().repeatTableHeaderOnEveryPage().create() );
         
+        tbl.addRow( TableRowV2.with("Simple String cell", "Another simple String cell") ); 
+        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableCell- Style to the whole cell, Par").create()), "Simple String" ).withStyle().bold().create() );
+        tbl.addRow( TableRowV2.with("Style to the whole cell, Str", "String").withStyle().bold().create() );
+        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 with merge").create()).withStyle().gridSpan(2).create() ).withStyle().bold().create() );
+        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.withPieces( ParagraphPiece.with("Paragraph with Style inside TableCell").withStyle().bold().fontSize("20").create() ).create()).withStyle().bgColor("00FFFF").create(), "String"  ));
         
-        //tbl.addRow(TableCell.with("Leonardo").withStyle().bold().create(), "200");
-        //tbl.addRow(TableCell.with("line has merge").collSpan(2).withStyle().bold(), "Brazil");
-        //tbl.addRow(Paragraph.with("Paragraph 01").create(), "", "" ).withStyle().bold();
+        String img = Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("100").setWidth("300").create().getContent();
+        tbl.addRow( TableRowV2.with("this google logo: ", "Image here: "+ img + " == image before") );
         
+        for (int i = 0; i < 8000; i++) {
+            tbl.addRow( TableRowV2.with("111 ", "222") );            
+        }
         
-        //tbl.addRow( TableRowV2.with("Style applied to the whole line") ); 
-        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 Style 02").create()), "x" ).withStyle().bold().create() );
-        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 Style 03").create()).withStyle().gridSpan(2).create() ).withStyle().bold().create() );
-        //tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.withPieces( ParagraphPiece.with("Paragraph 03").withStyle().bold().create() ).create()).withStyle().bgColor("00FFFF").create()  ));
+        tbl.addRow( TableRowV2.with("LAST", "LAST") );            
         
         System.out.println(tbl.getContent());
-        
+        myDoc.addEle(tbl.getContent());
         
         //System.out.println(TableRowV2.with("Style applied to the whole line").withStyle().bold().create().getContent());
         
-        myDoc.addEle(tbl.getContent());
+//        Table tbl2 = new Table();
+//        tbl2.setRepeatTableHeaderOnEveryPage();
+//        tbl2.addTableEle(TableEle.TH, "");
+//        System.out.println(tbl2.getContent());
+//        myDoc.addEle(tbl2);
+        
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 

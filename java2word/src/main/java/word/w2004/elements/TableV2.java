@@ -24,15 +24,19 @@ public class TableV2 implements IElement {
         return txt.toString();
     }
 
+    /**
+     * You always have to use TableRow to add new rows to the table. Eg.:
+     * <code>
+     * tbl.addRow( TableRowV2.with("Simple String cell") ); 
+     * </code>
+     * See documentation on method "TableRowV2.with" for very detailed information.
+     *  
+     * @param row
+     * @return
+     */
     public TableRowV2 addRow(TableRowV2 row) {
-        //the row will have cells
-    	
-    	//TableRowV2 tableRow = new TableRowV2();    	
+        //the row will have cells. The Row knows how to do the rest...
         txt.append(row.getContent());
-
-        //replace Styles placeHolders for ROW, if necessary
-        //txt.append(TableRowV2.getMiddle());
-
         return row;
     }
 
