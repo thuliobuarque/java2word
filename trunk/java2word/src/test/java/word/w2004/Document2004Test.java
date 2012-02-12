@@ -26,7 +26,7 @@ import word.w2004.elements.Table;
 import word.w2004.elements.TableV2;
 import word.w2004.elements.tableElements.TableCell;
 import word.w2004.elements.tableElements.TableEle;
-import word.w2004.elements.tableElements.TableRowV2;
+import word.w2004.elements.tableElements.TableRow;
 import word.w2004.elements.HyperLink;
 import word.w2004.style.Font;
 import word.w2004.style.HeadingStyle.Align;
@@ -535,22 +535,22 @@ public class Document2004Test extends Assert {
         IDocument myDoc = new Document2004();
         TableV2 tbl = new TableV2();
         
-        tbl.addRow( TableRowV2.with("Table Header in all Pages", "Usefull for reports").withStyle().repeatTableHeaderOnEveryPage().create() );
+        tbl.addRow( TableRow.with("Table Header in all Pages", "Usefull for reports").withStyle().repeatTableHeaderOnEveryPage().create() );
         
-        tbl.addRow( TableRowV2.with("Simple String cell", "Another simple String cell") ); 
-        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableCell- Style to the whole cell, Par").create()), "Simple String" ).withStyle().bold().create() );
-        tbl.addRow( TableRowV2.with("Style to the whole cell, Str", "String").withStyle().bold().create() );
-        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.with("TableRowV2 with merge").create()).withStyle().gridSpan(2).create() ).withStyle().bold().create() );
-        tbl.addRow( TableRowV2.with( TableCell.with(Paragraph.withPieces( ParagraphPiece.with("Paragraph with Style inside TableCell").withStyle().bold().fontSize("20").create() ).create()).withStyle().bgColor("00FFFF").create(), "String"  ));
+        tbl.addRow( TableRow.with("Simple String cell", "Another simple String cell") ); 
+        tbl.addRow( TableRow.with( TableCell.with(Paragraph.with("TableCell- Style to the whole cell, Par").create()), "Simple String" ).withStyle().bold().create() );
+        tbl.addRow( TableRow.with("Style to the whole cell, Str", "String").withStyle().bold().create() );
+        tbl.addRow( TableRow.with( TableCell.with(Paragraph.with("TableRowV2 with merge").create()).withStyle().gridSpan(2).create() ).withStyle().bold().create() );
+        tbl.addRow( TableRow.with( TableCell.with(Paragraph.withPieces( ParagraphPiece.with("Paragraph with Style inside TableCell").withStyle().bold().fontSize("20").create() ).create()).withStyle().bgColor("00FFFF").create(), "String"  ));
         
         String img = Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("100").setWidth("300").create().getContent();
-        tbl.addRow( TableRowV2.with("this google logo: ", "Image here: "+ img + " == image before") );
+        tbl.addRow( TableRow.with("this google logo: ", "Image here: "+ img + " == image before") );
         
-        for (int i = 0; i < 8000; i++) {
-            tbl.addRow( TableRowV2.with("111 ", "222") );            
+        for (int i = 0; i < 100; i++) {
+            tbl.addRow( TableRow.with("111 ", "222") );            
         }
         
-        tbl.addRow( TableRowV2.with("LAST", "LAST") );            
+        tbl.addRow( TableRow.with("LAST", "LAST") );            
         
         System.out.println(tbl.getContent());
         myDoc.addEle(tbl.getContent());
