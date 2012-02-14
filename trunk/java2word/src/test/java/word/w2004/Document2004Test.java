@@ -1,10 +1,5 @@
 package word.w2004;
 
-import java.awt.Color;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-
 import junit.framework.Assert;
 
 import org.junit.Ignore;
@@ -18,6 +13,7 @@ import word.w2004.elements.BreakLine;
 import word.w2004.elements.Heading1;
 import word.w2004.elements.Heading2;
 import word.w2004.elements.Heading3;
+import word.w2004.elements.HyperLink;
 import word.w2004.elements.Image;
 import word.w2004.elements.PageBreak;
 import word.w2004.elements.Paragraph;
@@ -27,7 +23,6 @@ import word.w2004.elements.TableV2;
 import word.w2004.elements.tableElements.TableCell;
 import word.w2004.elements.tableElements.TableEle;
 import word.w2004.elements.tableElements.TableRow;
-import word.w2004.elements.HyperLink;
 import word.w2004.style.Font;
 import word.w2004.style.HeadingStyle.Align;
 
@@ -529,7 +524,7 @@ public class Document2004Test extends Assert {
         TestUtils.createLocalDoc(myDoc.getContent());
     }
     
-    //@Ignore
+    @Ignore
     @Test
     public void testTableV2() {
         IDocument myDoc = new Document2004();
