@@ -10,7 +10,7 @@ Minor release. Applied patch for Identation and hiperlinks by whoahbot, Added so
       
     - Issue 46:   Adding indentation
     - Issue 45:   Adding hyperlinks to the document  
-    
+    - Experimental TableV2 (version 2) has been added. Possible to merge cells, format cells and all features of V1. 
     - Removed all deprecated methods
 
 Upgrade steps:
