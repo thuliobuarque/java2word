@@ -513,17 +513,17 @@ public class Document2004Test extends Assert {
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 
-    @Test
-    public void testTableFabio() {
-        IDocument myDoc = new Document2004();
-        br.gov.pi.tce.word.Table tbl = new br.gov.pi.tce.word.Table(1, 2);
-        tbl.addRow();
-        
-        myDoc.addEle(tbl.getContent());
-        
-        TestUtils.createLocalDoc(myDoc.getContent());
-    }
-    
+//    @Test
+//    public void testTableFabio() {
+//        IDocument myDoc = new Document2004();
+//        br.gov.pi.tce.word.Table tbl = new br.gov.pi.tce.word.Table(1, 2);
+//        tbl.addRow();
+//        
+//        myDoc.addEle(tbl.getContent());
+//        
+//        TestUtils.createLocalDoc(myDoc.getContent());
+//    }
+//    
     @Ignore
     @Test
     public void testTableV2() {
