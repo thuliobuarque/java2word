@@ -24,11 +24,17 @@ public class TableCell implements IElement, IFluentElement<TableCell>, IFluentEl
     private TableCell() {
     }
 
-    private TableCell(Object cell) {		
-    	
-        if (cell instanceof String) { //new Par
+    private TableCell(Object cell) {		   	
+    	if (cell instanceof String) { //new Par
         	txt.append(tableCellTop);
-        	txt.append(Paragraph.with(cell.toString()).create().getContent());
+        	
+        	String cellValue = cell.toString();
+        	if(cellValue.equals("")){        		
+        		txt.append("<w:p><w:r></w:r></w:p>");//Empty Paragraph        		
+        	}else{
+        		txt.append(Paragraph.with(cellValue).create().getContent());
+        	}
+    	
         	txt.append(tableCellBottom);    	
         } else if (cell instanceof IElement) {
 

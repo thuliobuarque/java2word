@@ -23,6 +23,7 @@ import word.api.interfaces.IDocument;
 
 public class Utils {
 
+	
 	/**
 	 * @return
 	 * 
