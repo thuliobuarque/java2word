@@ -1,5 +1,10 @@
 package word.w2004;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import junit.framework.Assert;
 
 import org.junit.Ignore;
@@ -476,57 +481,12 @@ public class Document2004Test extends Assert {
         
         TestUtils.createLocalDoc(myDoc.getContent());
     }
+    // ### END all-in-one
     
-    @Ignore 
-    @Test
-    public void testTst() {
-        IDocument myDoc = new Document2004();
-        
-        Table tbl04 = new Table();
-        tbl04.addTableEle(TableEle.TH, "Name", "Number of gols", "Country");
-        tbl04.setRepeatTableHeaderOnEveryPage();
-
-        tbl04.addTableEle(TableEle.TD, "* Arthur Friedenreich", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "Pele", "1281", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "Romario", "1002", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "Tulio Maravilha", "956", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "** Zico", "815", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "Roberto Dinamite", "748", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "Di Stéfano", "715", "Argentina");
-        tbl04.addTableEle(TableEle.TD, "Puskas", "689", "Hungary");
-        tbl04.addTableEle(TableEle.TD, "Flávio", "591", "Brazil");
-        tbl04.addTableEle(TableEle.TD, "James McGory", "550", "Scotland");
-        tbl04.addTableEle(TableEle.TD, "*** Leonardo Correa", "299", "Brazil/Australia");
-        tbl04.addTableEle(TableEle.TD, "Maradona", "258", "Argentina");
-
-        tbl04.addTableEle(TableEle.TF, "Total", "1,100,000.00", Paragraph.withPieces(
-        			ParagraphPiece.with("BOLD").withStyle().bold().create(),
-        			ParagraphPiece.with("Italic").withStyle().italic().create()        			
-        		).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create().getContent());
-        myDoc.addEle(tbl04);
-        
-        //myDoc.addEle(Paragraph.withPieces(ParagraphPiece.with("BOLD").withStyle().bold().create()).withStyle().align(word.w2004.style.ParagraphStyle.Align.RIGHT).create());
-        
-
-        System.out.println(myDoc.getContent());
-
-        TestUtils.createLocalDoc(myDoc.getContent());
-    }
-
-//    @Test
-//    public void testTableFabio() {
-//        IDocument myDoc = new Document2004();
-//        br.gov.pi.tce.word.Table tbl = new br.gov.pi.tce.word.Table(1, 2);
-//        tbl.addRow();
-//        
-//        myDoc.addEle(tbl.getContent());
-//        
-//        TestUtils.createLocalDoc(myDoc.getContent());
-//    }
-//    
+    
     @Ignore
     @Test
-    public void testTableV2() {
+    public void testTableV2() throws FileNotFoundException {
         IDocument myDoc = new Document2004();
         TableV2 tbl = new TableV2();
         
@@ -541,13 +501,13 @@ public class Document2004Test extends Assert {
         String img = Image.from_WEB_URL("http://www.google.com/images/logos/ps_logo2.png").setHeight("100").setWidth("300").create().getContent();
         tbl.addRow( TableRow.with("this google logo: ", "Image here: "+ img + " == image before") );
         
-        for (int i = 0; i < 100; i++) {
-            tbl.addRow( TableRow.with("111 ", "222") );            
+        for (int i = 0; i < 10; i++) {
+            tbl.addRow( TableRow.with("111", "") );            
         }
         
         tbl.addRow( TableRow.with("LAST", "LAST") );            
         
-        System.out.println(tbl.getContent());
+       // System.out.println(tbl.getContent());
         myDoc.addEle(tbl.getContent());
         
         //System.out.println(TableRowV2.with("Style applied to the whole line").withStyle().bold().create().getContent());
@@ -557,7 +517,7 @@ public class Document2004Test extends Assert {
 //        tbl2.addTableEle(TableEle.TH, "");
 //        System.out.println(tbl2.getContent());
 //        myDoc.addEle(tbl2);
-        
+		
         TestUtils.createLocalDoc(myDoc.getContent());
     }
 
