@@ -48,6 +48,22 @@ public class Image implements IImage, IFluentElement<Image> {
         }
     }
 
+    private Image(String filename, InputStream inputStream) {
+    	  if (inputStream == null)
+    		  throw new IllegalArgumentException("Can't create image - null input stream");
+    	  if (filename == null || filename.length() < 3)
+    		  throw new IllegalArgumentException("Can't create image - invalid filename");
+    	  this.path = filename;
+    	  try {
+    		  this.bufferedImage = ImageIO.read(inputStream);
+    	  } catch (IOException e) {
+    	      throw new RuntimeException("Can't create ImageIO.", e);
+    	  }
+    }
+    
+    /**
+     * It returns the original width and height of the image. The '#' is the separator.
+     * */
     public String getOriginalWidthHeight() {
         String res = bufferedImage.getWidth() + "#" + bufferedImage.getHeight()
                 + "";
@@ -164,6 +180,17 @@ public class Image implements IImage, IFluentElement<Image> {
         return new Image(path,  ImageLocation.CLASSPATH);
     }
 
+    /**
+     * Creates the Image from a InputStream. Useful when image comes from the database. Issue 85 by Trumbera
+     *  
+     * @param filename
+     * @param inputStream
+     * @return
+     */
+    public static Image from_STREAM(String filename, InputStream inputStream){
+        return new Image(filename, inputStream);
+    }
+    
     @Override
     public Image create() {
         return this;

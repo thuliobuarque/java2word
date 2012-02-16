@@ -1,6 +1,12 @@
 package word.w2004;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 import junit.framework.Assert;
 
@@ -10,8 +16,8 @@ import org.junit.Test;
 import word.utils.TestUtils;
 import word.utils.Utils;
 import word.w2004.elements.Image;
-import word.w2004.elements.ImageLocation;
 
+@SuppressWarnings("unused")
 public class ImageTest extends Assert {
 
     @Test
@@ -20,7 +26,6 @@ public class ImageTest extends Assert {
         //Image img = new Image(Utils.getAppRoot() + "/src/test/resources/base2logo.png");
         // Image("/Users/leonardo_correa/Desktop/icons_corrup/quote.gif");
 
-        //System.out.println(img.getContent());
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
         assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
@@ -52,19 +57,16 @@ public class ImageTest extends Assert {
 
     @Test(expected = RuntimeException.class )
     public void testLocalImageWeb(){
-        @SuppressWarnings("unused") //ok... jst to hit coverage
         Image img = Image.from_WEB_URL(Utils.getAppRoot() + "/src/test/resources/dtpick.gif");
     }
 
     @Test(expected = RuntimeException.class )
     public void testLocalImageClasspath(){
-        @SuppressWarnings("unused") //ok... jst to hit coverage
         Image img = Image.from_CLASSPATH(Utils.getAppRoot() + "/src/test/resources/dtpick.gif");
     }
 
     @Test(expected = RuntimeException.class )
     public void testLocalImageClasspathFluent(){
-        @SuppressWarnings("unused") //ok... jst to hit coverage
         Image img = Image.from_WEB_URL(Utils.getAppRoot() + "/src/test/resources/dtpick.gif").create();
     }
 
@@ -137,12 +139,50 @@ public class ImageTest extends Assert {
                 "style=\"width:121pt;height:111pt\""));
     }
 
+    
     @Test(expected = java.lang.RuntimeException.class)
     public void testInvalidImage(){
-        @SuppressWarnings("unused")
         Image img = Image.from_FULL_LOCAL_PATHL(Utils.getAppRoot()
                 + "/src/test/resources/whatever");
     }
+    
+    @Test
+    public void testFromInputStream() throws FileNotFoundException{
+        InputStream is = new BufferedInputStream(
+                new FileInputStream(Utils.getAppRoot() + "/src/test/resources/dtpick.gif"));
+        
+		Image img = Image.from_STREAM("leo.png", is);
+		
+        assertEquals(2, TestUtils.regexCount(img.getContent(), "<*w:pict>"));
+        assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shapetype"));
+        assertEquals(2, TestUtils.regexCount(img.getContent(), "<*v:shape[ >]")); //white space or >
+        assertEquals(2, TestUtils.regexCount(img.getContent(), "wordml"));
+        assertEquals(1, TestUtils.regexCount(img.getContent(), "width:16pt;height:16pt"));
+        assertEquals(1, TestUtils.regexCount(img.getContent(), "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAAD"));
+    }
+    
+    @Test //(expected = IllegalArgumentException.class)
+    public void testFromNullInputStream() throws Exception{
+    	try {
+    		InputStream is = null;
+			Image img = Image.from_STREAM("leo.png", is);
+    		throw new Exception("It shouldn't get here");
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getMessage().contains("Can't create image - null input stream"));
+		}
+    }
+    
+    @Test //(expected = IllegalArgumentException.class)
+    public void testFromSmallFilenameInputStream() throws Exception{
+    	try {
+            InputStream is = new BufferedInputStream(
+                    new FileInputStream(Utils.getAppRoot() + "/src/test/resources/dtpick.gif"));
+    		Image img = Image.from_STREAM("12", is);
 
-
+    		throw new Exception("It shouldn't get here");
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getMessage().contains("Can't create image - invalid filename"));
+		}
+    }
+    
 }
