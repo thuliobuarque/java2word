@@ -10,8 +10,15 @@ import word.w2004.elements.tableElements.TableRow;
 public class TableV2 implements IElement {
 
     private StringBuilder txt = new StringBuilder("");
-
+    private boolean hasBeenCalledBefore = false;
+    
     public String getContent() {
+        if (hasBeenCalledBefore) {
+            return txt.toString();
+        } else {
+            hasBeenCalledBefore = true;
+        }
+        
         if ("".equals(txt.toString())) {
             return "";
         }
