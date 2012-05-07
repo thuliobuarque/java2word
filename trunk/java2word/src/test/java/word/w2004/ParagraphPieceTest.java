@@ -57,12 +57,15 @@ public class ParagraphPieceTest extends Assert {
         assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
         assertEquals(1, TestUtils.regexCount(par.getContent(),
                 "<w:u w:val=\"single\"/>")); // underline
+        
+        System.out.println(par.getContent());
         assertEquals(1, TestUtils.regexCount(par.getContent(),
                 "w:color w:val=\"008000\"/>")); // underline
+        
         assertEquals(1, TestUtils.regexCount(par.getContent(),
-                "<w:rFonts w:ascii=\"Courier Bold Italic\" w:h-ansi=\"Courier Bold Italic\"/>"));
+                "<w:rFonts w:ascii=\"Courier\" w:h-ansi=\"Courier\"/>"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
-                "<wx:font wx:val=\"Courier Bold Italic\"/>"));
+                "<wx:font wx:val=\"Courier\"/>"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
                 "<w:sz w:val=\"(.*)\" />"));
         assertEquals(1, TestUtils.regexCount(par.getContent(),
@@ -238,21 +241,21 @@ public class ParagraphPieceTest extends Assert {
     }
 
     @Test
-    public void testSmartFontBold() {
+    public void testFontBold() {
         /***
          * the font is "ARIAL_NARROW_BOLD", so there has to be a 'smart' bold tag in it.
          * There should not be any 'italic' this time
          */
         IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_BOLD).create();
-
+        
         doBasicChecking(par, "piece01");
 
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
+        assertEquals(3, TestUtils.regexCount(par.getContent(), "Arial Narrow Bold")); // bold
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
     }
 
     @Test
-    public void testSmartFontItalic() {
+    public void testFontItalic() {
         /***
          * the font is "ARIAL_NARROW_ITALIC", so there has to be a 'smart' Italic tag in it.
          * There should not be any 'bold' this time
@@ -261,32 +264,25 @@ public class ParagraphPieceTest extends Assert {
 
         doBasicChecking(par, "piece01");
 
+        assertEquals(3, TestUtils.regexCount(par.getContent(), "Arial Narrow Italic")); // 
         assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
     }
 
     @Test
-    public void testSmartFontItalicAndBold() {
+    public void testFontItalicAndBold() {
         /***
          * the font is "ARIAL_NARROW_ITALIC", so there has to be both 'smart' Italic and 'bold' tags in it.
          */
         IElement par = ParagraphPiece.with("piece01").withStyle().font(Font.ARIAL_NARROW_BOLD_ITALIC).create();
-
+        System.out.println(par.getContent());
         doBasicChecking(par, "piece01");
         
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:b/>")); // bold
-        assertEquals(1, TestUtils.regexCount(par.getContent(), "<w:i/>")); // italic
+        assertEquals(3, TestUtils.regexCount(par.getContent(), "Arial Narrow Bold Italic")); // bold
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:b/>")); // can't have any standalone
+        assertEquals(0, TestUtils.regexCount(par.getContent(), "<w:i/>")); // can't have any standalone
     }
 
-    @Test
-    public void testEquivalentSmartFont() {
-        Paragraph p1 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().font(Font.COURIER).bold().italic().create());
-        Paragraph p2 = Paragraph.withPieces(ParagraphPiece.with("same").withStyle().font(Font.COURIER_BOLD_ITALIC).create());
-
-        assertTrue(p1.getContent().equals(p2.getContent()));
-    }
-    
-    
     @Test
     public void testSubscript() {
         IElement par = ParagraphPiece.with("piece01").withStyle().subscript().create();

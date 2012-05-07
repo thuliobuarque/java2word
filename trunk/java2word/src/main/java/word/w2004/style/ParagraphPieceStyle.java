@@ -176,6 +176,10 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
         String fontName = "";
         if (font != null) {
             fontName = font.getValue();
+            
+            /* 
+             * issue 57: double bold. So no more smart bold for font.
+             
             if (fontName.contains("Bold")) {
                 bold = true;
             } else {
@@ -192,6 +196,8 @@ public class ParagraphPieceStyle extends AbstractStyle implements ISuperStylin {
                     fontName += " Italic";
                 }
             }
+             */
+            
         }
 
         if (font != null) {
