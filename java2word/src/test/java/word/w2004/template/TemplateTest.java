@@ -7,18 +7,22 @@ import junit.framework.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import word.api.interfaces.IDocument;
 import word.utils.TestUtils;
 import word.utils.Utils;
+import word.w2004.Document2004;
 import word.w2004.elements.Paragraph;
 import word.w2004.elements.Table;
+import word.w2004.elements.TableV2;
 import word.w2004.elements.tableElements.TableEle;
+import word.w2004.elements.tableElements.TableRow;
 
 /**
  * @author leonardo
  */
 public class TemplateTest extends Assert {
 
-    @Ignore //just to not break the build for other devs...
+   // @Ignore //just to not break the build for other devs...
     @Test
     public void testTemplate() {
         String xmlTemplate = Utils.readFile("src/test/resources/ReleaseNotesTemplate.doc");
@@ -50,7 +54,28 @@ public class TemplateTest extends Assert {
         
         xmlTemplate = replacePh(xmlTemplate, "phDateTime", new Date().toString());
         
+        System.out.println(xmlTemplate);
         TestUtils.createLocalDoc(xmlTemplate);        
+    }
+    
+
+    @Test
+    public void test93() {
+        IDocument myDoc = new Document2004();
+//        String xmlTemplate = Utils.readFile("/home/leonardo/Desktop/paulo_93.doc");
+        //String xmlTemplate = Utils.readFile("/home/leonardo/Desktop/template_branco.xml");
+        String xmlTemplate = Utils.readFile("/home/leonardo/Desktop/template.doc");
+        TableV2  tbl = new TableV2();
+        tbl.addRow(TableRow.with("Simple String cell", "Another String simple cell"));
+        
+        xmlTemplate = replacePh(xmlTemplate, "<w:t>&lt;phTabela&gt;</w:t>", tbl.getContent());
+        //xmlTemplate = replacePh(xmlTemplate, "phTabela", Paragraph.with("PORRA").create().getContent());
+        
+        System.out.println(xmlTemplate.trim());
+        //System.out.println(tbl.getContent());
+        
+        //TestUtils.createLocalDoc(xmlTemplate.replace("</w:body>", tbl.getContent() + "</w:body>"));  
+        TestUtils.createLocalDoc(xmlTemplate.trim());  
     }
     
     /***

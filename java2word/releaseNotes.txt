@@ -1,3 +1,8 @@
+============= Version 3.3 - 07-May-2012  =============
+    
+    - issue 57 Facing problem in changing font of text.
+    
+
 ============= Version 3.2 - 01-Feb-2012  =============
 
 
