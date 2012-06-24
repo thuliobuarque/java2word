@@ -2,9 +2,9 @@ package word.api.interfaces;
 
 public interface IHeader extends IHasElement{
 
-	public void setHideHeaderAndFooterFirstPage(boolean value);
-	public boolean getHideHeaderAndFooterFirstPage();
+	void setHideHeaderAndFooterFirstPage(boolean value);
+	boolean getHideHeaderAndFooterFirstPage();
 	
-	public String getHideHeaderAndFooterFirstPageXml();
+	String getHideHeaderAndFooterFirstPageXml();
 	
 }
