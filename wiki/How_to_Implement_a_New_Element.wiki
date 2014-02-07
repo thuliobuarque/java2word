@@ -1,6 +1,5 @@
 #labels Featured,Phase-Implementation
-
-Please refer to the new location: http://java2word.blogspot.com/p/how-to-implement-new-java2word-element.html
+Please refer to the new location: https://github.com/leonardoanalista/java2word
 
 cheers
 
