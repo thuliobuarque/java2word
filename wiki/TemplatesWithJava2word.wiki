@@ -1,6 +1,5 @@
 #labels Featured
-
-Please refer to the new location: http://java2word.blogspot.com/p/ms-word-templates-with-java2word.html
+Please refer to the new location: https://github.com/leonardoanalista/java2word
 
 cheers
 
