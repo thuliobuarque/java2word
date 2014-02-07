@@ -1,7 +1,7 @@
 #labels Featured
 Encoding Tips and Tricks
 
-Please refer to the new location: http://java2word.blogspot.com/p/encoding-tips-and-tricks.html
+Please refer to the new location: https://github.com/leonardoanalista/java2word
 
 <wiki:comment>
 
